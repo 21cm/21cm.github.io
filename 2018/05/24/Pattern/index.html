@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>前端知识点总结之cookie和session完全总结 | 21cm</title>
+  <title>前端知识点总结之浏览器的标准模式与怪异模式区别 | 21cm</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="cookie机制123Cookies是服务器在本地机器上存储的小段文本并随每一个请求发送至同一个服务器。网络服务器用HTTP头向客户端发送cookies，在客户终端，浏览器解析这些cookies并将它们保存为一个本地文件，它会自动将同一服务器的任何请求缚上这些cookies 。 12具体来说cookie机制采用的是在客户端保持状态的方案。它是在用户端的会话状态的存贮机制，他需要用户打开客户端的co">
-<meta name="keywords" content="html,html cookie和session完全总结">
+  <meta name="description" content="要想写出跨浏览器的CSS，必须知道浏览器解析CSS的两种模式：标准模式(strict mode)和怪异模式(quirks mode)。1234所谓的标准模式是指，浏览器按W3C标准解析执行代码；怪异模式则是使用浏览器自己的方式解析执行代码，因为不同浏览器解析执行的方式不一样，所以我们称之为怪异模式。浏览器解析时到底使用标准模式还是怪异模式，与你网页中的DTD声明直接相关，DTD声明定义了标准文档的">
+<meta name="keywords" content="html,html 标准模式与怪异模式">
 <meta property="og:type" content="article">
-<meta property="og:title" content="前端知识点总结之cookie和session完全总结">
-<meta property="og:url" content="http://yoursite.com/2018/05/21/cookie and session/index.html">
+<meta property="og:title" content="前端知识点总结之浏览器的标准模式与怪异模式区别">
+<meta property="og:url" content="http://yoursite.com/2018/05/24/Pattern/index.html">
 <meta property="og:site_name" content="21cm">
-<meta property="og:description" content="cookie机制123Cookies是服务器在本地机器上存储的小段文本并随每一个请求发送至同一个服务器。网络服务器用HTTP头向客户端发送cookies，在客户终端，浏览器解析这些cookies并将它们保存为一个本地文件，它会自动将同一服务器的任何请求缚上这些cookies 。 12具体来说cookie机制采用的是在客户端保持状态的方案。它是在用户端的会话状态的存贮机制，他需要用户打开客户端的co">
+<meta property="og:description" content="要想写出跨浏览器的CSS，必须知道浏览器解析CSS的两种模式：标准模式(strict mode)和怪异模式(quirks mode)。1234所谓的标准模式是指，浏览器按W3C标准解析执行代码；怪异模式则是使用浏览器自己的方式解析执行代码，因为不同浏览器解析执行的方式不一样，所以我们称之为怪异模式。浏览器解析时到底使用标准模式还是怪异模式，与你网页中的DTD声明直接相关，DTD声明定义了标准文档的">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-05-24T03:05:05.645Z">
+<meta property="og:updated_time" content="2018-05-24T03:08:57.488Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="前端知识点总结之cookie和session完全总结">
-<meta name="twitter:description" content="cookie机制123Cookies是服务器在本地机器上存储的小段文本并随每一个请求发送至同一个服务器。网络服务器用HTTP头向客户端发送cookies，在客户终端，浏览器解析这些cookies并将它们保存为一个本地文件，它会自动将同一服务器的任何请求缚上这些cookies 。 12具体来说cookie机制采用的是在客户端保持状态的方案。它是在用户端的会话状态的存贮机制，他需要用户打开客户端的co">
+<meta name="twitter:title" content="前端知识点总结之浏览器的标准模式与怪异模式区别">
+<meta name="twitter:description" content="要想写出跨浏览器的CSS，必须知道浏览器解析CSS的两种模式：标准模式(strict mode)和怪异模式(quirks mode)。1234所谓的标准模式是指，浏览器按W3C标准解析执行代码；怪异模式则是使用浏览器自己的方式解析执行代码，因为不同浏览器解析执行的方式不一样，所以我们称之为怪异模式。浏览器解析时到底使用标准模式还是怪异模式，与你网页中的DTD声明直接相关，DTD声明定义了标准文档的">
   
     <link rel="alternative" href="/atom.xml" title="21cm" type="application/atom+xml">
   
@@ -145,36 +145,32 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-cookie and session" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Pattern" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      前端知识点总结之cookie和session完全总结
+      前端知识点总结之浏览器的标准模式与怪异模式区别
     </h1>
   
 
         
-        <a href="/2018/05/21/cookie and session/" class="archive-article-date">
-  	<time datetime="2018-05-20T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-21</time>
+        <a href="/2018/05/24/Pattern/" class="archive-article-date">
+  	<time datetime="2018-05-24T02:10:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-24</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="cookie机制"><a href="#cookie机制" class="headerlink" title="cookie机制"></a>cookie机制</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Cookies是服务器在本地机器上存储的小段文本并随每一个请求发送至同一个服务器。</span><br><span class="line">网络服务器用HTTP头向客户端发送cookies，在客户终端，浏览器解析这些cookies并将它们保存为一个本地文件，</span><br><span class="line">它会自动将同一服务器的任何请求缚上这些cookies 。</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">具体来说cookie机制采用的是在客户端保持状态的方案。</span><br><span class="line">它是在用户端的会话状态的存贮机制，他需要用户打开客户端的cookie支持。cookie的作用就是为了解决HTTP协议无状态的缺陷所作的努力。</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">正统的cookie分发是通过扩展HTTP协议来实现的，服务器通过在HTTP的响应头中加上一行特殊的指示以提示浏览器按照指示生成相应的cookie。</span><br><span class="line">然而纯粹的客户端脚本如JavaScript也可以生成cookie。而cookie的使用是由浏览器按照一定的原则在后台自动发送给服务器的。</span><br><span class="line">浏览器检查所有存储的cookie，如果某个cookie所声明的作用范围大于等于将要请求的资源所在的位置，</span><br><span class="line">则把该cookie附在请求资源的HTTP请求头上发送给服务器。</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cookie的内容主要包括：名字，值，过期时间，路径和域。路径与域一起构成cookie的作用范围。</span><br><span class="line">若不设置过期时间，则表示这个cookie的生命期为浏览器会话期间，关闭浏览器窗口，cookie就消失。</span><br><span class="line">这种生命期为浏览器会话期的cookie被称为会话cookie。会话cookie一般不存储在硬盘上而是保存在内存里，当然这种行为并不是规范规定的。</span><br><span class="line">若设置了过期时间，浏览器就会把cookie保存到硬盘上，关闭后再次打开浏览器，这些cookie仍然有效直到超过设定的过期时间。</span><br><span class="line">存储在硬盘上的cookie可以在不同的浏览器进程间共享，比如两个IE窗口。而对于保存在内存里的cookie，不同的浏览器有不同的处理方式。</span><br></pre></td></tr></table></figure>
-<h4 id="session机制"><a href="#session机制" class="headerlink" title="session机制"></a>session机制</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">而session机制采用的是一种在服务器端保持状态的解决方案。同时我们也看到，由于采用服务器端保持状态的方案在客户端也需要保存一个标识，</span><br><span class="line">所以session机制可能需要借助于cookie机制来达到保存标识的目的。而session提供了方便管理全局变量的方式 。</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">session是针对每一个用户的，变量的值保存在服务器上，用一个sessionID来区分是哪个用户session变量,</span><br><span class="line">这个值是通过用户的浏览器在访问的时候返回给服务器，当客户禁用cookie时，这个值也可能设置为由get来返回给服务器。</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">就安全性来说：当你访问一个使用session 的站点，同时在自己机子上建立一个cookie，建议在服务器端的session机制更安全些，</span><br><span class="line">因为它不会任意读取客户存储的信息。</span><br><span class="line">session机制是一种服务器端的机制，服务器使用一种类似于散列表的结构（也可能就是使用散列表）来保存信息。</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">当程序需要为某个客户端的请求创建一个session时，服务器首先检查这个客户端的请求里是否已包含了一个session标识（称为session id），</span><br><span class="line">如果已包含则说明以前已经为此客户端创建过session，服务器就按照session id把这个session检索出来使用（检索不到，会新建一个），</span><br><span class="line">如果客户端请求不包含session id，则为此客户端创建一个session并且生成一个与此session相关联的session id，</span><br><span class="line">session id的值应该是一个既不会重复，又不容易被找到规律以仿造的字符串，这个session id将被在本次响应中返回给客户端保存。</span><br><span class="line"></span><br><span class="line">保存这个session id的方式可以采用cookie，这样在交互过程中浏览器可以自动的按照规则把这个标识发挥给服务器。</span><br><span class="line">一般这个cookie的名字都是类似于SEEESIONID。但cookie可以被人为的禁止，则必须有其他机制以便在cookie被禁止时仍然能够把</span><br><span class="line">session id传递回服务器。</span><br><span class="line"></span><br><span class="line">经常被使用的一种技术叫做URL重写，就是把session id直接附加在URL路径的后面。还有一种技术叫做表单隐藏字段。</span><br><span class="line">就是服务器会自动修改表单，添加一个隐藏字段，以便在表单提交时能够把session id传递回服务器。</span><br></pre></td></tr></table></figure>
-<p>Cookie与Session都能够进行会话跟踪，但是完成的原理不太一样。普通状况下二者均能够满足需求，但有时分不能够运用Cookie，<br>有时分不能够运用Session。下面经过比拟阐明二者的特性以及适用的场所。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">1、存取方式的不同</span><br><span class="line">Cookie中只能保管ASCII字符串，假如需求存取Unicode字符或者二进制数据，需求先进行编码。Cookie中也不能直接存取Java对象。</span><br><span class="line">若要存储略微复杂的信息，运用Cookie是比拟艰难的。</span><br><span class="line"></span><br><span class="line">而Session中能够存取任何类型的数据，包括而不限于String、Integer、List、Map等。Session中也能够直接保管Java Bean乃至任何Java类，</span><br><span class="line">对象等，运用起来十分便当。能够把Session看做是一个Java容器类。</span><br><span class="line"></span><br><span class="line">2、隐私策略的不同</span><br><span class="line">Cookie存储在客户端阅读器中，对客户端是可见的，客户端的一些程序可能会窥探、复制以至修正Cookie中的内容。</span><br><span class="line">而Session存储在服务器上，对客户端是透明的，不存在敏感信息泄露的风险。</span><br><span class="line"></span><br><span class="line">假如选用Cookie，比较好的方法是，敏感的信息如账号密码等尽量不要写到Cookie中。最好是像Google、Baidu那样将Cookie信息加密，</span><br><span class="line">提交到服务器后再进行解密，保证Cookie中的信息只要本人能读得懂。而假如选择Session就省事多了，反正是放在服务器上，</span><br><span class="line">Session里任何隐私都能够有效的保护。</span><br><span class="line"></span><br><span class="line">3、有效期上的不同</span><br><span class="line">使用过Google的人都晓得，假如登录过Google，则Google的登录信息长期有效。用户不用每次访问都重新登录，</span><br><span class="line">Google会持久地记载该用户的登录信息。要到达这种效果，运用Cookie会是比较好的选择。只需要设置Cookie的过期时间属性为一个很大很大的数字。</span><br><span class="line"></span><br><span class="line">由于Session依赖于名为JSESSIONID的Cookie，而Cookie JSESSIONID的过期时间默许为–1，只需关闭了阅读器该Session就会失效，</span><br><span class="line">因而Session不能完成信息永世有效的效果。运用URL地址重写也不能完成。</span><br><span class="line">而且假如设置Session的超时时间过长，服务器累计的Session就会越多，越容易招致内存溢出。</span><br><span class="line"></span><br><span class="line">4、服务器压力的不同</span><br><span class="line">Session是保管在服务器端的，每个用户都会产生一个Session。假如并发访问的用户十分多，会产生十分多的Session，耗费大量的内存。</span><br><span class="line">因而像Google、Baidu、Sina这样并发访问量极高的网站，是不太可能运用Session来追踪客户会话的。</span><br><span class="line"></span><br><span class="line">而Cookie保管在客户端，不占用服务器资源。假如并发阅读的用户十分多，Cookie是很好的选择。</span><br><span class="line">关于Google、Baidu、Sina来说，Cookie或许是唯一的选择。</span><br><span class="line"></span><br><span class="line">5、浏览器支持的不同</span><br><span class="line">Cookie是需要客户端浏览器支持的。假如客户端禁用了Cookie，或者不支持Cookie，则会话跟踪会失效。</span><br><span class="line">关于WAP上的应用，常规的Cookie就派不上用场了。</span><br><span class="line"></span><br><span class="line">假如客户端浏览器不支持Cookie，需要运用Session以及URL地址重写。需要注意的是一切的用到Session程序的URL都要进行URL地址重写，</span><br><span class="line">否则Session会话跟踪还会失效。关于WAP应用来说，Session+URL地址重写或许是它唯一的选择。</span><br><span class="line"></span><br><span class="line">假如客户端支持Cookie，则Cookie既能够设为本浏览器窗口以及子窗口内有效（把过期时间设为–1），</span><br><span class="line">也能够设为一切阅读器窗口内有效（把过期时间设为某个大于0的整数）。但Session只能在本阅读器窗口以及其子窗口内有效。</span><br><span class="line">假如两个浏览器窗口互不相干，它们将运用两个不同的Session。（IE8下不同窗口Session相干）</span><br><span class="line"></span><br><span class="line">6、跨域支持上的不同</span><br><span class="line">Cookie支持跨域名访问，例如将domain属性设置为“.biaodianfu.com”，则以“.biaodianfu.com”为后缀的一切域名均能够访问该Cookie。</span><br><span class="line">跨域名Cookie如今被普遍用在网络中，例如Google、Baidu、Sina等。而Session则不会支持跨域名访问。Session仅在他所在的域名内有效。</span><br><span class="line"></span><br><span class="line">仅运用Cookie或者仅运用Session可能完成不了理想的效果。这时应该尝试一下同时运用Cookie与Session。</span><br><span class="line">Cookie与Session的搭配运用在实践项目中会完成很多意想不到的效果。</span><br></pre></td></tr></table></figure>
+        <h4 id="要想写出跨浏览器的CSS，必须知道浏览器解析CSS的两种模式：标准模式-strict-mode-和怪异模式-quirks-mode-。"><a href="#要想写出跨浏览器的CSS，必须知道浏览器解析CSS的两种模式：标准模式-strict-mode-和怪异模式-quirks-mode-。" class="headerlink" title="要想写出跨浏览器的CSS，必须知道浏览器解析CSS的两种模式：标准模式(strict mode)和怪异模式(quirks mode)。"></a>要想写出跨浏览器的CSS，必须知道浏览器解析CSS的两种模式：标准模式(strict mode)和怪异模式(quirks mode)。</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">所谓的标准模式是指，浏览器按W3C标准解析执行代码；</span><br><span class="line">怪异模式则是使用浏览器自己的方式解析执行代码，因为不同浏览器解析执行的方式不一样，所以我们称之为怪异模式。</span><br><span class="line">浏览器解析时到底使用标准模式还是怪异模式，与你网页中的DTD声明直接相关，DTD声明定义了标准文档的类型（标准模式解析）</span><br><span class="line">文档类型，会使浏览器使用相应的方式加载网页并显示，忽略DTD声明,将使网页进入怪异模式(quirks mode)。</span><br></pre></td></tr></table></figure>
+<p>如果你的网页代码不含有任何声明，那么浏览器就会采用怪异模式解析，便是如果你的网页代码含有DTD声明，浏览器就会按你所声明的标准解析。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot; &quot;http://www.w3.org/TR/html4/loose.dtd&quot;&gt;</span><br><span class="line">　　上面的代码，浏览器会按HTML 4.01的标准进行解析。</span><br></pre></td></tr></table></figure></p>
+<h4 id="到底标准模式和怪异模式有什么不同呢？"><a href="#到底标准模式和怪异模式有什么不同呢？" class="headerlink" title="到底标准模式和怪异模式有什么不同呢？"></a>到底标准模式和怪异模式有什么不同呢？</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">标准模式中IE6不认识!important声明，IE7、IE8、Firefox、Chrome等浏览器认识；</span><br><span class="line">而在怪异模式中，IE6/7/8都不认识!important声明，这只是区别的一种，还有很多其它区别。</span><br><span class="line">所以，要想写出跨浏览器CSS，你最好采用标准模式。</span><br></pre></td></tr></table></figure>
+<p>到底都有哪些声明呢？哪种声明更好呢？我们建议你使用XHTML 1.0最严格模式，从一开始我们就应该严格的要求自己,具体声明如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Strict//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd&quot;&gt;</span><br></pre></td></tr></table></figure></p>
+<p>如果你接手的是一个遗留网页，最初并没有DTD声明，并且使用了很多在XHTML中已经废除的标签，那么建议你使用XHTML兼容模式，声明如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;</span><br></pre></td></tr></table></figure></p>
+
       
 
       
@@ -191,7 +187,7 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">html cookie和session完全总结</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">html 标准模式与怪异模式</a>
         		</li>
       		
 		</ul>
@@ -258,7 +254,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/05/21/cookie and session/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/05/24/Pattern/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -272,17 +268,17 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/05/21/Pattern/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/05/24/data/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          前端知识点总结之浏览器的标准模式与怪异模式区别
+          前端知识点总结之data-xxx属性的作用
         
       </div>
     </a>
   
   
-    <a href="/2018/05/21/doctype/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2018/05/24/doctype/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">前端知识点总结之doctype的作用</div>
       <i class="icon-circle-right"></i>
     </a>
@@ -405,7 +401,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">html 标准模式与怪异模式</a>
+                <a href="javascript:void(0)" class="js-tag color1">html data-xxx属性</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -413,11 +409,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">html-doctype</a>
+                <a href="javascript:void(0)" class="js-tag color5">html 标准模式与怪异模式</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">html data-xxx属性</a>
+                <a href="javascript:void(0)" class="js-tag color3">html-doctype</a>
               </li>
              
               <li class="article-tag-list-item">
