@@ -146,6 +146,96 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-css-float" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/24/css-float/">前端知识点总结之css-浮动</a>
+    </h1>
+  
+
+        
+        <a href="/2018/05/24/css-float/" class="archive-article-date">
+  	<time datetime="2018-05-24T08:30:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="浮动元素引起的问题和解决办法？"><a href="#浮动元素引起的问题和解决办法？" class="headerlink" title="浮动元素引起的问题和解决办法？"></a>浮动元素引起的问题和解决办法？</h4><p>浮动元素引起的问题：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">（1）父元素的高度无法被撑开，影响与父元素同级的元素</span><br><span class="line"></span><br><span class="line">（2）与浮动元素同级的非浮动元素（内联元素）会跟随其后</span><br><span class="line"></span><br><span class="line">（3）若非第一个元素浮动，则该元素之前的元素也需要浮动，否则会影响页面显示的结构</span><br></pre></td></tr></table></figure></p>
+<p>解决方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">使用CSS中的clear:both;属性来清除元素的浮动可解决2、3问题，对于问题1，添加如下样式，给父元素添加clearfix样式：</span><br><span class="line"></span><br><span class="line">    .clearfix:after&#123;content: &quot;.&quot;;display: block;height: 0;clear: both;visibility: hidden;&#125;</span><br><span class="line"></span><br><span class="line">    .clearfix&#123;display: inline-block;&#125; /* for IE/Mac */</span><br></pre></td></tr></table></figure></p>
+<h4 id="清除浮动的几种方法："><a href="#清除浮动的几种方法：" class="headerlink" title="清除浮动的几种方法："></a>清除浮动的几种方法：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">1，额外标签法，&lt;div style=&quot;clear:both;&quot;&gt;&lt;/div&gt;（缺点：不过这个办法会增加额外的标签使HTML结构看起来不够简洁。）</span><br><span class="line"></span><br><span class="line">2，使用after伪类</span><br><span class="line"></span><br><span class="line">#parent:after&#123;</span><br><span class="line"></span><br><span class="line">    content:&quot;.&quot;;</span><br><span class="line"></span><br><span class="line">    height:0;</span><br><span class="line"></span><br><span class="line">    visibility:hidden;</span><br><span class="line"></span><br><span class="line">    display:block;</span><br><span class="line"></span><br><span class="line">    clear:both;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">3,浮动外部元素</span><br><span class="line"></span><br><span class="line">4,设置overflow为hidden或者auto</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">css</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">css-浮动</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/前端//" class="article-tag-list-link color3">前端</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/05/24/css-float/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-CSS-Reset" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -532,95 +622,6 @@
 
 
   
-    <article id="post-Semantics" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/24/Semantics/">前端知识点总结之web语义化的理解</a>
-    </h1>
-  
-
-        
-        <a href="/2018/05/24/Semantics/" class="archive-article-date">
-  	<time datetime="2018-05-24T07:30:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="怎样理解web语义化"><a href="#怎样理解web语义化" class="headerlink" title="怎样理解web语义化?"></a>怎样理解web语义化?</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Web语义化是指使用语义恰当的标签，使页面有良好的结构，页面元素有含义，能够让人和搜索引擎都容易理解。</span><br><span class="line">如果可以在合适的位置使用恰当的标签，那么写出来的页面语义明确，结构清晰，搜索引擎也可以认出哪些是页面重要内容，</span><br><span class="line">予以较高的权值。h1~h6这几个标签在搜索引擎中权值非常高，用它们作页面标题就是一个简单的SEO优化了，</span><br><span class="line">知道了这个你还使用DIV+CSS来写标题吗？（不是说直接用h1~h6标签做标题，要这几个标签+CSS）</span><br><span class="line">HTML5的一大革新就是语义化标签的完善!!!</span><br></pre></td></tr></table></figure>
-<h4 id="语义化的好处？"><a href="#语义化的好处？" class="headerlink" title="语义化的好处？"></a>语义化的好处？</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1. 去掉或者丢失样式的时候能够让页面呈现出清晰的结构</span><br><span class="line"></span><br><span class="line">2. 有利于SEO：和搜索引擎建立良好沟通，有助于爬虫抓取更多的有效信息：爬虫依赖于标签来确定上下文和各个关键字的权重；</span><br><span class="line"></span><br><span class="line">3. 方便其他设备解析（如屏幕阅读器、盲人阅读器、移动设备）以意义的方式来渲染网页；</span><br><span class="line"></span><br><span class="line">4. 便于团队开发和维护，语义化更具可读性，是下一步吧网页的重要动向，遵循W3C标准的团队都遵循这个标准，可以减少差异化。</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">html</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">web语义化的理解</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/前端//" class="article-tag-list-link color3">前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/24/Semantics/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -722,11 +723,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">html 标准模式与怪异模式</a>
+                <a href="javascript:void(0)" class="js-tag color5">web语义化的理解</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">web语义化的理解</a>
+                <a href="javascript:void(0)" class="js-tag color5">html 标准模式与怪异模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -738,11 +739,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">html data-xxx属性</a>
+                <a href="javascript:void(0)" class="js-tag color2">css-浮动</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">html-doctype</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">html data-xxx属性</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -754,11 +759,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">http状态码</a>
+                <a href="javascript:void(0)" class="js-tag color4">html5新元素</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">html5新元素</a>
+                <a href="javascript:void(0)" class="js-tag color3">http状态码</a>
               </li>
             
             <div class="clearfix"></div>
