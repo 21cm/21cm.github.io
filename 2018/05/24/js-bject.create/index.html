@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="https://21cm.js.org">
   <title>javascript原型式继承与object.create | 21cm</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="/***  动态类型语言的缺点是无法在编译期间保证变量的类型,而只能在运行时才能确定。 就像在商店买了一包牛肉味辣条,等到真正吃到嘴里才知道它到底是不是牛肉味。O(∩_∩)O*/  /***  原型式继承: 对象是通过克隆另一个对象而来的 javascript得到一个对象,就是要找到一个对象,然后克隆它。 只不过引擎内部屏蔽了细节,暴露给我们的是一个 new Object() 或 var obj=">
+  <meta name="description" content="动态类型语言的缺点是无法在编译期间保证变量的类型,而只能在运行时才能确定。 就像在商店买了一包牛肉味辣条,等到真正吃到嘴里才知道它到底是不是牛肉味。O(∩_∩)O  原型式继承: 对象是通过克隆另一个对象而来的  javascript得到一个对象,就是要找到一个对象,然后克隆它。 只不过引擎内部屏蔽了细节,暴露给我们的是一个 new Object() 或 var obj={} 指令  //模拟O">
 <meta name="keywords" content="javascript,javascript原型式继承,object.create">
 <meta property="og:type" content="article">
 <meta property="og:title" content="javascript原型式继承与object.create">
 <meta property="og:url" content="https://21cm.js.org/2018/05/24/js-bject.create/index.html">
 <meta property="og:site_name" content="21cm">
-<meta property="og:description" content="/***  动态类型语言的缺点是无法在编译期间保证变量的类型,而只能在运行时才能确定。 就像在商店买了一包牛肉味辣条,等到真正吃到嘴里才知道它到底是不是牛肉味。O(∩_∩)O*/  /***  原型式继承: 对象是通过克隆另一个对象而来的 javascript得到一个对象,就是要找到一个对象,然后克隆它。 只不过引擎内部屏蔽了细节,暴露给我们的是一个 new Object() 或 var obj=">
+<meta property="og:description" content="动态类型语言的缺点是无法在编译期间保证变量的类型,而只能在运行时才能确定。 就像在商店买了一包牛肉味辣条,等到真正吃到嘴里才知道它到底是不是牛肉味。O(∩_∩)O  原型式继承: 对象是通过克隆另一个对象而来的  javascript得到一个对象,就是要找到一个对象,然后克隆它。 只不过引擎内部屏蔽了细节,暴露给我们的是一个 new Object() 或 var obj={} 指令  //模拟O">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-05-24T12:40:48.731Z">
+<meta property="og:updated_time" content="2018-05-24T12:42:53.063Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="javascript原型式继承与object.create">
-<meta name="twitter:description" content="/***  动态类型语言的缺点是无法在编译期间保证变量的类型,而只能在运行时才能确定。 就像在商店买了一包牛肉味辣条,等到真正吃到嘴里才知道它到底是不是牛肉味。O(∩_∩)O*/  /***  原型式继承: 对象是通过克隆另一个对象而来的 javascript得到一个对象,就是要找到一个对象,然后克隆它。 只不过引擎内部屏蔽了细节,暴露给我们的是一个 new Object() 或 var obj=">
+<meta name="twitter:description" content="动态类型语言的缺点是无法在编译期间保证变量的类型,而只能在运行时才能确定。 就像在商店买了一包牛肉味辣条,等到真正吃到嘴里才知道它到底是不是牛肉味。O(∩_∩)O  原型式继承: 对象是通过克隆另一个对象而来的  javascript得到一个对象,就是要找到一个对象,然后克隆它。 只不过引擎内部屏蔽了细节,暴露给我们的是一个 new Object() 或 var obj={} 指令  //模拟O">
   
     <link rel="alternative" href="/atom.xml" title="21cm" type="application/atom+xml">
   
@@ -165,24 +165,29 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>/***</p>
-<ul>
+        <ul>
 <li>动态类型语言的缺点是无法在编译期间保证变量的类型,而只能在运行时才能确定。</li>
-<li>就像在商店买了一包牛肉味辣条,等到真正吃到嘴里才知道它到底是不是牛肉味。O(∩_∩)O<br>*/</li>
-</ul>
-<p>/***</p>
-<ul>
-<li>原型式继承: 对象是通过克隆另一个对象而来的</li>
+<li><p>就像在商店买了一包牛肉味辣条,等到真正吃到嘴里才知道它到底是不是牛肉味。O(∩_∩)O</p>
+</li>
+<li><p>原型式继承: 对象是通过克隆另一个对象而来的</p>
+</li>
 <li>javascript得到一个对象,就是要找到一个对象,然后克隆它。</li>
-<li>只不过引擎内部屏蔽了细节,暴露给我们的是一个 new Object() 或 var obj={} 指令<br>*/</li>
+<li>只不过引擎内部屏蔽了细节,暴露给我们的是一个 new Object() 或 var obj={} 指令</li>
 </ul>
-<p>//模拟Object.create方法的实现<br>var clone = function (obj) {<br>    var F = function () {<br>    };</p>
-<pre><code>F.prototype = obj;
+<p>//模拟Object.create方法的实现</p>
+<pre><code>var clone = function (obj) {
+    var F = function () {
+    };
 
-return new F();
-</code></pre><p>}</p>
-<p>var obj = {name: ‘jack’, age: 22};<br>var obj2 = clone(obj);<br>console.log(obj2.name + ‘-‘ + obj2.age);</p>
+    F.prototype = obj;
 
+    return new F();
+}
+
+var obj = {name: &apos;jack&apos;, age: 22};
+var obj2 = clone(obj);
+console.log(obj2.name + &apos;-&apos; + obj2.age);
+</code></pre>
       
 
       
@@ -408,6 +413,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">html 标准模式与怪异模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">web语义化的理解</a>
               </li>
              
@@ -417,10 +426,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">css兼容性问题</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">html 标准模式与怪异模式</a>
               </li>
              
               <li class="article-tag-list-item">
