@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://21cm.js.org">
-  <title>前端知识点总结之css选择器 | 21cm</title>
+  <title>前端知识点总结之css box-sizing属性 | 21cm</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="http://www.w3cplus.com/css/css-specificity-things-you-should-know.html http://www.dannysite.com/blog/28/">
-<meta name="keywords" content="css,css-选择器">
+  <meta name="description" content="12345678910box-sizing属性主要用来控制元素的盒模型的解析模式。默认值是content-box。content-box：让元素维持W3C的标准盒模型。元素的宽度/高度由border + padding + content的宽度/高度决定，设置width/height属性指的是content部分的宽/高border-box：让元素维持IE传统盒模型（IE6以下版本和IE6~7的怪异">
+<meta name="keywords" content="css,css-box-sizing属性">
 <meta property="og:type" content="article">
-<meta property="og:title" content="前端知识点总结之css选择器">
-<meta property="og:url" content="https://21cm.js.org/2018/05/24/css-selector/index.html">
+<meta property="og:title" content="前端知识点总结之css box-sizing属性">
+<meta property="og:url" content="https://21cm.js.org/2018/05/24/css-Box-sizing/index.html">
 <meta property="og:site_name" content="21cm">
-<meta property="og:description" content="http://www.w3cplus.com/css/css-specificity-things-you-should-know.html http://www.dannysite.com/blog/28/">
+<meta property="og:description" content="12345678910box-sizing属性主要用来控制元素的盒模型的解析模式。默认值是content-box。content-box：让元素维持W3C的标准盒模型。元素的宽度/高度由border + padding + content的宽度/高度决定，设置width/height属性指的是content部分的宽/高border-box：让元素维持IE传统盒模型（IE6以下版本和IE6~7的怪异">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-05-24T09:22:48.712Z">
+<meta property="og:updated_time" content="2018-05-24T09:38:07.137Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="前端知识点总结之css选择器">
-<meta name="twitter:description" content="http://www.w3cplus.com/css/css-specificity-things-you-should-know.html http://www.dannysite.com/blog/28/">
+<meta name="twitter:title" content="前端知识点总结之css box-sizing属性">
+<meta name="twitter:description" content="12345678910box-sizing属性主要用来控制元素的盒模型的解析模式。默认值是content-box。content-box：让元素维持W3C的标准盒模型。元素的宽度/高度由border + padding + content的宽度/高度决定，设置width/height属性指的是content部分的宽/高border-box：让元素维持IE传统盒模型（IE6以下版本和IE6~7的怪异">
   
     <link rel="alternative" href="/atom.xml" title="21cm" type="application/atom+xml">
   
@@ -145,29 +145,27 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-css-selector" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-css-Box-sizing" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      前端知识点总结之css选择器
+      前端知识点总结之css box-sizing属性
     </h1>
   
 
         
-        <a href="/2018/05/24/css-selector/" class="archive-article-date">
-  	<time datetime="2018-05-24T08:40:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-24</time>
+        <a href="/2018/05/24/css-Box-sizing/" class="archive-article-date">
+  	<time datetime="2018-05-24T09:30:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-24</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><a href="http://www.w3cplus.com/css/css-specificity-things-you-should-know.html" target="_blank" rel="noopener">http://www.w3cplus.com/css/css-specificity-things-you-should-know.html</a></p>
-<p><a href="http://www.dannysite.com/blog/28/" target="_blank" rel="noopener">http://www.dannysite.com/blog/28/</a></p>
-
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">box-sizing属性主要用来控制元素的盒模型的解析模式。默认值是content-box。</span><br><span class="line"></span><br><span class="line">content-box：让元素维持W3C的标准盒模型。元素的宽度/高度由border + padding + content的宽度/高度决定，</span><br><span class="line">设置width/height属性指的是content部分的宽/高</span><br><span class="line"></span><br><span class="line">border-box：让元素维持IE传统盒模型（IE6以下版本和IE6~7的怪异模式）。</span><br><span class="line">设置width/height属性指的是border + padding + content</span><br><span class="line"></span><br><span class="line">标准浏览器下，按照W3C规范对盒模型解析，一旦修改了元素的边框或内距，就会影响元素的盒子尺寸，</span><br><span class="line">就不得不重新计算元素的盒子尺寸，从而影响整个页面的布局。</span><br></pre></td></tr></table></figure>
       
 
       
@@ -184,7 +182,7 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">css-选择器</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">css-box-sizing属性</a>
         		</li>
       		
 		</ul>
@@ -251,7 +249,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://21cm.js.org/2018/05/24/css-selector/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://21cm.js.org/2018/05/24/css-Box-sizing/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -265,18 +263,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/05/24/css-middle/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          前端知识点总结之css居中方法
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/05/24/css-float/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">前端知识点总结之css-浮动</div>
+    <a href="/2018/05/24/css-model/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">前端知识点总结之css盒模型</div>
       <i class="icon-circle-right"></i>
     </a>
   
