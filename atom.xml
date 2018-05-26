@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://21cm.js.org/"/>
-  <updated>2018-05-26T09:20:53.763Z</updated>
+  <updated>2018-05-26T09:36:22.799Z</updated>
   <id>https://21cm.js.org/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>javascript-跨域方式总结</title>
+    <link href="https://21cm.js.org/2018/05/26/js-cross-domain/"/>
+    <id>https://21cm.js.org/2018/05/26/js-cross-domain/</id>
+    <published>2018-05-26T09:40:00.000Z</published>
+    <updated>2018-05-26T09:36:22.799Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="如何解决跨域问题"><a href="#如何解决跨域问题" class="headerlink" title="如何解决跨域问题"></a>如何解决跨域问题</h4><h4 id="1-JSONP："><a href="#1-JSONP：" class="headerlink" title="1.JSONP："></a>1.JSONP：</h4><p><code>原理是：动态插入script标签，通过script标签引入一个js文件，这个js文件载入成功后会执行我们在url参数中指定的函数，并且会把我们需要的json数据作为参数传入。</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">由于同源策略的限制，XmlHttpRequest只允许请求当前源（域名、协议、端口）的资源，为了实现跨域请求，可以通过script标签实现跨域请求，然后在服务端输出JSON数据并执行回调函数，从而解决了跨域的数据请求。</span><br><span class="line">优点是兼容性好，简单易用，支持浏览器与服务器双向通信。缺点是只支持GET请求。</span><br><span class="line">JSONP：json+padding（内填充），顾名思义，就是把JSON填充到一个盒子里</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    function createJs(sUrl)&#123;</span><br><span class="line">        var oScript = document.createElement(&apos;script&apos;);</span><br><span class="line">        oScript.type = &apos;text/javascript&apos;;</span><br><span class="line">        oScript.src = sUrl;</span><br><span class="line">        document.getElementsByTagName(&apos;head&apos;)[0].appendChild(oScript);</span><br><span class="line">    &#125;</span><br><span class="line">    createJs(&apos;jsonp.js&apos;);</span><br><span class="line">    box(&#123;</span><br><span class="line">       &apos;name&apos;: &apos;test&apos;</span><br><span class="line">    &#125;);</span><br><span class="line">    function box(json)&#123;</span><br><span class="line">        alert(json.name);</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p><h4 id="2-CORS"><a href="#2-CORS" class="headerlink" title="2.CORS"></a>2.CORS</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">服务器端对于CORS的支持，主要就是通过设置Access-Control-Allow-Origin来进行的。</span><br><span class="line">如果浏览器检测到相应的设置，就可以允许Ajax进行跨域的访问。</span><br></pre></td></tr></table></figure><h4 id="3-通过修改document-domain来跨子域"><a href="#3-通过修改document-domain来跨子域" class="headerlink" title="3.通过修改document.domain来跨子域"></a>3.通过修改document.domain来跨子域</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">将子域和主域的document.domain设为同一个主域.前提条件：这两个域名必须属于同一个基础域名!而且所用的协议，端口都要一致，</span><br><span class="line">否则无法利用document.domain进行跨域,主域相同的使用document.domain</span><br></pre></td></tr></table></figure><h4 id="4-使用window-name来进行跨域"><a href="#4-使用window-name来进行跨域" class="headerlink" title="4.使用window.name来进行跨域"></a>4.使用window.name来进行跨域</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">window对象有个name属性，该属性有个特征：即在一个窗口(window)的生命周期内,窗口载入的所有的页面都是共享一个window.name的，</span><br><span class="line">每个页面对window.name都有读写的权限，window.name是持久存在一个窗口载入过的所有页面中的</span><br></pre></td></tr></table></figure><h4 id="5-使用HTML5中新引进的window-postMessage方法来跨域传送数据"><a href="#5-使用HTML5中新引进的window-postMessage方法来跨域传送数据" class="headerlink" title="5.使用HTML5中新引进的window.postMessage方法来跨域传送数据"></a>5.使用HTML5中新引进的window.postMessage方法来跨域传送数据</h4><h4 id="6-还有flash、在服务器上设置代理页面等跨域方式。"><a href="#6-还有flash、在服务器上设置代理页面等跨域方式。" class="headerlink" title="6.还有flash、在服务器上设置代理页面等跨域方式。"></a>6.还有flash、在服务器上设置代理页面等跨域方式。</h4><p><code>window.name的方法既不复杂，也能兼容到几乎所有浏览器，这真是极好的一种跨域方法。</code></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h4 id=&quot;如何解决跨域问题&quot;&gt;&lt;a href=&quot;#如何解决跨域问题&quot; class=&quot;headerlink&quot; title=&quot;如何解决跨域问题&quot;&gt;&lt;/a&gt;如何解决跨域问题&lt;/h4&gt;&lt;h4 id=&quot;1-JSONP：&quot;&gt;&lt;a href=&quot;#1-JSONP：&quot; class=&quot;head
+      
+    
+    </summary>
+    
+      <category term="前端" scheme="https://21cm.js.org/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="javascript" scheme="https://21cm.js.org/tags/javascript/"/>
+    
+      <category term="javascript-跨域方式" scheme="https://21cm.js.org/tags/javascript-%E8%B7%A8%E5%9F%9F%E6%96%B9%E5%BC%8F/"/>
+    
+  </entry>
   
   <entry>
     <title>前端知识点总结之javascript-ajax</title>
@@ -580,33 +607,6 @@
       <category term="css" scheme="https://21cm.js.org/tags/css/"/>
     
       <category term="css兼容性问题" scheme="https://21cm.js.org/tags/css%E5%85%BC%E5%AE%B9%E6%80%A7%E9%97%AE%E9%A2%98/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>前端知识点总结之http状态码</title>
-    <link href="https://21cm.js.org/2018/05/24/http-status-codes/"/>
-    <id>https://21cm.js.org/2018/05/24/http-status-codes/</id>
-    <published>2018-05-24T08:00:00.000Z</published>
-    <updated>2018-05-24T07:58:47.915Z</updated>
-    
-    <content type="html"><![CDATA[<h4 id="HTTP状态码"><a href="#HTTP状态码" class="headerlink" title="HTTP状态码"></a>HTTP状态码</h4><pre><code>100  Continue  继续，一般在发送post请求时，已发送了http header之后服务端将返回此信息，表示确认，之后发送具体参数信息200  OK   正常返回信息201  Created  请求成功并且服务器创建了新的资源202  Accepted  服务器已接受请求，但尚未处理301  Moved Permanently  请求的网页已永久移动到新位置。302 Found  临时性重定向。303 See Other  临时性重定向，且总是使用 GET 请求新的 URI。304  Not Modified  自从上次请求后，请求的网页未修改过。400 Bad Request  服务器无法理解请求的格式，客户端不应当尝试再次使用相同的内容发起请求。401 Unauthorized  请求未授权。403 Forbidden  禁止访问。404 Not Found  找不到如何与 URI 相匹配的资源。500 Internal Server Error  最常见的服务器端错误。503 Service Unavailable 服务器端暂时无法处理请求（可能是过载或维护）</code></pre><h4 id="讲讲304缓存的原理"><a href="#讲讲304缓存的原理" class="headerlink" title="讲讲304缓存的原理"></a>讲讲304缓存的原理</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">服务器首先产生ETag，服务器可在稍后使用它来判断页面是否已经被修改。本质上，客户端通过将该记号传回服务器要求服务器验证其（客户端）缓存。</span><br><span class="line">304是HTTP状态码，服务器用来标识这个文件没修改，不返回内容，浏览器在接收到个状态码后，会使用浏览器已缓存的文件</span><br><span class="line">客户端请求一个页面（A）。 服务器返回页面A，并在给A加上一个ETag。 客户端展现该页面，并将页面连同ETag一起缓存。 </span><br><span class="line">客户再次请求页面A，并将上次请求时服务器返回的ETag一起传递给服务器。 服务器检查该ETag，</span><br><span class="line">并判断出该页面自上次客户端请求之后还未被修改，直接返回响应304（未修改——Not Modified）和一个空的响应体。</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h4 id=&quot;HTTP状态码&quot;&gt;&lt;a href=&quot;#HTTP状态码&quot; class=&quot;headerlink&quot; title=&quot;HTTP状态码&quot;&gt;&lt;/a&gt;HTTP状态码&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;100  Continue  继续，一般在发送post请求时，已发送了http he
-      
-    
-    </summary>
-    
-      <category term="前端" scheme="https://21cm.js.org/categories/%E5%89%8D%E7%AB%AF/"/>
-    
-    
-      <category term="html" scheme="https://21cm.js.org/tags/html/"/>
-    
-      <category term="http状态码" scheme="https://21cm.js.org/tags/http%E7%8A%B6%E6%80%81%E7%A0%81/"/>
     
   </entry>
   

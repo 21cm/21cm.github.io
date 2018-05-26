@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://21cm.js.org">
-  <title>前端知识点总结之css预处理 | 21cm</title>
+  <title>javascript-跨域方式总结 | 21cm</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="CSS 预处理器定义：123456CSS 预处理器定义了一种新的语言，其基本思想是，用一种专门的编程语言，为 CSS 增加了一些编程的特性，将 CSS 作为目标生成文件，然后开发者就只要使用这种语言进行编码工作。通俗的说，“CSS 预处理器用一种专门的编程语言，进行 Web 页面样式设计，然后再编译成正常的 CSS 文件，以供项目使用。CSS 预处理器为 CSS 增加一些编程的特性，无需考虑浏览器">
-<meta name="keywords" content="css,css-预处理">
+  <meta name="description" content="如何解决跨域问题1.JSONP：原理是：动态插入script标签，通过script标签引入一个js文件，这个js文件载入成功后会执行我们在url参数中指定的函数，并且会把我们需要的json数据作为参数传入。123456789101112131415161718由于同源策略的限制，XmlHttpRequest只允许请求当前源（域名、协议、端口）的资源，为了实现跨域请求，可以通过script标签实现跨">
+<meta name="keywords" content="javascript,javascript-跨域方式">
 <meta property="og:type" content="article">
-<meta property="og:title" content="前端知识点总结之css预处理">
-<meta property="og:url" content="https://21cm.js.org/2018/05/24/css-preprocessing/index.html">
+<meta property="og:title" content="javascript-跨域方式总结">
+<meta property="og:url" content="https://21cm.js.org/2018/05/26/js-cross-domain/index.html">
 <meta property="og:site_name" content="21cm">
-<meta property="og:description" content="CSS 预处理器定义：123456CSS 预处理器定义了一种新的语言，其基本思想是，用一种专门的编程语言，为 CSS 增加了一些编程的特性，将 CSS 作为目标生成文件，然后开发者就只要使用这种语言进行编码工作。通俗的说，“CSS 预处理器用一种专门的编程语言，进行 Web 页面样式设计，然后再编译成正常的 CSS 文件，以供项目使用。CSS 预处理器为 CSS 增加一些编程的特性，无需考虑浏览器">
+<meta property="og:description" content="如何解决跨域问题1.JSONP：原理是：动态插入script标签，通过script标签引入一个js文件，这个js文件载入成功后会执行我们在url参数中指定的函数，并且会把我们需要的json数据作为参数传入。123456789101112131415161718由于同源策略的限制，XmlHttpRequest只允许请求当前源（域名、协议、端口）的资源，为了实现跨域请求，可以通过script标签实现跨">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-05-24T09:33:38.972Z">
+<meta property="og:updated_time" content="2018-05-26T09:36:22.799Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="前端知识点总结之css预处理">
-<meta name="twitter:description" content="CSS 预处理器定义：123456CSS 预处理器定义了一种新的语言，其基本思想是，用一种专门的编程语言，为 CSS 增加了一些编程的特性，将 CSS 作为目标生成文件，然后开发者就只要使用这种语言进行编码工作。通俗的说，“CSS 预处理器用一种专门的编程语言，进行 Web 页面样式设计，然后再编译成正常的 CSS 文件，以供项目使用。CSS 预处理器为 CSS 增加一些编程的特性，无需考虑浏览器">
+<meta name="twitter:title" content="javascript-跨域方式总结">
+<meta name="twitter:description" content="如何解决跨域问题1.JSONP：原理是：动态插入script标签，通过script标签引入一个js文件，这个js文件载入成功后会执行我们在url参数中指定的函数，并且会把我们需要的json数据作为参数传入。123456789101112131415161718由于同源策略的限制，XmlHttpRequest只允许请求当前源（域名、协议、端口）的资源，为了实现跨域请求，可以通过script标签实现跨">
   
     <link rel="alternative" href="/atom.xml" title="21cm" type="application/atom+xml">
   
@@ -147,29 +147,31 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-css-preprocessing" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-js-cross-domain" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      前端知识点总结之css预处理
+      javascript-跨域方式总结
     </h1>
   
 
         
-        <a href="/2018/05/24/css-preprocessing/" class="archive-article-date">
-  	<time datetime="2018-05-24T09:10:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-24</time>
+        <a href="/2018/05/26/js-cross-domain/" class="archive-article-date">
+  	<time datetime="2018-05-26T09:40:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-26</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="CSS-预处理器"><a href="#CSS-预处理器" class="headerlink" title="CSS 预处理器"></a>CSS 预处理器</h4><p>定义：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">CSS 预处理器定义了一种新的语言，其基本思想是，用一种专门的编程语言，为 CSS 增加了一些编程的特性，将 CSS 作为目标生成文件，</span><br><span class="line">然后开发者就只要使用这种语言进行编码工作。</span><br><span class="line">通俗的说，“CSS 预处理器用一种专门的编程语言，进行 Web 页面样式设计，然后再编译成正常的 CSS 文件，</span><br><span class="line">以供项目使用。CSS 预处理器为 CSS 增加一些编程的特性，无需考虑浏览器的兼容性问题”，</span><br><span class="line">例如你可以在 CSS 中使用变量、简单的逻辑程序、函数（如右侧代码编辑器中就使用了变量$color）等等在编程语言中的一些基本特性，</span><br><span class="line">可以让你的 CSS 更加简洁、适应性更强、可读性更佳，更易于代码的维护等诸多好处。</span><br></pre></td></tr></table></figure></p>
-<p>其它 CSS 预处理器语言：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">CSS 预处理器技术已经非常的成熟，而且也涌现出了很多种不同的 CSS 预处理器语言，比如说：</span><br><span class="line">Sass（SCSS）</span><br><span class="line">LESS</span><br><span class="line">Stylus</span><br><span class="line">Turbine</span><br><span class="line">Swithch CSS</span><br><span class="line">CSS Cacheer</span><br><span class="line">DT CSS</span><br></pre></td></tr></table></figure></p>
-<p>如此之多的 CSS 预处理器，那么“我应该选择哪种 CSS 预处理器？”<br>到目前为止，在众多优秀的 CSS 预处理器语言中就属 Sass、LESS 和 Stylus 最优秀，讨论的也多，对比的也多。</p>
+        <h4 id="如何解决跨域问题"><a href="#如何解决跨域问题" class="headerlink" title="如何解决跨域问题"></a>如何解决跨域问题</h4><h4 id="1-JSONP："><a href="#1-JSONP：" class="headerlink" title="1.JSONP："></a>1.JSONP：</h4><p><code>原理是：动态插入script标签，通过script标签引入一个js文件，这个js文件载入成功后会执行我们在url参数中指定的函数，并且会把我们需要的json数据作为参数传入。</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">由于同源策略的限制，XmlHttpRequest只允许请求当前源（域名、协议、端口）的资源，为了实现跨域请求，可以通过script标签实现跨域请求，然后在服务端输出JSON数据并执行回调函数，从而解决了跨域的数据请求。</span><br><span class="line">优点是兼容性好，简单易用，支持浏览器与服务器双向通信。缺点是只支持GET请求。</span><br><span class="line">JSONP：json+padding（内填充），顾名思义，就是把JSON填充到一个盒子里</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    function createJs(sUrl)&#123;</span><br><span class="line">        var oScript = document.createElement(&apos;script&apos;);</span><br><span class="line">        oScript.type = &apos;text/javascript&apos;;</span><br><span class="line">        oScript.src = sUrl;</span><br><span class="line">        document.getElementsByTagName(&apos;head&apos;)[0].appendChild(oScript);</span><br><span class="line">    &#125;</span><br><span class="line">    createJs(&apos;jsonp.js&apos;);</span><br><span class="line">    box(&#123;</span><br><span class="line">       &apos;name&apos;: &apos;test&apos;</span><br><span class="line">    &#125;);</span><br><span class="line">    function box(json)&#123;</span><br><span class="line">        alert(json.name);</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<h4 id="2-CORS"><a href="#2-CORS" class="headerlink" title="2.CORS"></a>2.CORS</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">服务器端对于CORS的支持，主要就是通过设置Access-Control-Allow-Origin来进行的。</span><br><span class="line">如果浏览器检测到相应的设置，就可以允许Ajax进行跨域的访问。</span><br></pre></td></tr></table></figure>
+<h4 id="3-通过修改document-domain来跨子域"><a href="#3-通过修改document-domain来跨子域" class="headerlink" title="3.通过修改document.domain来跨子域"></a>3.通过修改document.domain来跨子域</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">将子域和主域的document.domain设为同一个主域.前提条件：这两个域名必须属于同一个基础域名!而且所用的协议，端口都要一致，</span><br><span class="line">否则无法利用document.domain进行跨域,主域相同的使用document.domain</span><br></pre></td></tr></table></figure>
+<h4 id="4-使用window-name来进行跨域"><a href="#4-使用window-name来进行跨域" class="headerlink" title="4.使用window.name来进行跨域"></a>4.使用window.name来进行跨域</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">window对象有个name属性，该属性有个特征：即在一个窗口(window)的生命周期内,窗口载入的所有的页面都是共享一个window.name的，</span><br><span class="line">每个页面对window.name都有读写的权限，window.name是持久存在一个窗口载入过的所有页面中的</span><br></pre></td></tr></table></figure>
+<h4 id="5-使用HTML5中新引进的window-postMessage方法来跨域传送数据"><a href="#5-使用HTML5中新引进的window-postMessage方法来跨域传送数据" class="headerlink" title="5.使用HTML5中新引进的window.postMessage方法来跨域传送数据"></a>5.使用HTML5中新引进的window.postMessage方法来跨域传送数据</h4><h4 id="6-还有flash、在服务器上设置代理页面等跨域方式。"><a href="#6-还有flash、在服务器上设置代理页面等跨域方式。" class="headerlink" title="6.还有flash、在服务器上设置代理页面等跨域方式。"></a>6.还有flash、在服务器上设置代理页面等跨域方式。</h4><p><code>window.name的方法既不复杂，也能兼容到几乎所有浏览器，这真是极好的一种跨域方法。</code></p>
 
       
 
@@ -183,11 +185,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">css</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">css-预处理</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript-跨域方式</a>
         		</li>
       		
 		</ul>
@@ -254,7 +256,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://21cm.js.org/2018/05/24/css-preprocessing/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://21cm.js.org/2018/05/26/js-cross-domain/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -268,18 +270,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/05/24/css-model/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          前端知识点总结之css盒模型
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/05/24/css-clearfix/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">前端知识点总结之css清除浮动</div>
+    <a href="/2018/05/26/js-ajax/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">前端知识点总结之javascript-ajax</div>
       <i class="icon-circle-right"></i>
     </a>
   
