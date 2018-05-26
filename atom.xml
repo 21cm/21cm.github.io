@@ -1,0 +1,611 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>21cm</title>
+  
+  <subtitle>21cm</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://21cm.js.org/"/>
+  <updated>2018-05-26T01:31:34.924Z</updated>
+  <id>https://21cm.js.org/</id>
+  
+  <author>
+    <name>21cm</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>javascript高级函数实现AOP</title>
+    <link href="https://21cm.js.org/2018/05/26/js-AOP/"/>
+    <id>https://21cm.js.org/2018/05/26/js-AOP/</id>
+    <published>2018-05-26T01:10:00.000Z</published>
+    <updated>2018-05-26T01:31:34.924Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li>高阶函数是指满足如下两个条件之一或者两个的函数:</li><li>1.函数作为参数传递给其它函数</li><li>2.函数作为返回值返回</li></ul><ul><li>使用高阶函数实现AOP</li><li>使用AOP动态给函数添加功能,这在js中非常方便,特别适用于装饰者模式!<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">function.prototype.before = function (beforeFn) &#123;</span><br><span class="line">    var self = this;</span><br><span class="line">    return function () &#123;  //返回包含了原函数和新函数的&quot;代理函数&quot;</span><br><span class="line">        // beforeFn(arguments);</span><br><span class="line">        // self(arguments);</span><br><span class="line">        beforeFn.apply(this, arguments);</span><br><span class="line">        return self.apply(this, arguments);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">function.prototype.after = function (afterFn) &#123;</span><br><span class="line">    var self = this;</span><br><span class="line">    return function () &#123;</span><br><span class="line">        var result = self.apply(this, arguments);</span><br><span class="line">        afterFn.apply(this, arguments);</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var func = function () &#123;</span><br><span class="line">    console.log(&apos;业务逻辑处理...&apos;);</span><br><span class="line">&#125;</span><br><span class="line">func = func.before(function () &#123;</span><br><span class="line">    console.log(&apos;调用前记录日志...&apos;);</span><br><span class="line">&#125;).after(function () &#123;</span><br><span class="line">    console.log(&apos;调用后执行清理工作...&apos;);</span><br><span class="line">&#125;);</span><br><span class="line">func();</span><br></pre></td></tr></table></figure></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;ul&gt;
+&lt;li&gt;高阶函数是指满足如下两个条件之一或者两个的函数:&lt;/li&gt;
+&lt;li&gt;1.函数作为参数传递给其它函数&lt;/li&gt;
+&lt;li&gt;2.函数作为返回值返回&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;使用高阶函数实现AOP&lt;/li&gt;
+&lt;li&gt;使用AOP动态给函数添加功能,这在js
+      
+    
+    </summary>
+    
+      <category term="前端" scheme="https://21cm.js.org/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="javascript" scheme="https://21cm.js.org/tags/javascript/"/>
+    
+      <category term="javascript高级函数" scheme="https://21cm.js.org/tags/javascript%E9%AB%98%E7%BA%A7%E5%87%BD%E6%95%B0/"/>
+    
+      <category term="javascript-AOP" scheme="https://21cm.js.org/tags/javascript-AOP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>javascript高级函数与颗粒化</title>
+    <link href="https://21cm.js.org/2018/05/26/js-Granulation-of-advanced-functions/"/>
+    <id>https://21cm.js.org/2018/05/26/js-Granulation-of-advanced-functions/</id>
+    <published>2018-05-26T01:00:00.000Z</published>
+    <updated>2018-05-26T01:24:13.095Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li>currying又称为部分求值。</li><li>一个currying函数接受了一些参数后,并不会立即求值,而是继续返回另外一个函数,并利用闭包将刚才传入的参数保存起来。</li><li><p>等到函数需要真正求值的时候,之前传入的参数会被一次性用于求值。</p></li><li><p>例子1:加入要编写一个函数,计算每个月的开销。每天需要将当天的花销也保存下来。</p></li><li>下面代码中,虽然是要计算月底花销,但实际每天都计算了一次,而实际上我们不关心每天开销了多少,只需要在月底做一次计算即可</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var monthCost = 0;</span><br><span class="line">var cost = function (dayCost) &#123;</span><br><span class="line">    monthCost += dayCost;</span><br><span class="line">&#125;</span><br><span class="line">cost(100);  //第一天开销</span><br><span class="line">cost(80);   //第二天开销</span><br><span class="line">cost(120);  //第三天开销</span><br><span class="line">cost(200);  //当月最后一天开销</span><br><span class="line">console.log(monthCost);  //总共500</span><br></pre></td></tr></table></figure><ul><li>cost柯里化的简陋实现</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">var cost = (function () &#123;</span><br><span class="line">    var args = [];  //使用闭包来记录每次传入的参数</span><br><span class="line">    return function () &#123;</span><br><span class="line">        if (arguments.length === 0) &#123;  //没有传递参数时,求值</span><br><span class="line">            var total = 0;</span><br><span class="line">            for (var i = 0; i &lt; args.length; i++) &#123;</span><br><span class="line">                total += args[i];</span><br><span class="line">            &#125;</span><br><span class="line">            return total;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            [].push.apply(args, arguments);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line">cost(100);  //未求值</span><br><span class="line">cost(200);  //未求值</span><br><span class="line">cost(300, 400, 500);  //未求值</span><br><span class="line">console.log(cost());  //求值! 1500</span><br></pre></td></tr></table></figure><ul><li>通用的currying函数,接受一个函数作为参数,并将该函数柯里化</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">var currying = function (fn) &#123;</span><br><span class="line">    var args = [];</span><br><span class="line">    return function () &#123;</span><br><span class="line">        if (arguments.length === 0) &#123;</span><br><span class="line">            return fn.apply(this, args);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            [].push.apply(args, arguments);</span><br><span class="line">            return arguments.callee;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var cost = (function () &#123;</span><br><span class="line">    var money = 0;</span><br><span class="line">    return function () &#123;</span><br><span class="line">        for (var i = 0, l = arguments.length; i &lt; l; i++) &#123;</span><br><span class="line">            money += arguments[i];</span><br><span class="line">        &#125;</span><br><span class="line">        return money;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line">var cost = currying(cost);  //柯里化cost函数</span><br><span class="line">cost(100);</span><br><span class="line">cost(200);</span><br><span class="line">cost(300, 400);</span><br><span class="line">console.log(cost()); //1000</span><br></pre></td></tr></table></figure><ul><li>反柯里化uncurrying:</li><li>使用call和apply时,能够把任意对象当做this传入某个方法,这样,方法中用到的this就不再局限于原来规定的对象,</li><li>而是加以泛化而得到更广的适用性。</li><li>有没有办法把泛化this的过程提取出来? 这就是uncurrying要做的事情!</li><li>下面是uncurrying的一种实现:</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function.prototype.uncurrying = function () &#123;</span><br><span class="line">    var self = this;</span><br><span class="line">    return function () &#123;</span><br><span class="line">        var context = Array.prototype.shift.call(arguments);</span><br><span class="line">        return self.apply(context, arguments);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>下面就可以将<code>Array.prototype.push.call</code>转换成一个泛化得函数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var push = Array.prototype.push.uncurrying();</span><br><span class="line">var slice = Array.prototype.slice.uncurrying();</span><br><span class="line">(function () &#123;</span><br><span class="line">    push(arguments, 4);</span><br><span class="line">    console.log(slice(arguments));</span><br><span class="line">&#125;)(1, 2, 3);</span><br></pre></td></tr></table></figure></p><ul><li>下面是uncurrying的另一种实现</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function.prototype.uncurrying2 = function () &#123;</span><br><span class="line">    var self = this;</span><br><span class="line">    return function () &#123;</span><br><span class="line">        return Function.prototype.call.apply(self, arguments);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;ul&gt;
+&lt;li&gt;currying又称为部分求值。&lt;/li&gt;
+&lt;li&gt;一个currying函数接受了一些参数后,并不会立即求值,而是继续返回另外一个函数,并利用闭包将刚才传入的参数保存起来。&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;等到函数需要真正求值的时候,之前传入的参数会被一次性用于求值。&lt;
+      
+    
+    </summary>
+    
+      <category term="前端" scheme="https://21cm.js.org/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="javascript" scheme="https://21cm.js.org/tags/javascript/"/>
+    
+      <category term="javascript高级函数" scheme="https://21cm.js.org/tags/javascript%E9%AB%98%E7%BA%A7%E5%87%BD%E6%95%B0/"/>
+    
+      <category term="javascript颗粒化" scheme="https://21cm.js.org/tags/javascript%E9%A2%97%E7%B2%92%E5%8C%96/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>javascript-闭包</title>
+    <link href="https://21cm.js.org/2018/05/24/js-closure/"/>
+    <id>https://21cm.js.org/2018/05/24/js-closure/</id>
+    <published>2018-05-24T12:30:00.000Z</published>
+    <updated>2018-05-24T13:56:58.891Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li>闭包的作用:</li><li>1.封装变量</li><li>2.延续局部变量的寿命</li><li>3.闭包和面向对象设计:实现私有数据和方法的封装(本质还是1,封装变量)</li><li>闭包能使局部变量的生命期延长,这点与全局作用域的变量是一致的,不能算是内存泄漏!</li><li>闭包与内存泄漏有关的部分是:</li><li>使用闭包容易造成循环引用,如果闭包的作用域中保存着一些DOM节点,这时候有可能造成内存泄漏(互相引用导致内存无法释放)</li><li><p>例1</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">var increment = function () &#123;</span><br><span class="line">    var count = 1;</span><br><span class="line">    return &#123;</span><br><span class="line">        inc: function () &#123;</span><br><span class="line">            return count++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">console.log(increment.count);   //undefined</span><br><span class="line">var counter = increment();</span><br><span class="line">console.log(counter.inc());</span><br><span class="line">console.log(counter.inc());</span><br><span class="line">console.log(counter.inc());</span><br><span class="line"></span><br><span class="line">var counter2 = increment();</span><br><span class="line">console.log(counter2.inc());</span><br><span class="line">console.log(counter == counter2);  //false,注:闭包每次返回的对象都不一样!</span><br></pre></td></tr></table></figure></li><li><p>例2</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">var getTypeChecker = function () &#123;</span><br><span class="line">    var types = &#123;&#125;;</span><br><span class="line"></span><br><span class="line">    for (var i = 0, type; type = [&apos;String&apos;, &apos;Number&apos;, &apos;Array&apos;][i++];) &#123;</span><br><span class="line">        //使用闭包来封闭每次循环的变量</span><br><span class="line">        (function (type) &#123;</span><br><span class="line">            types[&apos;is&apos; + type] = function (obj) &#123;</span><br><span class="line">                return Object.prototype.toString.call(obj) === &apos;[object &apos; + type + &apos;]&apos;;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)(type);</span><br><span class="line">    &#125;</span><br><span class="line">    return types;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var checker = getTypeChecker();</span><br><span class="line">console.log(checker.isArray([]));   // true</span><br><span class="line">console.log(checker.isString([]));   //false</span><br><span class="line">console.log(checker.isString(&apos;hello&apos;));  //true</span><br></pre></td></tr></table></figure></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;ul&gt;
+&lt;li&gt;闭包的作用:&lt;/li&gt;
+&lt;li&gt;1.封装变量&lt;/li&gt;
+&lt;li&gt;2.延续局部变量的寿命&lt;/li&gt;
+&lt;li&gt;3.闭包和面向对象设计:实现私有数据和方法的封装(本质还是1,封装变量)&lt;/li&gt;
+&lt;li&gt;闭包能使局部变量的生命期延长,这点与全局作用域的变量是一致的,不
+      
+    
+    </summary>
+    
+      <category term="前端" scheme="https://21cm.js.org/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="javascript" scheme="https://21cm.js.org/tags/javascript/"/>
+    
+      <category term="javascript-闭包" scheme="https://21cm.js.org/tags/javascript-%E9%97%AD%E5%8C%85/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>javascript-call和javascript-apply的用法，实现javascript-bind</title>
+    <link href="https://21cm.js.org/2018/05/24/js-call&amp;&amp;apply&amp;&amp;bind/"/>
+    <id>https://21cm.js.org/2018/05/24/js-call&amp;&amp;apply&amp;&amp;bind/</id>
+    <published>2018-05-24T12:20:00.000Z</published>
+    <updated>2018-05-24T13:06:44.601Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li>function.prototype.call和 function.prototype.apply的作用:</li><li><ol><li>改变this指向</li></ol></li><li><ol start="2"><li>借用借他对象的方法</li></ol></li><li><p>function.prototype.bind 函数用于指定函数内部this的指向</p></li><li><p>实现原理:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">function.prototype.bind = function () &#123;</span><br><span class="line">    var self = this;  //保存原函数</span><br><span class="line">    var args = [].slice.call(arguments);</span><br><span class="line">    var context = args.shift();</span><br><span class="line">    return function () &#123;</span><br><span class="line">        var argsArr = [].slice.call(arguments);</span><br><span class="line">        return self.apply(context, args.concat(argsArr));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var bindTest = function (age, grade) &#123;</span><br><span class="line">    console.log(this.name);</span><br><span class="line">    console.log([age, grade]);</span><br><span class="line">&#125;.bind(&#123;name: &apos;Jack&apos;&#125;, 22);</span><br><span class="line">bindTest(95.0);</span><br></pre></td></tr></table></figure></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;ul&gt;
+&lt;li&gt;function.prototype.call和 function.prototype.apply的作用:&lt;/li&gt;
+&lt;li&gt;&lt;ol&gt;
+&lt;li&gt;改变this指向&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;ol start=&quot;2&quot;&gt;
+&lt;li&gt;借用借他对象的方法&lt;
+      
+    
+    </summary>
+    
+      <category term="前端" scheme="https://21cm.js.org/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="javascript" scheme="https://21cm.js.org/tags/javascript/"/>
+    
+      <category term="javascript-call" scheme="https://21cm.js.org/tags/javascript-call/"/>
+    
+      <category term="javascript-apply" scheme="https://21cm.js.org/tags/javascript-apply/"/>
+    
+      <category term="javascript-bind" scheme="https://21cm.js.org/tags/javascript-bind/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>javascript原型式继承与object.create</title>
+    <link href="https://21cm.js.org/2018/05/24/js-bject.create/"/>
+    <id>https://21cm.js.org/2018/05/24/js-bject.create/</id>
+    <published>2018-05-24T12:10:00.000Z</published>
+    <updated>2018-05-24T12:44:18.603Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li>动态类型语言的缺点是无法在编译期间保证变量的类型,而只能在运行时才能确定。</li><li><p>就像在商店买了一包牛肉味辣条,等到真正吃到嘴里才知道它到底是不是牛肉味。O(∩_∩)O</p></li><li><p>原型式继承: 对象是通过克隆另一个对象而来的</p></li><li>javascript得到一个对象,就是要找到一个对象,然后克隆它。</li><li>只不过引擎内部屏蔽了细节,暴露给我们的是一个 new Object() 或 var obj={} 指令</li></ul><p>模拟Object.create方法的实现:</p><pre><code>var clone = function (obj) {    var F = function () {    };    F.prototype = obj;    return new F();}var obj = {name: &apos;jack&apos;, age: 22};var obj2 = clone(obj);console.log(obj2.name + &apos;-&apos; + obj2.age);</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;ul&gt;
+&lt;li&gt;动态类型语言的缺点是无法在编译期间保证变量的类型,而只能在运行时才能确定。&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;就像在商店买了一包牛肉味辣条,等到真正吃到嘴里才知道它到底是不是牛肉味。O(∩_∩)O&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;原型式继承: 对象是通过克隆另一个对象而
+      
+    
+    </summary>
+    
+      <category term="前端" scheme="https://21cm.js.org/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="javascript" scheme="https://21cm.js.org/tags/javascript/"/>
+    
+      <category term="javascript原型式继承" scheme="https://21cm.js.org/tags/javascript%E5%8E%9F%E5%9E%8B%E5%BC%8F%E7%BB%A7%E6%89%BF/"/>
+    
+      <category term="object.create" scheme="https://21cm.js.org/tags/object-create/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>javascript内存泄露</title>
+    <link href="https://21cm.js.org/2018/05/24/js-memory-leak/"/>
+    <id>https://21cm.js.org/2018/05/24/js-memory-leak/</id>
+    <published>2018-05-24T12:00:00.000Z</published>
+    <updated>2018-05-24T12:38:17.272Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="什么是内存泄漏？本质上，内存泄漏可以定义为：应用程序不再需要占用内存的时候，由于某些原因，内存没有被操作系统或可用内存池回收。"><a href="#什么是内存泄漏？本质上，内存泄漏可以定义为：应用程序不再需要占用内存的时候，由于某些原因，内存没有被操作系统或可用内存池回收。" class="headerlink" title="什么是内存泄漏？本质上，内存泄漏可以定义为：应用程序不再需要占用内存的时候，由于某些原因，内存没有被操作系统或可用内存池回收。"></a>什么是内存泄漏？本质上，内存泄漏可以定义为：应用程序不再需要占用内存的时候，由于某些原因，内存没有被操作系统或可用内存池回收。</h4><h4 id="JavaScript-内存管理"><a href="#JavaScript-内存管理" class="headerlink" title="JavaScript 内存管理"></a>JavaScript 内存管理</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">JavaScript 是一种垃圾回收语言。垃圾回收语言通过周期性地检查先前分配的内存是否可达，帮助开发者管理内存。</span><br><span class="line">换言之，垃圾回收语言减轻了“内存仍可用”及“内存仍可达”的问题。两者的区别是微妙而重要的：仅有开发者了解哪些内存在将来仍会使用，</span><br><span class="line">而不可达内存通过算法确定和标记，适时被操作系统回收。</span><br></pre></td></tr></table></figure><h4 id="JavaScript-内存泄漏"><a href="#JavaScript-内存泄漏" class="headerlink" title="JavaScript 内存泄漏"></a>JavaScript 内存泄漏</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">垃圾回收语言的内存泄漏主因是不需要的引用。理解它之前，还需了解垃圾回收语言如何辨别内存的可达与不可达。</span><br></pre></td></tr></table></figure><h4 id="Mark-and-sweep"><a href="#Mark-and-sweep" class="headerlink" title="Mark-and-sweep"></a>Mark-and-sweep</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">大部分垃圾回收语言用的算法称之为 Mark-and-sweep 。算法由以下几步组成：</span><br><span class="line"></span><br><span class="line">垃圾回收器创建了一个“roots”列表。Roots 通常是代码中全局变量的引用。JavaScript 中，“window” 对象是一个全局变量，被当作 root 。</span><br><span class="line">window 对象总是存在，因此垃圾回收器可以检查它和它的所有子对象是否存在（即不是垃圾）；</span><br><span class="line">所有的 roots 被检查和标记为激活（即不是垃圾）。所有的子对象也被递归地检查。从 root 开始的所有对象如果是可达的，它就不被当作垃圾。</span><br><span class="line">所有未被标记的内存会被当做垃圾，收集器现在可以释放内存，归还给操作系统了。</span><br><span class="line">现代的垃圾回收器改良了算法，但是本质是相同的：可达内存被标记，其余的被当作垃圾回收。</span><br><span class="line"></span><br><span class="line">不需要的引用是指开发者明知内存引用不再需要，却由于某些原因，它仍被留在激活的 root 树中。在 JavaScript 中，</span><br><span class="line">不需要的引用是保留在代码中的变量，它不再需要，却指向一块本该被释放的内存。有些人认为这是开发者的错误。</span><br></pre></td></tr></table></figure><h4 id="4种类型的常见-JavaScript-内存泄漏"><a href="#4种类型的常见-JavaScript-内存泄漏" class="headerlink" title="4种类型的常见 JavaScript 内存泄漏"></a>4种类型的常见 JavaScript 内存泄漏</h4><h5 id="1：意外的全局变量"><a href="#1：意外的全局变量" class="headerlink" title="1：意外的全局变量"></a><strong>1：意外的全局变量</strong></h5><p>JavaScript 处理未定义变量的方式比较宽松：未定义的变量会在全局对象创建一个新变量。在浏览器中，全局对象是 window 。<br>在 JavaScript 文件头部加上 ‘use strict’，可以避免此类错误发生。启用严格模式解析 JavaScript ，避免意外的全局变量。<br>全局变量注意事项<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">尽管我们讨论了一些意外的全局变量，但是仍有一些明确的全局变量产生的垃圾。它们被定义为不可回收（除非定义为空或重新分配）。</span><br><span class="line">尤其当全局变量用于临时存储和处理大量信息时，需要多加小心。如果必须使用全局变量存储大量数据时，确保用完以后把它设置为 null 或者重新定义。</span><br><span class="line">与全局变量相关的增加内存消耗的一个主因是`缓存`。缓存数据是为了重用，缓存必须有一个大小上限才有用。</span><br><span class="line">高内存消耗导致缓存突破上限，因为缓存内容无法被回收。</span><br></pre></td></tr></table></figure></p><h5 id="2：被遗忘的计时器或回调函数"><a href="#2：被遗忘的计时器或回调函数" class="headerlink" title="2：被遗忘的计时器或回调函数"></a><strong>2：被遗忘的计时器或回调函数</strong></h5><p>在 JavaScript 中使用 setInterval 非常平常。一段常见的代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">var someResource = getData();</span><br><span class="line">setInterval(function() &#123;</span><br><span class="line">    var node = document.getElementById(&apos;Node&apos;);</span><br><span class="line">    if(node) &#123;</span><br><span class="line">        // 处理 node 和 someResource</span><br><span class="line">        node.innerHTML = JSON.stringify(someResource));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;, 1000);</span><br><span class="line">var someResource = getData();</span><br><span class="line">setInterval(function() &#123;</span><br><span class="line">    var node = document.getElementById(&apos;Node&apos;);</span><br><span class="line">    if(node) &#123;</span><br><span class="line">        // 处理 node 和 someResource</span><br><span class="line">        node.innerHTML = JSON.stringify(someResource));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;, 1000);</span><br></pre></td></tr></table></figure></p><p>此例说明了什么：与节点或数据关联的计时器不再需要，node 对象可以删除，整个回调函数也不需要了。<br>可是，计时器回调函数仍然没被回收（计时器停止才会被回收）。同时，someResource 如果存储了大量的数据，也是无法被回收的。</p><p>对于观察者的例子，一旦它们不再需要（或者关联的对象变成不可达），明确地移除它们非常重要。<br>老的 IE 6 是无法处理循环引用的。如今，即使没有明确移除它们，一旦观察者对象变成不可达，大部分浏览器是可以回收观察者处理函数的。</p><p>观察者代码示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">var element = document.getElementById(&apos;button&apos;);</span><br><span class="line">function onClick(event) &#123;</span><br><span class="line">    element.innerHTML = &apos;text&apos;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">element.addEventListener(&apos;click&apos;, onClick);</span><br><span class="line">var element = document.getElementById(&apos;button&apos;);</span><br><span class="line">function onClick(event) &#123;</span><br><span class="line">    element.innerHTML = &apos;text&apos;;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">element.addEventListener(&apos;click&apos;, onClick);</span><br></pre></td></tr></table></figure></p><p>老版本的 IE 是无法检测 DOM 节点与 JavaScript 代码之间的循环引用，会导致内存泄漏。<br>如今，现代的浏览器（包括 IE 和 Microsoft Edge）使用了更先进的垃圾回收算法，已经可以正确检测和处理循环引用了。<br>换言之，回收节点内存时，不必非要调用 removeEventListener 了。</p><h5 id="3：脱离-DOM-的引用"><a href="#3：脱离-DOM-的引用" class="headerlink" title="3：脱离 DOM 的引用"></a><strong>3：脱离 DOM 的引用</strong></h5><p>有时，保存 DOM 节点内部数据结构很有用。假如你想快速更新表格的几行内容，把每一行 DOM 存成字典（JSON 键值对）或者数组很有意义。<br>此时，同样的 DOM 元素存在两个引用：一个在 DOM 树中，另一个在字典中。将来你决定删除这些行时，需要把两个引用都清除。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">var elements = &#123;</span><br><span class="line">    button: document.getElementById(&apos;button&apos;),</span><br><span class="line">    image: document.getElementById(&apos;image&apos;),</span><br><span class="line">    text: document.getElementById(&apos;text&apos;)</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">function doStuff() &#123;</span><br><span class="line">    image.src = &apos;http://some.url/image&apos;;</span><br><span class="line">    button.click();</span><br><span class="line">    console.log(text.innerHTML);</span><br><span class="line">    // 更多逻辑</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function removeButton() &#123;</span><br><span class="line">    // 按钮是 body 的后代元素</span><br><span class="line">    document.body.removeChild(document.getElementById(&apos;button&apos;));</span><br><span class="line"></span><br><span class="line">    // 此时，仍旧存在一个全局的 #button 的引用</span><br><span class="line">    // elements 字典。button 元素仍旧在内存中，不能被 GC 回收。</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var elements = &#123;</span><br><span class="line">    button: document.getElementById(&apos;button&apos;),</span><br><span class="line">    image: document.getElementById(&apos;image&apos;),</span><br><span class="line">    text: document.getElementById(&apos;text&apos;)</span><br><span class="line">&#125;;</span><br><span class="line"> </span><br><span class="line">function doStuff() &#123;</span><br><span class="line">    image.src = &apos;http://some.url/image&apos;;</span><br><span class="line">    button.click();</span><br><span class="line">    console.log(text.innerHTML);</span><br><span class="line">    // 更多逻辑</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">function removeButton() &#123;</span><br><span class="line">    // 按钮是 body 的后代元素</span><br><span class="line">    document.body.removeChild(document.getElementById(&apos;button&apos;));</span><br><span class="line"> </span><br><span class="line">    // 此时，仍旧存在一个全局的 #button 的引用</span><br><span class="line">    // elements 字典。button 元素仍旧在内存中，不能被 GC 回收。</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>此外还要考虑 DOM 树内部或子节点的引用问题。假如你的 JavaScript 代码中保存了表格某一个 <td> 的引用。<br>将来决定删除整个表格的时候，直觉认为 GC 会回收除了已保存的 </td><td> 以外的其它节点。<br>实际情况并非如此：此</td><td> 是表格的子节点，子元素与父元素是引用关系。由于代码保留了 </td><td> 的引用，<br>导致整个表格仍待在内存中。保存 DOM 元素引用的时候，要小心谨慎。</td></p><h5 id="4：闭包"><a href="#4：闭包" class="headerlink" title="4：闭包"></a><strong>4：闭包</strong></h5><p>闭包是 JavaScript 开发的一个关键方面：匿名函数可以访问父级作用域的变量。</p><p>代码示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">var theThing = null;</span><br><span class="line">var replaceThing = function () &#123;</span><br><span class="line">  var originalThing = theThing;</span><br><span class="line">  var unused = function () &#123;</span><br><span class="line">    if (originalThing)</span><br><span class="line">      console.log(&quot;hi&quot;);</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  theThing = &#123;</span><br><span class="line">    longStr: new Array(1000000).join(&apos;*&apos;),</span><br><span class="line">    someMethod: function () &#123;</span><br><span class="line">      console.log(someMessage);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">setInterval(replaceThing, 1000);</span><br><span class="line"></span><br><span class="line">var theThing = null;</span><br><span class="line">var replaceThing = function () &#123;</span><br><span class="line">  var originalThing = theThing;</span><br><span class="line">  var unused = function () &#123;</span><br><span class="line">    if (originalThing)</span><br><span class="line">      console.log(&quot;hi&quot;);</span><br><span class="line">  &#125;;</span><br><span class="line"> </span><br><span class="line">  theThing = &#123;</span><br><span class="line">    longStr: new Array(1000000).join(&apos;*&apos;),</span><br><span class="line">    someMethod: function () &#123;</span><br><span class="line">      console.log(someMessage);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br><span class="line">setInterval(replaceThing, 1000);</span><br></pre></td></tr></table></figure></p><p>代码片段做了一件事情：每次调用 replaceThing ，theThing 得到一个包含一个大数组和一个新闭包（someMethod）的新对象。<br>同时，变量 unused 是一个引用 originalThing 的闭包（先前的 replaceThing 又调用了 theThing ）。<br>思绪混乱了吗？最重要的事情是，闭包的作用域一旦创建，它们有同样的父级作用域，作用域是共享的。<br>someMethod 可以通过 theThing 使用，someMethod 与 unused 分享闭包作用域，尽管 unused 从未使用，<br>它引用的 originalThing 迫使它保留在内存中（防止被回收）。当这段代码反复运行，就会看到内存占用不断上升，<br>垃圾回收器（GC）并无法降低内存占用。本质上，闭包的链表已经创建，每一个闭包作用域携带一个指向大数组的间接的引用，造成严重的内存泄漏。</p><p><code>Meteor的博文解释了如何修复此种问题。在 replaceThing的最后添加 originalThing = null。</code></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h4 id=&quot;什么是内存泄漏？本质上，内存泄漏可以定义为：应用程序不再需要占用内存的时候，由于某些原因，内存没有被操作系统或可用内存池回收。&quot;&gt;&lt;a href=&quot;#什么是内存泄漏？本质上，内存泄漏可以定义为：应用程序不再需要占用内存的时候，由于某些原因，内存没有被操作系统或可用
+      
+    
+    </summary>
+    
+      <category term="前端" scheme="https://21cm.js.org/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="javascript" scheme="https://21cm.js.org/tags/javascript/"/>
+    
+      <category term="javascript内存泄露" scheme="https://21cm.js.org/tags/javascript%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CSS中link和@import的区别</title>
+    <link href="https://21cm.js.org/2018/05/24/css%20link&amp;&amp;@import/"/>
+    <id>https://21cm.js.org/2018/05/24/css link&amp;&amp;@import/</id>
+    <published>2018-05-24T10:00:00.000Z</published>
+    <updated>2018-05-24T09:46:19.876Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="CSS中link和-import的区别"><a href="#CSS中link和-import的区别" class="headerlink" title="CSS中link和@import的区别:"></a>CSS中link和@import的区别:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">(1) link属于HTML标签，而@import是CSS提供的;</span><br><span class="line"></span><br><span class="line">(2) 页面被加载的时，link会同时被加载，而@import被引用的CSS会等到引用它的CSS文件被加载完再加载;</span><br><span class="line"></span><br><span class="line">(3) import只在IE5以上才能识别，而link是HTML标签，无兼容问题;</span><br><span class="line"></span><br><span class="line">(4) link方式的样式的权重 高于@import的权重.</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h4 id=&quot;CSS中link和-import的区别&quot;&gt;&lt;a href=&quot;#CSS中link和-import的区别&quot; class=&quot;headerlink&quot; title=&quot;CSS中link和@import的区别:&quot;&gt;&lt;/a&gt;CSS中link和@import的区别:&lt;/h4&gt;&lt;fi
+      
+    
+    </summary>
+    
+      <category term="前端" scheme="https://21cm.js.org/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="css" scheme="https://21cm.js.org/tags/css/"/>
+    
+      <category term="link" scheme="https://21cm.js.org/tags/link/"/>
+    
+      <category term="@import" scheme="https://21cm.js.org/tags/import/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>前端知识点总结之css定位</title>
+    <link href="https://21cm.js.org/2018/05/24/css-position/"/>
+    <id>https://21cm.js.org/2018/05/24/css-position/</id>
+    <published>2018-05-24T09:50:00.000Z</published>
+    <updated>2018-05-24T12:38:07.522Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="position的值"><a href="#position的值" class="headerlink" title="position的值"></a>position的值</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">absolute :生成绝对定位的元素， 相对于最近一级的 定位不是 static 的父元素来进行定位。</span><br><span class="line"></span><br><span class="line">fixed （老IE不支持）生成绝对定位的元素，通常相对于浏览器窗口或 frame 进行定位。</span><br><span class="line"></span><br><span class="line">relative 生成相对定位的元素，相对于其在普通流中的位置进行定位。</span><br><span class="line"></span><br><span class="line">static 默认值。没有定位，元素出现在正常的流中</span><br><span class="line"></span><br><span class="line">sticky 生成粘性定位的元素，容器的位置根据正常文档流计算得出</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h4 id=&quot;position的值&quot;&gt;&lt;a href=&quot;#position的值&quot; class=&quot;headerlink&quot; title=&quot;position的值&quot;&gt;&lt;/a&gt;position的值&lt;/h4&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;t
+      
+    
+    </summary>
+    
+      <category term="前端" scheme="https://21cm.js.org/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="css" scheme="https://21cm.js.org/tags/css/"/>
+    
+      <category term="position-absolute" scheme="https://21cm.js.org/tags/position-absolute/"/>
+    
+      <category term="position-fixed" scheme="https://21cm.js.org/tags/position-fixed/"/>
+    
+      <category term="position-relative" scheme="https://21cm.js.org/tags/position-relative/"/>
+    
+      <category term="position-static" scheme="https://21cm.js.org/tags/position-static/"/>
+    
+      <category term="position-sticky" scheme="https://21cm.js.org/tags/position-sticky/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>前端知识点总结之css inline、inline-block、block区别</title>
+    <link href="https://21cm.js.org/2018/05/24/css%20inline&amp;&amp;inline-block&amp;&amp;block/"/>
+    <id>https://21cm.js.org/2018/05/24/css inline&amp;&amp;inline-block&amp;&amp;block/</id>
+    <published>2018-05-24T09:40:00.000Z</published>
+    <updated>2018-05-24T09:41:13.451Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="总体概念"><a href="#总体概念" class="headerlink" title="总体概念"></a>总体概念</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">block和inline这两个概念是简略的说法，完整确切的说应该是 block-level elements (块级元素) 和 inline elements (内联元素)。</span><br><span class="line">block元素通常被现实为独立的一块，会单独换一行；</span><br><span class="line">inline元素则前后不会产生换行，一系列inline元素都在一行内显示，直到该行排满。</span><br><span class="line"></span><br><span class="line">大体来说HTML元素各有其自身的布局级别（block元素还是inline元素）：</span><br><span class="line">常见的块级元素有 DIV, FORM, TABLE, P, PRE, H1~H6, DL, OL, UL 等。</span><br><span class="line">常见的内联元素有 SPAN, A, STRONG, EM, LABEL, INPUT, SELECT, TEXTAREA, IMG, BR 等。</span><br><span class="line"></span><br><span class="line">block元素可以包含block元素和inline元素；但inline元素只能包含inline元素。</span><br><span class="line">要注意的是这个是个大概的说法，每个特定的元素能包含的元素也是特定的，所以具体到个别元素上，这条规律是不适用的。</span><br><span class="line">比如 P 元素，只能包含inline元素，而不能包含block元素。</span><br></pre></td></tr></table></figure><p><code>一般来说，可以通过display:inline和display:block的设置，改变元素的布局级别。</code></p><h4 id="block，inline和inlinke-block细节对比"><a href="#block，inline和inlinke-block细节对比" class="headerlink" title="block，inline和inlinke-block细节对比"></a>block，inline和inlinke-block细节对比</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">display:block</span><br><span class="line">block元素会独占一行，多个block元素会各自新起一行。默认情况下，block元素宽度自动填满其父元素宽度。</span><br><span class="line">block元素可以设置width,height属性。块级元素即使设置了宽度,仍然是独占一行。</span><br><span class="line">block元素可以设置margin和padding属性。</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">display:inline</span><br><span class="line">inline元素不会独占一行，多个相邻的行内元素会排列在同一行里，直到一行排列不下，才会新换一行，其宽度随元素的内容而变化。</span><br><span class="line">inline元素设置width,height属性无效。</span><br><span class="line">inline元素的margin和padding属性，水平方向的padding-left, padding-right, margin-left, margin-right都产生边距效果；</span><br><span class="line">但竖直方向的padding-top, padding-bottom, margin-top, margin-bottom不会产生边距效果。</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">display:inline-block</span><br><span class="line">简单来说就是将对象呈现为inline对象，但是对象的内容作为block对象呈现。之后的内联对象会被排列在同一行内。</span><br><span class="line">比如我们可以给一个link（a元素）inline-block属性值，使其既具有block的宽度高度特性又具有inline的同行特性。</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h4 id=&quot;总体概念&quot;&gt;&lt;a href=&quot;#总体概念&quot; class=&quot;headerlink&quot; title=&quot;总体概念&quot;&gt;&lt;/a&gt;总体概念&lt;/h4&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pr
+      
+    
+    </summary>
+    
+      <category term="前端" scheme="https://21cm.js.org/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="css" scheme="https://21cm.js.org/tags/css/"/>
+    
+      <category term="css-inline" scheme="https://21cm.js.org/tags/css-inline/"/>
+    
+      <category term="css-inline-block" scheme="https://21cm.js.org/tags/css-inline-block/"/>
+    
+      <category term="css-block" scheme="https://21cm.js.org/tags/css-block/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>前端知识点总结之css box-sizing属性</title>
+    <link href="https://21cm.js.org/2018/05/24/css-Box-sizing/"/>
+    <id>https://21cm.js.org/2018/05/24/css-Box-sizing/</id>
+    <published>2018-05-24T09:30:00.000Z</published>
+    <updated>2018-05-24T09:38:07.137Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">box-sizing属性主要用来控制元素的盒模型的解析模式。默认值是content-box。</span><br><span class="line"></span><br><span class="line">content-box：让元素维持W3C的标准盒模型。元素的宽度/高度由border + padding + content的宽度/高度决定，</span><br><span class="line">设置width/height属性指的是content部分的宽/高</span><br><span class="line"></span><br><span class="line">border-box：让元素维持IE传统盒模型（IE6以下版本和IE6~7的怪异模式）。</span><br><span class="line">设置width/height属性指的是border + padding + content</span><br><span class="line"></span><br><span class="line">标准浏览器下，按照W3C规范对盒模型解析，一旦修改了元素的边框或内距，就会影响元素的盒子尺寸，</span><br><span class="line">就不得不重新计算元素的盒子尺寸，从而影响整个页面的布局。</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class
+      
+    
+    </summary>
+    
+      <category term="前端" scheme="https://21cm.js.org/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="css" scheme="https://21cm.js.org/tags/css/"/>
+    
+      <category term="css-box-sizing属性" scheme="https://21cm.js.org/tags/css-box-sizing%E5%B1%9E%E6%80%A7/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>前端知识点总结之css盒模型</title>
+    <link href="https://21cm.js.org/2018/05/24/css-model/"/>
+    <id>https://21cm.js.org/2018/05/24/css-model/</id>
+    <published>2018-05-24T09:20:00.000Z</published>
+    <updated>2018-05-24T09:36:35.294Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">CSS中， Box Model叫盒子模型（或框模型），Box Model规定了元素框处理元素内容（element content）、内边距（padding）、</span><br><span class="line">边框（border） 和 外边距（margin） 的方式。</span><br><span class="line">在HTML文档中，每个元素（element）都有盒子模型，所以说在Web世界里（特别是页面布局），Box Model无处不在。</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">在 CSS 中，width 和 height 指的是内容区域（element）的宽度和高度。</span><br><span class="line">增加内边距、边框和外边距不会影响内容区域的尺寸，但是会增加元素框的总尺寸。假设框的每个边上有 10 个像素的外边距和 5 个像素的内边距。</span><br><span class="line">如果希望这个元素框达到 100 个像素，就需要将内容的宽度设置为 70 像素。</span><br></pre></td></tr></table></figure><h4 id="标准盒模型和IE盒子模型"><a href="#标准盒模型和IE盒子模型" class="headerlink" title="标准盒模型和IE盒子模型"></a>标准盒模型和IE盒子模型</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">W3C标准盒子模型范围包括margin、border、padding、content,并且content部分不包含其他部分。</span><br><span class="line">IE盒子模型的content部分包含了border和padding。</span><br><span class="line"></span><br><span class="line">也就是说,标准盒模型下,width和height属性就是指content的宽高,而IE和模型下width和height属性的值为content+padding+border!</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class
+      
+    
+    </summary>
+    
+      <category term="前端" scheme="https://21cm.js.org/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="css" scheme="https://21cm.js.org/tags/css/"/>
+    
+      <category term="css-盒模型" scheme="https://21cm.js.org/tags/css-%E7%9B%92%E6%A8%A1%E5%9E%8B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>前端知识点总结之css预处理</title>
+    <link href="https://21cm.js.org/2018/05/24/css-preprocessing/"/>
+    <id>https://21cm.js.org/2018/05/24/css-preprocessing/</id>
+    <published>2018-05-24T09:10:00.000Z</published>
+    <updated>2018-05-24T09:33:38.972Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="CSS-预处理器"><a href="#CSS-预处理器" class="headerlink" title="CSS 预处理器"></a>CSS 预处理器</h4><p>定义：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">CSS 预处理器定义了一种新的语言，其基本思想是，用一种专门的编程语言，为 CSS 增加了一些编程的特性，将 CSS 作为目标生成文件，</span><br><span class="line">然后开发者就只要使用这种语言进行编码工作。</span><br><span class="line">通俗的说，“CSS 预处理器用一种专门的编程语言，进行 Web 页面样式设计，然后再编译成正常的 CSS 文件，</span><br><span class="line">以供项目使用。CSS 预处理器为 CSS 增加一些编程的特性，无需考虑浏览器的兼容性问题”，</span><br><span class="line">例如你可以在 CSS 中使用变量、简单的逻辑程序、函数（如右侧代码编辑器中就使用了变量$color）等等在编程语言中的一些基本特性，</span><br><span class="line">可以让你的 CSS 更加简洁、适应性更强、可读性更佳，更易于代码的维护等诸多好处。</span><br></pre></td></tr></table></figure></p><p>其它 CSS 预处理器语言：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">CSS 预处理器技术已经非常的成熟，而且也涌现出了很多种不同的 CSS 预处理器语言，比如说：</span><br><span class="line">Sass（SCSS）</span><br><span class="line">LESS</span><br><span class="line">Stylus</span><br><span class="line">Turbine</span><br><span class="line">Swithch CSS</span><br><span class="line">CSS Cacheer</span><br><span class="line">DT CSS</span><br></pre></td></tr></table></figure></p><p>如此之多的 CSS 预处理器，那么“我应该选择哪种 CSS 预处理器？”<br>到目前为止，在众多优秀的 CSS 预处理器语言中就属 Sass、LESS 和 Stylus 最优秀，讨论的也多，对比的也多。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h4 id=&quot;CSS-预处理器&quot;&gt;&lt;a href=&quot;#CSS-预处理器&quot; class=&quot;headerlink&quot; title=&quot;CSS 预处理器&quot;&gt;&lt;/a&gt;CSS 预处理器&lt;/h4&gt;&lt;p&gt;定义：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;
+      
+    
+    </summary>
+    
+      <category term="前端" scheme="https://21cm.js.org/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="css" scheme="https://21cm.js.org/tags/css/"/>
+    
+      <category term="css-预处理" scheme="https://21cm.js.org/tags/css-%E9%A2%84%E5%A4%84%E7%90%86/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>前端知识点总结之css清除浮动</title>
+    <link href="https://21cm.js.org/2018/05/24/css-clearfix/"/>
+    <id>https://21cm.js.org/2018/05/24/css-clearfix/</id>
+    <published>2018-05-24T09:00:00.000Z</published>
+    <updated>2018-05-24T09:29:24.527Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="解释下浮动和它的工作原理？清除浮动的技巧"><a href="#解释下浮动和它的工作原理？清除浮动的技巧" class="headerlink" title="解释下浮动和它的工作原理？清除浮动的技巧"></a>解释下浮动和它的工作原理？清除浮动的技巧</h4><p><strong>浮动元素脱离文档流，不占据空间。浮动元素碰到包含它的边框或者浮动元素的边框停留。</strong></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">1.使用空标签清除浮动。</span><br><span class="line"></span><br><span class="line">   这种方法是在所有浮动标签后面添加一个空标签 定义css clear:both. 弊端就是增加了无意义标签。</span><br><span class="line"></span><br><span class="line">2.使用overflow。</span><br><span class="line"></span><br><span class="line">   给包含浮动元素的父标签添加css属性 overflow:auto; zoom:1; zoom:1用于兼容IE6。</span><br><span class="line"></span><br><span class="line">3.使用after伪对象清除浮动。</span><br><span class="line"></span><br><span class="line">   该方法只适用于非IE浏览器。具体写法可参照以下示例。使用中需注意以下几点。</span><br><span class="line">   一、该方法中必须为需要清除浮动元素的伪对象中设置 height:0，否则该元素会比实际高出若干像素；</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h4 id=&quot;解释下浮动和它的工作原理？清除浮动的技巧&quot;&gt;&lt;a href=&quot;#解释下浮动和它的工作原理？清除浮动的技巧&quot; class=&quot;headerlink&quot; title=&quot;解释下浮动和它的工作原理？清除浮动的技巧&quot;&gt;&lt;/a&gt;解释下浮动和它的工作原理？清除浮动的技巧&lt;/h4&gt;&lt;
+      
+    
+    </summary>
+    
+      <category term="前端" scheme="https://21cm.js.org/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="css" scheme="https://21cm.js.org/tags/css/"/>
+    
+      <category term="css-清除浮动" scheme="https://21cm.js.org/tags/css-%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>前端知识点总结之css居中方法</title>
+    <link href="https://21cm.js.org/2018/05/24/css-middle/"/>
+    <id>https://21cm.js.org/2018/05/24/css-middle/</id>
+    <published>2018-05-24T08:50:00.000Z</published>
+    <updated>2018-05-24T09:25:26.283Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="水平居中"><a href="#水平居中" class="headerlink" title="水平居中"></a>水平居中</h4><ul><li>需要居中 inline 或者 inline-* 元素（如文字或者链接）？</li><li>需要居中 block 类的元素？</li><li>需要居中多个 block 元素？</li></ul><h4 id="垂直居中"><a href="#垂直居中" class="headerlink" title="垂直居中"></a>垂直居中</h4><ul><li>需要居中 inline 或者 inline-* 元素（如文字或者链接）？</li><li>需要居中 block 类的元素？</li></ul><h4 id="既水平又垂直"><a href="#既水平又垂直" class="headerlink" title="既水平又垂直"></a>既水平又垂直</h4><ul><li>固定宽高</li><li>不固定宽高</li></ul><h4 id="使用-flexbox"><a href="#使用-flexbox" class="headerlink" title="使用 flexbox"></a>使用 flexbox</h4><ul><li>水平居中</li><li>水平居中 inline 或者 inline-* 元素</li></ul><h4 id="1-你可以轻松的在一个-block-元素中水平居中一个-inline-元素，以下代码对-inline，inline-block，inline-table-和-inline-flex-等有效"><a href="#1-你可以轻松的在一个-block-元素中水平居中一个-inline-元素，以下代码对-inline，inline-block，inline-table-和-inline-flex-等有效" class="headerlink" title="1. 你可以轻松的在一个 block 元素中水平居中一个 inline 元素，以下代码对 inline，inline-block，inline-table 和 inline-flex 等有效"></a>1. 你可以轻松的在一个 block 元素中水平居中一个 inline 元素，以下代码对 inline，inline-block，inline-table 和 inline-flex 等有效</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.parent &#123;</span><br><span class="line">  text-align: center;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h4 id="2-水平居中-block-类的元素"><a href="#2-水平居中-block-类的元素" class="headerlink" title="2. 水平居中 block 类的元素"></a>2. 水平居中 block 类的元素</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">在 block 元素被设定固定宽度的情况下，可以使用设置元素 margin-left 和 margin-right 的值为 auto 的方法实现水平居中。</span><br><span class="line">.child &#123;</span><br><span class="line">  width: 400px;</span><br><span class="line">  margin: 0 auto;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h4 id="3-水平居中多个-block-类的元素"><a href="#3-水平居中多个-block-类的元素" class="headerlink" title="3. 水平居中多个 block 类的元素"></a>3. 水平居中多个 block 类的元素</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">通过 inline-block实现</span><br><span class="line"></span><br><span class="line">.parent &#123;</span><br><span class="line">  text-align: center;</span><br><span class="line">&#125;</span><br><span class="line">.child &#123;</span><br><span class="line">  display: inline-block;</span><br><span class="line">  text-align: left;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">通过 flexbox 实现</span><br><span class="line"></span><br><span class="line">.parent &#123;</span><br><span class="line">  display: flex;</span><br><span class="line">  justify-content: center;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h4 id="4-垂直居中-inline-或者-inline-元素"><a href="#4-垂直居中-inline-或者-inline-元素" class="headerlink" title="4. 垂直居中 inline 或者 inline-* 元素"></a>4. 垂直居中 inline 或者 inline-* 元素</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">单行</span><br><span class="line">inline/text 元素可以简单的用设置相同的上下 padding 值达到垂直居中的目的。</span><br><span class="line"></span><br><span class="line">.center &#123;</span><br><span class="line">  pading-top: 30px;</span><br><span class="line">  padding-bottom: 30px;</span><br><span class="line">&#125;</span><br><span class="line">如果因为某种原因不能使用 padding 的方法，你还可以设置 line-height 等于 height来达到目的。</span><br><span class="line"></span><br><span class="line">.center &#123;</span><br><span class="line">  height: 100px;</span><br><span class="line">  line-height: 100px;</span><br><span class="line">  white-space: nowrap;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">多行</span><br><span class="line"></span><br><span class="line">相同的上下 padding 也可以适用于此种情况，如果不能生效，你可以尝试将该元素的父元素的 dispaly 设置为 table ，</span><br><span class="line">同时该元素的 dispaly 设置为 table-cell，然后设置 vertical-align。</span><br><span class="line"></span><br><span class="line">.parent &#123;</span><br><span class="line">  display: table;</span><br><span class="line">  width: 200px;</span><br><span class="line">  height: 400px;</span><br><span class="line">&#125;</span><br><span class="line">.child &#123;</span><br><span class="line">  display: table-cell;</span><br><span class="line">  vertical-align: middle;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>如果上述方法不能使用，你可以尝试使用 flexbox,一个单独的 flexbox 子元素可以轻易的在其父元素中居中。谨记，这种方法需要父元素有固定的高度。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">.parent &#123;</span><br><span class="line">  display: flex;</span><br><span class="line">  justify-content: center;</span><br><span class="line">  flex-direction: column;</span><br><span class="line">  height: 400px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>如果上述两种方式均不能使用，你可以使用“幽灵元素”技术，这种方法采用伪元素 ::before 撑开高度 ，文字垂直居中。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">.parent &#123;</span><br><span class="line">  position: relative;</span><br><span class="line">&#125;</span><br><span class="line">.parent::before &#123;</span><br><span class="line">  content: &quot; &quot;;</span><br><span class="line">  display: inline-block;</span><br><span class="line">  height: 100%;</span><br><span class="line">  width: 1%;</span><br><span class="line">  vertical-align: middle;</span><br><span class="line">&#125;</span><br><span class="line">.child &#123;</span><br><span class="line">  display: inline-block;</span><br><span class="line">  vertical-align: middle;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><h4 id="5-垂直居中-block-类的元素"><a href="#5-垂直居中-block-类的元素" class="headerlink" title="5. 垂直居中 block 类的元素"></a>5. 垂直居中 block 类的元素</h4><p>已知元素高度<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">.parent &#123;</span><br><span class="line">  position: relative;</span><br><span class="line">&#125;</span><br><span class="line">.child &#123;</span><br><span class="line">  position: absolute;</span><br><span class="line">  top: 50%;</span><br><span class="line">  height: 100px;</span><br><span class="line">  margin-top: -50px; /* account for padding and border if not using box-sizing: border-box; */</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>未知元素高度<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.parent &#123;</span><br><span class="line">  position: relative;</span><br><span class="line">&#125;</span><br><span class="line">.child &#123;</span><br><span class="line">  position: absolute;</span><br><span class="line">  top: 50%;</span><br><span class="line">  transform: translateY(-50%);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>使用 flexbox<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.parent &#123;</span><br><span class="line">  display: flex;</span><br><span class="line">  flex-direction: column;</span><br><span class="line">  justify-content: center;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><h4 id="6-既水平又垂直"><a href="#6-既水平又垂直" class="headerlink" title="6. 既水平又垂直"></a>6. 既水平又垂直</h4><p>固定宽高<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">.parent &#123;</span><br><span class="line">  position: relative;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.child &#123;</span><br><span class="line">  width: 300px;</span><br><span class="line">  height: 100px;</span><br><span class="line">  padding: 20px;</span><br><span class="line"></span><br><span class="line">  position: absolute;</span><br><span class="line">  top: 50%;</span><br><span class="line">  left: 50%;</span><br><span class="line"></span><br><span class="line">  margin: -70px 0 0 -170px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>不固定宽高<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">.parent &#123;</span><br><span class="line">  position: relative;</span><br><span class="line">&#125;</span><br><span class="line">.child &#123;</span><br><span class="line">  position: absolute;</span><br><span class="line">  top: 50%;</span><br><span class="line">  left: 50%;</span><br><span class="line">  transform: translate(-50%, -50%);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>使用 flexbox<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.parent &#123;</span><br><span class="line">  display: flex;</span><br><span class="line">  justify-content: center;</span><br><span class="line">  align-items: center;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h4 id=&quot;水平居中&quot;&gt;&lt;a href=&quot;#水平居中&quot; class=&quot;headerlink&quot; title=&quot;水平居中&quot;&gt;&lt;/a&gt;水平居中&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;需要居中 inline 或者 inline-* 元素（如文字或者链接）？&lt;/li&gt;
+&lt;li&gt;需要居中 block
+      
+    
+    </summary>
+    
+      <category term="前端" scheme="https://21cm.js.org/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="css" scheme="https://21cm.js.org/tags/css/"/>
+    
+      <category term="css-居中" scheme="https://21cm.js.org/tags/css-%E5%B1%85%E4%B8%AD/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>前端知识点总结之css选择器</title>
+    <link href="https://21cm.js.org/2018/05/24/css-selector/"/>
+    <id>https://21cm.js.org/2018/05/24/css-selector/</id>
+    <published>2018-05-24T08:40:00.000Z</published>
+    <updated>2018-05-24T09:22:48.712Z</updated>
+    
+    <content type="html"><![CDATA[<p><a href="http://www.w3cplus.com/css/css-specificity-things-you-should-know.html" target="_blank" rel="noopener">http://www.w3cplus.com/css/css-specificity-things-you-should-know.html</a></p><p><a href="http://www.dannysite.com/blog/28/" target="_blank" rel="noopener">http://www.dannysite.com/blog/28/</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;a href=&quot;http://www.w3cplus.com/css/css-specificity-things-you-should-know.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;http://www.w3cplus.com/cs
+      
+    
+    </summary>
+    
+      <category term="前端" scheme="https://21cm.js.org/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="css" scheme="https://21cm.js.org/tags/css/"/>
+    
+      <category term="css-选择器" scheme="https://21cm.js.org/tags/css-%E9%80%89%E6%8B%A9%E5%99%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>前端知识点总结之css-浮动</title>
+    <link href="https://21cm.js.org/2018/05/24/css-float/"/>
+    <id>https://21cm.js.org/2018/05/24/css-float/</id>
+    <published>2018-05-24T08:30:00.000Z</published>
+    <updated>2018-05-24T08:08:17.474Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="浮动元素引起的问题和解决办法？"><a href="#浮动元素引起的问题和解决办法？" class="headerlink" title="浮动元素引起的问题和解决办法？"></a>浮动元素引起的问题和解决办法？</h4><p>浮动元素引起的问题：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">（1）父元素的高度无法被撑开，影响与父元素同级的元素</span><br><span class="line"></span><br><span class="line">（2）与浮动元素同级的非浮动元素（内联元素）会跟随其后</span><br><span class="line"></span><br><span class="line">（3）若非第一个元素浮动，则该元素之前的元素也需要浮动，否则会影响页面显示的结构</span><br></pre></td></tr></table></figure></p><p>解决方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">使用CSS中的clear:both;属性来清除元素的浮动可解决2、3问题，对于问题1，添加如下样式，给父元素添加clearfix样式：</span><br><span class="line"></span><br><span class="line">    .clearfix:after&#123;content: &quot;.&quot;;display: block;height: 0;clear: both;visibility: hidden;&#125;</span><br><span class="line"></span><br><span class="line">    .clearfix&#123;display: inline-block;&#125; /* for IE/Mac */</span><br></pre></td></tr></table></figure></p><h4 id="清除浮动的几种方法："><a href="#清除浮动的几种方法：" class="headerlink" title="清除浮动的几种方法："></a>清除浮动的几种方法：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">1，额外标签法，&lt;div style=&quot;clear:both;&quot;&gt;&lt;/div&gt;（缺点：不过这个办法会增加额外的标签使HTML结构看起来不够简洁。）</span><br><span class="line"></span><br><span class="line">2，使用after伪类</span><br><span class="line"></span><br><span class="line">#parent:after&#123;</span><br><span class="line"></span><br><span class="line">    content:&quot;.&quot;;</span><br><span class="line"></span><br><span class="line">    height:0;</span><br><span class="line"></span><br><span class="line">    visibility:hidden;</span><br><span class="line"></span><br><span class="line">    display:block;</span><br><span class="line"></span><br><span class="line">    clear:both;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">3,浮动外部元素</span><br><span class="line"></span><br><span class="line">4,设置overflow为hidden或者auto</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h4 id=&quot;浮动元素引起的问题和解决办法？&quot;&gt;&lt;a href=&quot;#浮动元素引起的问题和解决办法？&quot; class=&quot;headerlink&quot; title=&quot;浮动元素引起的问题和解决办法？&quot;&gt;&lt;/a&gt;浮动元素引起的问题和解决办法？&lt;/h4&gt;&lt;p&gt;浮动元素引起的问题：&lt;br&gt;&lt;fig
+      
+    
+    </summary>
+    
+      <category term="前端" scheme="https://21cm.js.org/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="css" scheme="https://21cm.js.org/tags/css/"/>
+    
+      <category term="css-浮动" scheme="https://21cm.js.org/tags/css-%E6%B5%AE%E5%8A%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>前端知识点总结之css-reset</title>
+    <link href="https://21cm.js.org/2018/05/24/css-reset/"/>
+    <id>https://21cm.js.org/2018/05/24/css-reset/</id>
+    <published>2018-05-24T08:20:00.000Z</published>
+    <updated>2018-05-24T08:07:12.848Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="什么是CSS-Reset。"><a href="#什么是CSS-Reset。" class="headerlink" title="什么是CSS Reset。"></a>什么是CSS Reset。</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">HTML标签在浏览器中都有默认的样式，例如p标签有上下边距，strong标签有字体加粗样式等。</span><br><span class="line">不同浏览器的默认样式之间存在差别，例如ul默认带有缩进样式，在IE下，它的缩进是由margin实现的，</span><br><span class="line">而在Firefox下却是由padding实现的。开发时浏览器的默认样式可能会给我们带来多浏览器兼容性问题，</span><br><span class="line">影响开发效率。现在很流行的解决方法是一开始就将浏览器的默认样式全部覆盖掉，这就是CSS reset。</span><br></pre></td></tr></table></figure><p>部分CSS reset内容如下:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">html &#123;color:#000;background:#FFF;&#125;t5</span><br><span class="line">body,div,dl,dt,dd,ul,ol,li,</span><br><span class="line">h1,h2,h3,h4,h5,h6,</span><br><span class="line">pre,code,form,fieldset,legend,</span><br><span class="line">input,textarea,p,blockquote,th,td&#123;margin:0;padding:0;&#125;</span><br><span class="line">table &#123;border-collapse:collapse;border-spacing:0;&#125;</span><br><span class="line">fieldset,img &#123;border:0;&#125;</span><br><span class="line">address,caption,cite,code,dfn,em,strong,th,var &#123;font-style:normal;font-weight:normal;&#125;</span><br><span class="line">li &#123;list-style:none;&#125;</span><br><span class="line">caption,th &#123;text-align:left;&#125;</span><br><span class="line">h1,h2,h3,h4,h5,h6 &#123;font-size:100%;font-weight:normal;&#125;</span><br><span class="line">q:before,q:after &#123;content:&apos;&apos;;&#125;</span><br><span class="line">abbr,acronym &#123;border:0;font-variant:normal;&#125;</span><br><span class="line">sup &#123;vertical-align:text-top;&#125;</span><br><span class="line">sub &#123;vertical-align:text-bottom;&#125;</span><br><span class="line">input,textarea,select &#123;font-family:inherit;font-size:inherit;font-weight:inherit;&#125;</span><br><span class="line">input,textarea,select &#123;*font-size:100%;&#125;</span><br><span class="line">legend &#123;color:#000;&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h4 id=&quot;什么是CSS-Reset。&quot;&gt;&lt;a href=&quot;#什么是CSS-Reset。&quot; class=&quot;headerlink&quot; title=&quot;什么是CSS Reset。&quot;&gt;&lt;/a&gt;什么是CSS Reset。&lt;/h4&gt;&lt;figure class=&quot;highlight plai
+      
+    
+    </summary>
+    
+      <category term="前端" scheme="https://21cm.js.org/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="css" scheme="https://21cm.js.org/tags/css/"/>
+    
+      <category term="css-reset" scheme="https://21cm.js.org/tags/css-reset/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>前端知识点总结之css兼容性问题</title>
+    <link href="https://21cm.js.org/2018/05/24/compatible/"/>
+    <id>https://21cm.js.org/2018/05/24/compatible/</id>
+    <published>2018-05-24T08:10:00.000Z</published>
+    <updated>2018-05-24T08:02:46.740Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="常见兼容性问题？"><a href="#常见兼容性问题？" class="headerlink" title="常见兼容性问题？"></a>常见兼容性问题？</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">png24位的图片在iE6浏览器上出现背景，解决方案是做成PNG8.也可以引用一段脚本处理.</span><br><span class="line"></span><br><span class="line">浏览器默认的margin和padding不同。解决方案是加一个全局的*&#123;margin:0;padding:0;&#125;来统一。</span><br><span class="line"></span><br><span class="line">IE6双边距bug:块属性标签float后，又有横行的margin情况下，在ie6显示margin比设置的大。</span><br><span class="line"></span><br><span class="line">浮动ie产生的双倍距离（IE6双边距问题：在IE6下，如果对元素设置了浮动，同时又设置了margin-left或margin-right，margin值会加倍。）</span><br><span class="line"></span><br><span class="line">#box&#123; float:left; width:10px; margin:0 0 0 100px;&#125;</span><br><span class="line"></span><br><span class="line">这种情况之下IE会产生20px的距离，解决方案是在float的标签样式控制中加入</span><br><span class="line">_display:inline;将其转化为行内属性。(_这个符号只有ie6会识别)</span><br><span class="line"></span><br><span class="line">渐进识别的方式，从总体中逐渐排除局部。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  首先，巧妙的使用“\9”这一标记，将IE游览器从所有情况中分离出来。</span><br><span class="line"></span><br><span class="line">  接着，再次使用“+”将IE8和IE7、IE6分离开来，这样IE8已经独立识别。</span><br><span class="line"></span><br><span class="line">  css</span><br><span class="line"></span><br><span class="line">      .bb&#123;</span><br><span class="line"></span><br><span class="line">       background-color:#f1ee18;/*所有识别*/</span><br><span class="line"></span><br><span class="line">      .background-color:#00deff\9; /*IE6、7、8识别*/</span><br><span class="line"></span><br><span class="line">      +background-color:#a200ff;/*IE6、7识别*/</span><br><span class="line"></span><br><span class="line">      _background-color:#1e0bd1;/*IE6识别*/</span><br><span class="line"></span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">怪异模式问题：漏写DTD声明，Firefox仍然会按照标准模式来解析网页，但在IE中会触发</span><br><span class="line">怪异模式。为避免怪异模式给我们带来不必要的麻烦，最好养成书写DTD声明的好习惯。现在</span><br><span class="line">可以使用[html5](http://www.w3.org/TR/html5/single-page.html)推荐的写法：`&lt;doctype html&gt;`</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h4 id=&quot;常见兼容性问题？&quot;&gt;&lt;a href=&quot;#常见兼容性问题？&quot; class=&quot;headerlink&quot; title=&quot;常见兼容性问题？&quot;&gt;&lt;/a&gt;常见兼容性问题？&lt;/h4&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td cl
+      
+    
+    </summary>
+    
+      <category term="前端" scheme="https://21cm.js.org/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="css" scheme="https://21cm.js.org/tags/css/"/>
+    
+      <category term="css兼容性问题" scheme="https://21cm.js.org/tags/css%E5%85%BC%E5%AE%B9%E6%80%A7%E9%97%AE%E9%A2%98/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>前端知识点总结之http状态码</title>
+    <link href="https://21cm.js.org/2018/05/24/http-status-codes/"/>
+    <id>https://21cm.js.org/2018/05/24/http-status-codes/</id>
+    <published>2018-05-24T08:00:00.000Z</published>
+    <updated>2018-05-24T07:58:47.915Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="HTTP状态码"><a href="#HTTP状态码" class="headerlink" title="HTTP状态码"></a>HTTP状态码</h4><pre><code>100  Continue  继续，一般在发送post请求时，已发送了http header之后服务端将返回此信息，表示确认，之后发送具体参数信息200  OK   正常返回信息201  Created  请求成功并且服务器创建了新的资源202  Accepted  服务器已接受请求，但尚未处理301  Moved Permanently  请求的网页已永久移动到新位置。302 Found  临时性重定向。303 See Other  临时性重定向，且总是使用 GET 请求新的 URI。304  Not Modified  自从上次请求后，请求的网页未修改过。400 Bad Request  服务器无法理解请求的格式，客户端不应当尝试再次使用相同的内容发起请求。401 Unauthorized  请求未授权。403 Forbidden  禁止访问。404 Not Found  找不到如何与 URI 相匹配的资源。500 Internal Server Error  最常见的服务器端错误。503 Service Unavailable 服务器端暂时无法处理请求（可能是过载或维护）</code></pre><h4 id="讲讲304缓存的原理"><a href="#讲讲304缓存的原理" class="headerlink" title="讲讲304缓存的原理"></a>讲讲304缓存的原理</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">服务器首先产生ETag，服务器可在稍后使用它来判断页面是否已经被修改。本质上，客户端通过将该记号传回服务器要求服务器验证其（客户端）缓存。</span><br><span class="line">304是HTTP状态码，服务器用来标识这个文件没修改，不返回内容，浏览器在接收到个状态码后，会使用浏览器已缓存的文件</span><br><span class="line">客户端请求一个页面（A）。 服务器返回页面A，并在给A加上一个ETag。 客户端展现该页面，并将页面连同ETag一起缓存。 </span><br><span class="line">客户再次请求页面A，并将上次请求时服务器返回的ETag一起传递给服务器。 服务器检查该ETag，</span><br><span class="line">并判断出该页面自上次客户端请求之后还未被修改，直接返回响应304（未修改——Not Modified）和一个空的响应体。</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h4 id=&quot;HTTP状态码&quot;&gt;&lt;a href=&quot;#HTTP状态码&quot; class=&quot;headerlink&quot; title=&quot;HTTP状态码&quot;&gt;&lt;/a&gt;HTTP状态码&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;100  Continue  继续，一般在发送post请求时，已发送了http he
+      
+    
+    </summary>
+    
+      <category term="前端" scheme="https://21cm.js.org/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="html" scheme="https://21cm.js.org/tags/html/"/>
+    
+      <category term="http状态码" scheme="https://21cm.js.org/tags/http%E7%8A%B6%E6%80%81%E7%A0%81/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>前端知识点总结之html5新元素</title>
+    <link href="https://21cm.js.org/2018/05/24/html5-new-label/"/>
+    <id>https://21cm.js.org/2018/05/24/html5-new-label/</id>
+    <published>2018-05-24T07:50:00.000Z</published>
+    <updated>2018-05-24T07:59:55.450Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="html5有哪些新特性？"><a href="#html5有哪些新特性？" class="headerlink" title="html5有哪些新特性？"></a>html5有哪些新特性？</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">HTML5 现在已经不是 SGML 的子集，主要是关于图像，位置，存储，多任务等功能的增加。</span><br><span class="line"></span><br><span class="line">拖拽释放(Drag and drop) API</span><br><span class="line"></span><br><span class="line">语义化更好的内容标签（header,nav,footer,aside,article,section）</span><br><span class="line"></span><br><span class="line">音频、视频API(audio,video)</span><br><span class="line"></span><br><span class="line">画布(Canvas) API</span><br><span class="line"></span><br><span class="line">地理(Geolocation) API</span><br><span class="line"></span><br><span class="line">本地离线存储 localStorage 长期存储数据，浏览器关闭后数据不丢失；</span><br><span class="line"></span><br><span class="line">sessionStorage 的数据在浏览器关闭后自动删除</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">表单控件，calendar、date、time、email、url、search</span><br><span class="line"></span><br><span class="line">新的技术webworker, websocket, Geolocation</span><br></pre></td></tr></table></figure><h4 id="如何处理html5的兼容性问题"><a href="#如何处理html5的兼容性问题" class="headerlink" title="如何处理html5的兼容性问题?"></a>如何处理html5的兼容性问题?</h4><p>方式一：Coding JavaScript<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--[if lt IE9]&gt; </span><br><span class="line">&lt;script&gt; </span><br><span class="line">   (function() &#123;</span><br><span class="line">     if (! </span><br><span class="line">     /*@cc_on!@*/</span><br><span class="line">     0) return;</span><br><span class="line">     var e = &quot;abbr, article, aside, audio, canvas, datalist, details, dialog, eventsource, figure, footer, header, hgroup, mark, menu, meter, nav, output, progress, section, time, video&quot;.split(&apos;, &apos;);</span><br><span class="line">     var i= e.length;</span><br><span class="line">     while (i--)&#123;</span><br><span class="line">         document.createElement(e[i])</span><br><span class="line">     &#125; </span><br><span class="line">&#125;)() </span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;![endif]--&gt;</span><br><span class="line">如果是IE9以下的IE浏览器将创建HTML5标签， 这样非IE浏览器就会忽视这段代码，也就不会有无谓的http请求了。</span><br></pre></td></tr></table></figure></p><p>第二种方法：使用Google的html5shiv包（推荐）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--[if lt IE9]&gt; </span><br><span class="line">&lt;script src=&quot;http://html5shiv.googlecode.com/svn/trunk/html5.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;![endif]--&gt;</span><br></pre></td></tr></table></figure></p><p>但是不管使用以上哪种方法,都要初始化新标签的CSS.因为HTML5在默认情况下表现为内联元素，<br>对这些元素进行布局我们需要利用CSS手工把它们转为块状元素方便布局<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/*html5*/</span><br><span class="line">article,aside,dialog,footer,header,section,footer,nav,figure,menu&#123;display:block&#125;</span><br></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h4 id=&quot;html5有哪些新特性？&quot;&gt;&lt;a href=&quot;#html5有哪些新特性？&quot; class=&quot;headerlink&quot; title=&quot;html5有哪些新特性？&quot;&gt;&lt;/a&gt;html5有哪些新特性？&lt;/h4&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;
+      
+    
+    </summary>
+    
+      <category term="前端" scheme="https://21cm.js.org/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="html" scheme="https://21cm.js.org/tags/html/"/>
+    
+      <category term="html5新元素" scheme="https://21cm.js.org/tags/html5%E6%96%B0%E5%85%83%E7%B4%A0/"/>
+    
+  </entry>
+  
+</feed>
