@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://21cm.js.org/"/>
-  <updated>2018-05-27T04:12:11.803Z</updated>
+  <updated>2018-05-27T05:34:57.401Z</updated>
   <id>https://21cm.js.org/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>数据结构与算法之斐波那契数列</title>
+    <link href="https://21cm.js.org/2018/05/27/fibonacci/"/>
+    <id>https://21cm.js.org/2018/05/27/fibonacci/</id>
+    <published>2018-05-27T05:00:00.000Z</published>
+    <updated>2018-05-27T05:34:57.401Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">function fibonacci(n) &#123;</span><br><span class="line">//递归,速度慢的不行,n到50几乎就无法算出,可能栈溢出!!!</span><br><span class="line">//        if (n &lt;= 0) &#123;</span><br><span class="line">//            return 0;</span><br><span class="line">//        &#125;</span><br><span class="line">//</span><br><span class="line">//        if (n == 1) &#123;</span><br><span class="line">//            return 1;</span><br><span class="line">//        &#125;</span><br><span class="line">//</span><br><span class="line">//        return fibonacci(n - 1) + fibonacci(n - 2);</span><br><span class="line"></span><br><span class="line">    if (n &lt;= 0) &#123;</span><br><span class="line">        return 0;</span><br><span class="line">    &#125;</span><br><span class="line">    if (n == 1) &#123;</span><br><span class="line">        return 1;</span><br><span class="line">    &#125;</span><br><span class="line">    var n1 = 0, n2 = 1, result;</span><br><span class="line">    for (var i = 2; i &lt;= n; i++) &#123;</span><br><span class="line">        result = n1 + n2;</span><br><span class="line">        n1 = n2;</span><br><span class="line">        n2 = result;</span><br><span class="line">    &#125;</span><br><span class="line">    return result;</span><br><span class="line">   &#125;</span><br><span class="line">console.log(fibonacci(200));</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class
+      
+    
+    </summary>
+    
+      <category term="数据结构与算法" scheme="https://21cm.js.org/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="javascript" scheme="https://21cm.js.org/tags/javascript/"/>
+    
+      <category term="fibonacci" scheme="https://21cm.js.org/tags/fibonacci/"/>
+    
+      <category term="斐波那契数列" scheme="https://21cm.js.org/tags/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97/"/>
+    
+  </entry>
   
   <entry>
     <title>前端知识点总结之javascript-循环建议</title>
@@ -576,37 +605,6 @@
       <category term="position-static" scheme="https://21cm.js.org/tags/position-static/"/>
     
       <category term="position-sticky" scheme="https://21cm.js.org/tags/position-sticky/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>前端知识点总结之css inline、inline-block、block区别</title>
-    <link href="https://21cm.js.org/2018/05/24/css%20inline&amp;&amp;inline-block&amp;&amp;block/"/>
-    <id>https://21cm.js.org/2018/05/24/css inline&amp;&amp;inline-block&amp;&amp;block/</id>
-    <published>2018-05-24T09:40:00.000Z</published>
-    <updated>2018-05-24T09:41:13.451Z</updated>
-    
-    <content type="html"><![CDATA[<h4 id="总体概念"><a href="#总体概念" class="headerlink" title="总体概念"></a>总体概念</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">block和inline这两个概念是简略的说法，完整确切的说应该是 block-level elements (块级元素) 和 inline elements (内联元素)。</span><br><span class="line">block元素通常被现实为独立的一块，会单独换一行；</span><br><span class="line">inline元素则前后不会产生换行，一系列inline元素都在一行内显示，直到该行排满。</span><br><span class="line"></span><br><span class="line">大体来说HTML元素各有其自身的布局级别（block元素还是inline元素）：</span><br><span class="line">常见的块级元素有 DIV, FORM, TABLE, P, PRE, H1~H6, DL, OL, UL 等。</span><br><span class="line">常见的内联元素有 SPAN, A, STRONG, EM, LABEL, INPUT, SELECT, TEXTAREA, IMG, BR 等。</span><br><span class="line"></span><br><span class="line">block元素可以包含block元素和inline元素；但inline元素只能包含inline元素。</span><br><span class="line">要注意的是这个是个大概的说法，每个特定的元素能包含的元素也是特定的，所以具体到个别元素上，这条规律是不适用的。</span><br><span class="line">比如 P 元素，只能包含inline元素，而不能包含block元素。</span><br></pre></td></tr></table></figure><p><code>一般来说，可以通过display:inline和display:block的设置，改变元素的布局级别。</code></p><h4 id="block，inline和inlinke-block细节对比"><a href="#block，inline和inlinke-block细节对比" class="headerlink" title="block，inline和inlinke-block细节对比"></a>block，inline和inlinke-block细节对比</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">display:block</span><br><span class="line">block元素会独占一行，多个block元素会各自新起一行。默认情况下，block元素宽度自动填满其父元素宽度。</span><br><span class="line">block元素可以设置width,height属性。块级元素即使设置了宽度,仍然是独占一行。</span><br><span class="line">block元素可以设置margin和padding属性。</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">display:inline</span><br><span class="line">inline元素不会独占一行，多个相邻的行内元素会排列在同一行里，直到一行排列不下，才会新换一行，其宽度随元素的内容而变化。</span><br><span class="line">inline元素设置width,height属性无效。</span><br><span class="line">inline元素的margin和padding属性，水平方向的padding-left, padding-right, margin-left, margin-right都产生边距效果；</span><br><span class="line">但竖直方向的padding-top, padding-bottom, margin-top, margin-bottom不会产生边距效果。</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">display:inline-block</span><br><span class="line">简单来说就是将对象呈现为inline对象，但是对象的内容作为block对象呈现。之后的内联对象会被排列在同一行内。</span><br><span class="line">比如我们可以给一个link（a元素）inline-block属性值，使其既具有block的宽度高度特性又具有inline的同行特性。</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h4 id=&quot;总体概念&quot;&gt;&lt;a href=&quot;#总体概念&quot; class=&quot;headerlink&quot; title=&quot;总体概念&quot;&gt;&lt;/a&gt;总体概念&lt;/h4&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pr
-      
-    
-    </summary>
-    
-      <category term="前端" scheme="https://21cm.js.org/categories/%E5%89%8D%E7%AB%AF/"/>
-    
-    
-      <category term="css" scheme="https://21cm.js.org/tags/css/"/>
-    
-      <category term="css-inline" scheme="https://21cm.js.org/tags/css-inline/"/>
-    
-      <category term="css-inline-block" scheme="https://21cm.js.org/tags/css-inline-block/"/>
-    
-      <category term="css-block" scheme="https://21cm.js.org/tags/css-block/"/>
     
   </entry>
   
