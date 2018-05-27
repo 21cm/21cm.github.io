@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="21cm">
 <meta property="og:description" content="顺序查找  123456789101112131415var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 23, 45, 55, 44, 22, 33];function find(array, data) &amp;#123;    var length = array.length;    for (var i = 0; i &amp;lt; length; i++) &amp;#123;">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-05-27T16:40:26.779Z">
+<meta property="og:updated_time" content="2018-05-27T17:05:07.307Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端算法之查找算法">
 <meta name="twitter:description" content="顺序查找  123456789101112131415var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 23, 45, 55, 44, 22, 33];function find(array, data) &amp;#123;    var length = array.length;    for (var i = 0; i &amp;lt; length; i++) &amp;#123;">
@@ -174,7 +174,7 @@
 <ul>
 <li>二分法查找:适用于有序的数据</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">var arr = [];</span><br><span class="line">for (var m = 1; m &lt;= 100; m++) &#123;</span><br><span class="line">    arr.push(m);</span><br><span class="line">&#125;</span><br><span class="line">function binarySearch(array, data) &#123;</span><br><span class="line">    var l = array.length;</span><br><span class="line">    var low = 0,</span><br><span class="line">        high = l - 1;</span><br><span class="line">    while (low &lt;= high) &#123;</span><br><span class="line">        var middle = Math.floor((low + high) / 2);</span><br><span class="line">        if (data &lt; array[middle]) &#123;</span><br><span class="line">            high = middle - 1;</span><br><span class="line">        &#125; else if (data &gt; array[middle]) &#123;</span><br><span class="line">            low = middle + 1;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            return middle;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return -1;</span><br><span class="line">&#125;</span><br><span class="line">console.log(binarySearch(arr, 50));     //49</span><br><span class="line">console.log(binarySearch(arr, 33));     //32</span><br><span class="line">console.log(binarySearch(arr, 1));      //0</span><br><span class="line">console.log(binarySearch(arr, 100));    //99</span><br><span class="line">console.log(binarySearch(arr, 1000));   //-1</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">var arr = [];</span><br><span class="line">for (var m = 1; m &lt;= 5; m++) &#123;</span><br><span class="line">    arr.push(m);</span><br><span class="line">&#125;</span><br><span class="line">console.log(arr);  //1,2,3,4,5</span><br><span class="line"></span><br><span class="line">function binarySearch(array, data) &#123;</span><br><span class="line">    var l = array.length;</span><br><span class="line">    var low = 0,</span><br><span class="line">        high = l - 1;</span><br><span class="line">    while (low &lt;= high) &#123;</span><br><span class="line">        var middle = Math.floor((low + high) / 2);</span><br><span class="line">        if (data &lt; array[middle]) &#123;</span><br><span class="line">            high = middle - 1;</span><br><span class="line">        &#125; else if (data &gt; array[middle]) &#123;</span><br><span class="line">            low = middle + 1;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            return middle;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return -1;</span><br><span class="line">&#125;</span><br><span class="line">console.log(binarySearch(arr, 50));     //49</span><br><span class="line">console.log(binarySearch(arr, 33));     //32</span><br><span class="line">console.log(binarySearch(arr, 1));      //0</span><br><span class="line">console.log(binarySearch(arr, 100));    //99</span><br><span class="line">console.log(binarySearch(arr, 1000));   //-1</span><br></pre></td></tr></table></figure>
       
 
       
@@ -408,11 +408,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">html 标准模式与怪异模式</a>
+                <a href="javascript:void(0)" class="js-tag color5">web语义化的理解</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">web语义化的理解</a>
+                <a href="javascript:void(0)" class="js-tag color5">html 标准模式与怪异模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -440,14 +440,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">link</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">@import</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">css-box-sizing属性</a>
               </li>
              
@@ -460,11 +452,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">link</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">@import</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">css-居中</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">css-盒模型</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">css-预处理</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -485,10 +489,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">position-sticky</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">css-预处理</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -528,19 +528,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">http状态码</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">javascript高级函数</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">javascript颗粒化</a>
+                <a href="javascript:void(0)" class="js-tag color5">javascript-AOP</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">javascript-AOP</a>
+                <a href="javascript:void(0)" class="js-tag color3">http状态码</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">javascript颗粒化</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -549,14 +549,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javascript-ajax</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript-attribute</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">javascript-property</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -569,6 +561,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">javascript-缓存</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript-attribute</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">javascript-property</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -588,19 +588,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">javascript-跨域</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript-跨域方式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">查找算法-线性查找</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">查找算法-二分查找</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">javascript-跨域</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript-跨域方式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -632,11 +632,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript-严格模式</a>
+                <a href="javascript:void(0)" class="js-tag color4">javascript-循环</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">javascript-循环</a>
+                <a href="javascript:void(0)" class="js-tag color1">javascript-严格模式</a>
               </li>
              
               <li class="article-tag-list-item">
