@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://21cm.js.org/"/>
-  <updated>2018-05-27T04:08:01.384Z</updated>
+  <updated>2018-05-27T04:10:01.427Z</updated>
   <id>https://21cm.js.org/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>前端知识点总结之javascript-严格模式</title>
+    <link href="https://21cm.js.org/2018/05/27/js-strict/"/>
+    <id>https://21cm.js.org/2018/05/27/js-strict/</id>
+    <published>2018-05-27T04:00:00.000Z</published>
+    <updated>2018-05-27T04:10:01.427Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="说说严格模式的限制"><a href="#说说严格模式的限制" class="headerlink" title="说说严格模式的限制"></a>说说严格模式的限制</h4><p>严格模式主要有以下限制：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">变量必须声明后再使用</span><br><span class="line"></span><br><span class="line">函数的参数不能有同名属性，否则报错</span><br><span class="line"></span><br><span class="line">不能使用with语句</span><br><span class="line"></span><br><span class="line">不能对只读属性赋值，否则报错</span><br><span class="line"></span><br><span class="line">不能使用前缀0表示八进制数，否则报错</span><br><span class="line"></span><br><span class="line">不能删除不可删除的属性，否则报错</span><br><span class="line"></span><br><span class="line">不能删除变量delete prop，会报错，只能删除属性delete global[prop]</span><br><span class="line"></span><br><span class="line">eval不会在它的外层作用域引入变量</span><br><span class="line"></span><br><span class="line">eval和arguments不能被重新赋值</span><br><span class="line"></span><br><span class="line">arguments不会自动反映函数参数的变化</span><br><span class="line"></span><br><span class="line">不能使用arguments.callee</span><br><span class="line"></span><br><span class="line">不能使用arguments.caller</span><br><span class="line"></span><br><span class="line">禁止this指向全局对象</span><br><span class="line"></span><br><span class="line">不能使用fn.caller和fn.arguments获取函数调用的堆栈</span><br><span class="line"></span><br><span class="line">增加了保留字（比如protected、static和interface）</span><br></pre></td></tr></table></figure></p><p>设立”严格模式”的目的，主要有以下几个：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">消除Javascript语法的一些不合理、不严谨之处，减少一些怪异行为;</span><br><span class="line"></span><br><span class="line">消除代码运行的一些不安全之处，保证代码运行的安全；</span><br><span class="line"></span><br><span class="line">提高编译器效率，增加运行速度；</span><br><span class="line"></span><br><span class="line">为未来新版本的Javascript做好铺垫。</span><br></pre></td></tr></table></figure></p><p><code>注：经过测试IE6,7,8,9均不支持严格模式。</code></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h4 id=&quot;说说严格模式的限制&quot;&gt;&lt;a href=&quot;#说说严格模式的限制&quot; class=&quot;headerlink&quot; title=&quot;说说严格模式的限制&quot;&gt;&lt;/a&gt;说说严格模式的限制&lt;/h4&gt;&lt;p&gt;严格模式主要有以下限制：&lt;br&gt;&lt;figure class=&quot;highlight p
+      
+    
+    </summary>
+    
+      <category term="前端" scheme="https://21cm.js.org/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="javascript" scheme="https://21cm.js.org/tags/javascript/"/>
+    
+      <category term="javascript-严格模式" scheme="https://21cm.js.org/tags/javascript-%E4%B8%A5%E6%A0%BC%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
   
   <entry>
     <title>前端知识点总结之javascript-new操作符</title>
@@ -580,33 +607,6 @@
       <category term="css" scheme="https://21cm.js.org/tags/css/"/>
     
       <category term="css-box-sizing属性" scheme="https://21cm.js.org/tags/css-box-sizing%E5%B1%9E%E6%80%A7/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>前端知识点总结之css盒模型</title>
-    <link href="https://21cm.js.org/2018/05/24/css-model/"/>
-    <id>https://21cm.js.org/2018/05/24/css-model/</id>
-    <published>2018-05-24T09:20:00.000Z</published>
-    <updated>2018-05-24T09:36:35.294Z</updated>
-    
-    <content type="html"><![CDATA[<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">CSS中， Box Model叫盒子模型（或框模型），Box Model规定了元素框处理元素内容（element content）、内边距（padding）、</span><br><span class="line">边框（border） 和 外边距（margin） 的方式。</span><br><span class="line">在HTML文档中，每个元素（element）都有盒子模型，所以说在Web世界里（特别是页面布局），Box Model无处不在。</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">在 CSS 中，width 和 height 指的是内容区域（element）的宽度和高度。</span><br><span class="line">增加内边距、边框和外边距不会影响内容区域的尺寸，但是会增加元素框的总尺寸。假设框的每个边上有 10 个像素的外边距和 5 个像素的内边距。</span><br><span class="line">如果希望这个元素框达到 100 个像素，就需要将内容的宽度设置为 70 像素。</span><br></pre></td></tr></table></figure><h4 id="标准盒模型和IE盒子模型"><a href="#标准盒模型和IE盒子模型" class="headerlink" title="标准盒模型和IE盒子模型"></a>标准盒模型和IE盒子模型</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">W3C标准盒子模型范围包括margin、border、padding、content,并且content部分不包含其他部分。</span><br><span class="line">IE盒子模型的content部分包含了border和padding。</span><br><span class="line"></span><br><span class="line">也就是说,标准盒模型下,width和height属性就是指content的宽高,而IE和模型下width和height属性的值为content+padding+border!</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class
-      
-    
-    </summary>
-    
-      <category term="前端" scheme="https://21cm.js.org/categories/%E5%89%8D%E7%AB%AF/"/>
-    
-    
-      <category term="css" scheme="https://21cm.js.org/tags/css/"/>
-    
-      <category term="css-盒模型" scheme="https://21cm.js.org/tags/css-%E7%9B%92%E6%A8%A1%E5%9E%8B/"/>
     
   </entry>
   

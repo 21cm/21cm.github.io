@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://21cm.js.org">
-  <title>21cm</title>
+  <title>前端知识点总结之javascript-严格模式 | 21cm</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="21cm.js.org是一个专注web前端开发，关注用户体验，关注国内外最新最好的前端开发技术和前端开发资讯的专业博客">
-<meta name="keywords" content="21cm,web前端开发, 前端开发工程师, 前端资源, CSS, JavaScript, Ajax, jQuery, html,html5,css3,浏览器兼容, 前端开发工具, 前端招聘, jQuery API, CSS整形和优化工具 , JS压缩工具 , JS格式化工具 , CSS参考手册 ,HTML参考手册">
-<meta property="og:type" content="website">
-<meta property="og:title" content="21cm">
-<meta property="og:url" content="https://21cm.js.org/page/3/index.html">
+  <meta name="description" content="说说严格模式的限制严格模式主要有以下限制：1234567891011121314151617181920212223242526272829变量必须声明后再使用函数的参数不能有同名属性，否则报错不能使用with语句不能对只读属性赋值，否则报错不能使用前缀0表示八进制数，否则报错不能删除不可删除的属性，否则报错不能删除变量delete prop，会报错，只能删除属性delete global[pro">
+<meta name="keywords" content="javascript,javascript-严格模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端知识点总结之javascript-严格模式">
+<meta property="og:url" content="https://21cm.js.org/2018/05/27/js-strict/index.html">
 <meta property="og:site_name" content="21cm">
-<meta property="og:description" content="21cm.js.org是一个专注web前端开发，关注用户体验，关注国内外最新最好的前端开发技术和前端开发资讯的专业博客">
+<meta property="og:description" content="说说严格模式的限制严格模式主要有以下限制：1234567891011121314151617181920212223242526272829变量必须声明后再使用函数的参数不能有同名属性，否则报错不能使用with语句不能对只读属性赋值，否则报错不能使用前缀0表示八进制数，否则报错不能删除不可删除的属性，否则报错不能删除变量delete prop，会报错，只能删除属性delete global[pro">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-05-27T04:10:01.427Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="21cm">
-<meta name="twitter:description" content="21cm.js.org是一个专注web前端开发，关注用户体验，关注国内外最新最好的前端开发技术和前端开发资讯的专业博客">
+<meta name="twitter:title" content="前端知识点总结之javascript-严格模式">
+<meta name="twitter:description" content="说说严格模式的限制严格模式主要有以下限制：1234567891011121314151617181920212223242526272829变量必须声明后再使用函数的参数不能有同名属性，否则报错不能使用with语句不能对只读属性赋值，否则报错不能使用前缀0表示八进制数，否则报错不能删除不可删除的属性，否则报错不能删除变量delete prop，会报错，只能删除属性delete global[pro">
   
     <link rel="alternative" href="/atom.xml" title="21cm" type="application/atom+xml">
   
@@ -146,37 +147,29 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-js-AOP" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-js-strict" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/26/js-AOP/">javascript高级函数实现AOP</a>
+    <h1 class="article-title" itemprop="name">
+      前端知识点总结之javascript-严格模式
     </h1>
   
 
         
-        <a href="/2018/05/26/js-AOP/" class="archive-article-date">
-  	<time datetime="2018-05-26T01:10:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-26</time>
+        <a href="/2018/05/27/js-strict/" class="archive-article-date">
+  	<time datetime="2018-05-27T04:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-27</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ul>
-<li>高阶函数是指满足如下两个条件之一或者两个的函数:</li>
-<li>1.函数作为参数传递给其它函数</li>
-<li>2.函数作为返回值返回</li>
-</ul>
-<ul>
-<li>使用高阶函数实现AOP</li>
-<li>使用AOP动态给函数添加功能,这在js中非常方便,特别适用于装饰者模式!<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">function.prototype.before = function (beforeFn) &#123;</span><br><span class="line">    var self = this;</span><br><span class="line">    return function () &#123;  //返回包含了原函数和新函数的&quot;代理函数&quot;</span><br><span class="line">        // beforeFn(arguments);</span><br><span class="line">        // self(arguments);</span><br><span class="line">        beforeFn.apply(this, arguments);</span><br><span class="line">        return self.apply(this, arguments);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">function.prototype.after = function (afterFn) &#123;</span><br><span class="line">    var self = this;</span><br><span class="line">    return function () &#123;</span><br><span class="line">        var result = self.apply(this, arguments);</span><br><span class="line">        afterFn.apply(this, arguments);</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var func = function () &#123;</span><br><span class="line">    console.log(&apos;业务逻辑处理...&apos;);</span><br><span class="line">&#125;</span><br><span class="line">func = func.before(function () &#123;</span><br><span class="line">    console.log(&apos;调用前记录日志...&apos;);</span><br><span class="line">&#125;).after(function () &#123;</span><br><span class="line">    console.log(&apos;调用后执行清理工作...&apos;);</span><br><span class="line">&#125;);</span><br><span class="line">func();</span><br></pre></td></tr></table></figure></li>
-</ul>
+        <h4 id="说说严格模式的限制"><a href="#说说严格模式的限制" class="headerlink" title="说说严格模式的限制"></a>说说严格模式的限制</h4><p>严格模式主要有以下限制：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">变量必须声明后再使用</span><br><span class="line"></span><br><span class="line">函数的参数不能有同名属性，否则报错</span><br><span class="line"></span><br><span class="line">不能使用with语句</span><br><span class="line"></span><br><span class="line">不能对只读属性赋值，否则报错</span><br><span class="line"></span><br><span class="line">不能使用前缀0表示八进制数，否则报错</span><br><span class="line"></span><br><span class="line">不能删除不可删除的属性，否则报错</span><br><span class="line"></span><br><span class="line">不能删除变量delete prop，会报错，只能删除属性delete global[prop]</span><br><span class="line"></span><br><span class="line">eval不会在它的外层作用域引入变量</span><br><span class="line"></span><br><span class="line">eval和arguments不能被重新赋值</span><br><span class="line"></span><br><span class="line">arguments不会自动反映函数参数的变化</span><br><span class="line"></span><br><span class="line">不能使用arguments.callee</span><br><span class="line"></span><br><span class="line">不能使用arguments.caller</span><br><span class="line"></span><br><span class="line">禁止this指向全局对象</span><br><span class="line"></span><br><span class="line">不能使用fn.caller和fn.arguments获取函数调用的堆栈</span><br><span class="line"></span><br><span class="line">增加了保留字（比如protected、static和interface）</span><br></pre></td></tr></table></figure></p>
+<p>设立”严格模式”的目的，主要有以下几个：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">消除Javascript语法的一些不合理、不严谨之处，减少一些怪异行为;</span><br><span class="line"></span><br><span class="line">消除代码运行的一些不安全之处，保证代码运行的安全；</span><br><span class="line"></span><br><span class="line">提高编译器效率，增加运行速度；</span><br><span class="line"></span><br><span class="line">为未来新版本的Javascript做好铺垫。</span><br></pre></td></tr></table></figure></p>
+<p><code>注：经过测试IE6,7,8,9均不支持严格模式。</code></p>
 
       
 
@@ -194,11 +187,7 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">javascript高级函数</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">javascript-AOP</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript-严格模式</a>
         		</li>
       		
 		</ul>
@@ -218,16 +207,75 @@
 
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/26/js-AOP/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://21cm.js.org/2018/05/27/js-strict/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2018/05/27/js-new/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">前端知识点总结之javascript-new操作符</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -247,461 +295,14 @@
 
 
 
-
-  
-    <article id="post-js-Granulation-of-advanced-functions" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/26/js-Granulation-of-advanced-functions/">javascript高级函数与颗粒化</a>
-    </h1>
-  
-
-        
-        <a href="/2018/05/26/js-Granulation-of-advanced-functions/" class="archive-article-date">
-  	<time datetime="2018-05-26T01:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li>currying又称为部分求值。</li>
-<li>一个currying函数接受了一些参数后,并不会立即求值,而是继续返回另外一个函数,并利用闭包将刚才传入的参数保存起来。</li>
-<li><p>等到函数需要真正求值的时候,之前传入的参数会被一次性用于求值。</p>
-</li>
-<li><p>例子1:加入要编写一个函数,计算每个月的开销。每天需要将当天的花销也保存下来。</p>
-</li>
-<li>下面代码中,虽然是要计算月底花销,但实际每天都计算了一次,而实际上我们不关心每天开销了多少,只需要在月底做一次计算即可</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var monthCost = 0;</span><br><span class="line">var cost = function (dayCost) &#123;</span><br><span class="line">    monthCost += dayCost;</span><br><span class="line">&#125;</span><br><span class="line">cost(100);  //第一天开销</span><br><span class="line">cost(80);   //第二天开销</span><br><span class="line">cost(120);  //第三天开销</span><br><span class="line">cost(200);  //当月最后一天开销</span><br><span class="line">console.log(monthCost);  //总共500</span><br></pre></td></tr></table></figure>
-<ul>
-<li>cost柯里化的简陋实现</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">var cost = (function () &#123;</span><br><span class="line">    var args = [];  //使用闭包来记录每次传入的参数</span><br><span class="line">    return function () &#123;</span><br><span class="line">        if (arguments.length === 0) &#123;  //没有传递参数时,求值</span><br><span class="line">            var total = 0;</span><br><span class="line">            for (var i = 0; i &lt; args.length; i++) &#123;</span><br><span class="line">                total += args[i];</span><br><span class="line">            &#125;</span><br><span class="line">            return total;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            [].push.apply(args, arguments);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line">cost(100);  //未求值</span><br><span class="line">cost(200);  //未求值</span><br><span class="line">cost(300, 400, 500);  //未求值</span><br><span class="line">console.log(cost());  //求值! 1500</span><br></pre></td></tr></table></figure>
-<ul>
-<li>通用的currying函数,接受一个函数作为参数,并将该函数柯里化</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">var currying = function (fn) &#123;</span><br><span class="line">    var args = [];</span><br><span class="line">    return function () &#123;</span><br><span class="line">        if (arguments.length === 0) &#123;</span><br><span class="line">            return fn.apply(this, args);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            [].push.apply(args, arguments);</span><br><span class="line">            return arguments.callee;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var cost = (function () &#123;</span><br><span class="line">    var money = 0;</span><br><span class="line">    return function () &#123;</span><br><span class="line">        for (var i = 0, l = arguments.length; i &lt; l; i++) &#123;</span><br><span class="line">            money += arguments[i];</span><br><span class="line">        &#125;</span><br><span class="line">        return money;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line">var cost = currying(cost);  //柯里化cost函数</span><br><span class="line">cost(100);</span><br><span class="line">cost(200);</span><br><span class="line">cost(300, 400);</span><br><span class="line">console.log(cost()); //1000</span><br></pre></td></tr></table></figure>
-<ul>
-<li>反柯里化uncurrying:</li>
-<li>使用call和apply时,能够把任意对象当做this传入某个方法,这样,方法中用到的this就不再局限于原来规定的对象,</li>
-<li>而是加以泛化而得到更广的适用性。</li>
-<li>有没有办法把泛化this的过程提取出来? 这就是uncurrying要做的事情!</li>
-<li>下面是uncurrying的一种实现:</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function.prototype.uncurrying = function () &#123;</span><br><span class="line">    var self = this;</span><br><span class="line">    return function () &#123;</span><br><span class="line">        var context = Array.prototype.shift.call(arguments);</span><br><span class="line">        return self.apply(context, arguments);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>下面就可以将<code>Array.prototype.push.call</code>转换成一个泛化得函数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var push = Array.prototype.push.uncurrying();</span><br><span class="line">var slice = Array.prototype.slice.uncurrying();</span><br><span class="line">(function () &#123;</span><br><span class="line">    push(arguments, 4);</span><br><span class="line">    console.log(slice(arguments));</span><br><span class="line">&#125;)(1, 2, 3);</span><br></pre></td></tr></table></figure></p>
-<ul>
-<li>下面是uncurrying的另一种实现</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function.prototype.uncurrying2 = function () &#123;</span><br><span class="line">    var self = this;</span><br><span class="line">    return function () &#123;</span><br><span class="line">        return Function.prototype.call.apply(self, arguments);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">javascript高级函数</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">javascript颗粒化</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/前端//" class="article-tag-list-link color3">前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/26/js-Granulation-of-advanced-functions/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-js-closure" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/24/js-closure/">javascript-闭包</a>
-    </h1>
-  
-
-        
-        <a href="/2018/05/24/js-closure/" class="archive-article-date">
-  	<time datetime="2018-05-24T12:30:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li>闭包的作用:</li>
-<li>1.封装变量</li>
-<li>2.延续局部变量的寿命</li>
-<li>3.闭包和面向对象设计:实现私有数据和方法的封装(本质还是1,封装变量)</li>
-<li>闭包能使局部变量的生命期延长,这点与全局作用域的变量是一致的,不能算是内存泄漏!</li>
-<li>闭包与内存泄漏有关的部分是:</li>
-<li>使用闭包容易造成循环引用,如果闭包的作用域中保存着一些DOM节点,这时候有可能造成内存泄漏(互相引用导致内存无法释放)</li>
-<li><p>例1</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">var increment = function () &#123;</span><br><span class="line">    var count = 1;</span><br><span class="line">    return &#123;</span><br><span class="line">        inc: function () &#123;</span><br><span class="line">            return count++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">console.log(increment.count);   //undefined</span><br><span class="line">var counter = increment();</span><br><span class="line">console.log(counter.inc());</span><br><span class="line">console.log(counter.inc());</span><br><span class="line">console.log(counter.inc());</span><br><span class="line"></span><br><span class="line">var counter2 = increment();</span><br><span class="line">console.log(counter2.inc());</span><br><span class="line">console.log(counter == counter2);  //false,注:闭包每次返回的对象都不一样!</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>例2</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">var getTypeChecker = function () &#123;</span><br><span class="line">    var types = &#123;&#125;;</span><br><span class="line"></span><br><span class="line">    for (var i = 0, type; type = [&apos;String&apos;, &apos;Number&apos;, &apos;Array&apos;][i++];) &#123;</span><br><span class="line">        //使用闭包来封闭每次循环的变量</span><br><span class="line">        (function (type) &#123;</span><br><span class="line">            types[&apos;is&apos; + type] = function (obj) &#123;</span><br><span class="line">                return Object.prototype.toString.call(obj) === &apos;[object &apos; + type + &apos;]&apos;;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)(type);</span><br><span class="line">    &#125;</span><br><span class="line">    return types;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var checker = getTypeChecker();</span><br><span class="line">console.log(checker.isArray([]));   // true</span><br><span class="line">console.log(checker.isString([]));   //false</span><br><span class="line">console.log(checker.isString(&apos;hello&apos;));  //true</span><br></pre></td></tr></table></figure></li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">javascript-闭包</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/前端//" class="article-tag-list-link color3">前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/24/js-closure/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-js-call&amp;&amp;apply&amp;&amp;bind" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/24/js-call&&apply&&bind/">javascript-call和javascript-apply的用法，实现javascript-bind</a>
-    </h1>
-  
-
-        
-        <a href="/2018/05/24/js-call&&apply&&bind/" class="archive-article-date">
-  	<time datetime="2018-05-24T12:20:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li>function.prototype.call和 function.prototype.apply的作用:</li>
-<li><ol>
-<li>改变this指向</li>
-</ol>
-</li>
-<li><ol start="2">
-<li>借用借他对象的方法</li>
-</ol>
-</li>
-<li><p>function.prototype.bind 函数用于指定函数内部this的指向</p>
-</li>
-<li><p>实现原理:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">function.prototype.bind = function () &#123;</span><br><span class="line">    var self = this;  //保存原函数</span><br><span class="line">    var args = [].slice.call(arguments);</span><br><span class="line">    var context = args.shift();</span><br><span class="line">    return function () &#123;</span><br><span class="line">        var argsArr = [].slice.call(arguments);</span><br><span class="line">        return self.apply(context, args.concat(argsArr));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var bindTest = function (age, grade) &#123;</span><br><span class="line">    console.log(this.name);</span><br><span class="line">    console.log([age, grade]);</span><br><span class="line">&#125;.bind(&#123;name: &apos;Jack&apos;&#125;, 22);</span><br><span class="line">bindTest(95.0);</span><br></pre></td></tr></table></figure></li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript-call</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">javascript-apply</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript-bind</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/前端//" class="article-tag-list-link color3">前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/24/js-call&&apply&&bind/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-js-bject.create" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/24/js-bject.create/">javascript原型式继承与object.create</a>
-    </h1>
-  
-
-        
-        <a href="/2018/05/24/js-bject.create/" class="archive-article-date">
-  	<time datetime="2018-05-24T12:10:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li>动态类型语言的缺点是无法在编译期间保证变量的类型,而只能在运行时才能确定。</li>
-<li><p>就像在商店买了一包牛肉味辣条,等到真正吃到嘴里才知道它到底是不是牛肉味。O(∩_∩)O</p>
-</li>
-<li><p>原型式继承: 对象是通过克隆另一个对象而来的</p>
-</li>
-<li>javascript得到一个对象,就是要找到一个对象,然后克隆它。</li>
-<li>只不过引擎内部屏蔽了细节,暴露给我们的是一个 new Object() 或 var obj={} 指令</li>
-</ul>
-<p>模拟Object.create方法的实现:</p>
-<pre><code>var clone = function (obj) {
-    var F = function () {
-    };
-
-    F.prototype = obj;
-
-    return new F();
-}
-
-var obj = {name: &apos;jack&apos;, age: 22};
-var obj2 = clone(obj);
-console.log(obj2.name + &apos;-&apos; + obj2.age);
-</code></pre>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript原型式继承</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">object.create</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/前端//" class="article-tag-list-link color3">前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/24/js-bject.create/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
   
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
-    </nav>
+  
+
+  
+
+  
+
   
 
 
@@ -728,8 +329,8 @@ console.log(obj2.name + &apos;-&apos; + obj2.age);
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
