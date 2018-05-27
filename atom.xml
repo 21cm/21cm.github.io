@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://21cm.js.org/"/>
-  <updated>2018-05-27T04:05:15.807Z</updated>
+  <updated>2018-05-27T04:06:49.001Z</updated>
   <id>https://21cm.js.org/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>前端知识点总结之javascript-null和undefined的区别？</title>
+    <link href="https://21cm.js.org/2018/05/27/js-null&amp;&amp;js-undefined/"/>
+    <id>https://21cm.js.org/2018/05/27/js-null&amp;&amp;js-undefined/</id>
+    <published>2018-05-27T02:40:00.000Z</published>
+    <updated>2018-05-27T04:06:49.001Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="null和undefined的区别？"><a href="#null和undefined的区别？" class="headerlink" title="null和undefined的区别？"></a>null和undefined的区别？</h4><p>null是一个表示”无”的对象，转为数值时为0；undefined是一个表示”无”的原始值，转为数值时为NaN。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">当声明的变量还未被初始化时，变量的默认值为undefined。</span><br><span class="line"></span><br><span class="line">null用来表示尚未存在的对象，常用来表示函数企图返回一个不存在的对象。</span><br><span class="line"></span><br><span class="line">undefined表示&quot;缺少值&quot;，就是此处应该有一个值，但是还没有定义。典型用法是：</span><br><span class="line"></span><br><span class="line">（1）变量被声明了，但没有赋值时，就等于undefined。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">（2) 调用函数时，应该提供的参数没有提供，该参数等于undefined。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">（3）对象没有赋值的属性，该属性的值为undefined。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">（4）函数没有返回值时，默认返回undefined。</span><br></pre></td></tr></table></figure></p><p>null表示”没有对象”，即该处不应该有值。典型用法是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">（1） 作为函数的参数，表示该函数的参数不是对象。</span><br><span class="line"></span><br><span class="line">（2） 作为对象原型链的终点。</span><br></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h4 id=&quot;null和undefined的区别？&quot;&gt;&lt;a href=&quot;#null和undefined的区别？&quot; class=&quot;headerlink&quot; title=&quot;null和undefined的区别？&quot;&gt;&lt;/a&gt;null和undefined的区别？&lt;/h4&gt;&lt;p&gt;null是一
+      
+    
+    </summary>
+    
+    
+      <category term="javascript" scheme="https://21cm.js.org/tags/javascript/"/>
+    
+      <category term="javascript-null" scheme="https://21cm.js.org/tags/javascript-null/"/>
+    
+      <category term="javascript-undefined" scheme="https://21cm.js.org/tags/javascript-undefined/"/>
+    
+  </entry>
   
   <entry>
     <title>前端知识点总结之javascript-ready &amp;&amp; javascript-onload</title>
@@ -582,33 +609,6 @@
       <category term="css" scheme="https://21cm.js.org/tags/css/"/>
     
       <category term="css-预处理" scheme="https://21cm.js.org/tags/css-%E9%A2%84%E5%A4%84%E7%90%86/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>前端知识点总结之css清除浮动</title>
-    <link href="https://21cm.js.org/2018/05/24/css-clearfix/"/>
-    <id>https://21cm.js.org/2018/05/24/css-clearfix/</id>
-    <published>2018-05-24T09:00:00.000Z</published>
-    <updated>2018-05-24T09:29:24.527Z</updated>
-    
-    <content type="html"><![CDATA[<h4 id="解释下浮动和它的工作原理？清除浮动的技巧"><a href="#解释下浮动和它的工作原理？清除浮动的技巧" class="headerlink" title="解释下浮动和它的工作原理？清除浮动的技巧"></a>解释下浮动和它的工作原理？清除浮动的技巧</h4><p><strong>浮动元素脱离文档流，不占据空间。浮动元素碰到包含它的边框或者浮动元素的边框停留。</strong></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">1.使用空标签清除浮动。</span><br><span class="line"></span><br><span class="line">   这种方法是在所有浮动标签后面添加一个空标签 定义css clear:both. 弊端就是增加了无意义标签。</span><br><span class="line"></span><br><span class="line">2.使用overflow。</span><br><span class="line"></span><br><span class="line">   给包含浮动元素的父标签添加css属性 overflow:auto; zoom:1; zoom:1用于兼容IE6。</span><br><span class="line"></span><br><span class="line">3.使用after伪对象清除浮动。</span><br><span class="line"></span><br><span class="line">   该方法只适用于非IE浏览器。具体写法可参照以下示例。使用中需注意以下几点。</span><br><span class="line">   一、该方法中必须为需要清除浮动元素的伪对象中设置 height:0，否则该元素会比实际高出若干像素；</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h4 id=&quot;解释下浮动和它的工作原理？清除浮动的技巧&quot;&gt;&lt;a href=&quot;#解释下浮动和它的工作原理？清除浮动的技巧&quot; class=&quot;headerlink&quot; title=&quot;解释下浮动和它的工作原理？清除浮动的技巧&quot;&gt;&lt;/a&gt;解释下浮动和它的工作原理？清除浮动的技巧&lt;/h4&gt;&lt;
-      
-    
-    </summary>
-    
-      <category term="前端" scheme="https://21cm.js.org/categories/%E5%89%8D%E7%AB%AF/"/>
-    
-    
-      <category term="css" scheme="https://21cm.js.org/tags/css/"/>
-    
-      <category term="css-清除浮动" scheme="https://21cm.js.org/tags/css-%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8/"/>
     
   </entry>
   
