@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://21cm.js.org/"/>
-  <updated>2018-05-27T03:56:27.545Z</updated>
+  <updated>2018-05-27T04:01:06.055Z</updated>
   <id>https://21cm.js.org/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>前端知识点总结之javascript-attribute &amp;&amp;javascript-property</title>
+    <link href="https://21cm.js.org/2018/05/27/js-attribute&amp;&amp;js-property/"/>
+    <id>https://21cm.js.org/2018/05/27/js-attribute&amp;&amp;js-property/</id>
+    <published>2018-05-27T02:10:00.000Z</published>
+    <updated>2018-05-27T04:01:06.055Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="attribute和property的区别是什么？"><a href="#attribute和property的区别是什么？" class="headerlink" title="attribute和property的区别是什么？"></a>attribute和property的区别是什么？</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">attribute是dom元素在文档中作为html标签拥有的属性；</span><br><span class="line">property就是dom元素在js中作为对象拥有的属性。</span><br></pre></td></tr></table></figure><p>所以：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">对于html的标准属性来说，attribute和property是同步的，是会自动更新的，</span><br><span class="line">但是对于自定义的属性来说，他们是不同步的.</span><br></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h4 id=&quot;attribute和property的区别是什么？&quot;&gt;&lt;a href=&quot;#attribute和property的区别是什么？&quot; class=&quot;headerlink&quot; title=&quot;attribute和property的区别是什么？&quot;&gt;&lt;/a&gt;attribute和p
+      
+    
+    </summary>
+    
+    
+      <category term="javascript" scheme="https://21cm.js.org/tags/javascript/"/>
+    
+      <category term="javascript-attribute" scheme="https://21cm.js.org/tags/javascript-attribute/"/>
+    
+      <category term="javascript-property" scheme="https://21cm.js.org/tags/javascript-property/"/>
+    
+  </entry>
   
   <entry>
     <title>前端知识点总结之javascript-XSS &amp;&amp;javascript-csrf</title>
@@ -584,33 +611,6 @@
       <category term="css" scheme="https://21cm.js.org/tags/css/"/>
     
       <category term="css-居中" scheme="https://21cm.js.org/tags/css-%E5%B1%85%E4%B8%AD/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>前端知识点总结之css选择器</title>
-    <link href="https://21cm.js.org/2018/05/24/css-selector/"/>
-    <id>https://21cm.js.org/2018/05/24/css-selector/</id>
-    <published>2018-05-24T08:40:00.000Z</published>
-    <updated>2018-05-24T09:22:48.712Z</updated>
-    
-    <content type="html"><![CDATA[<p><a href="http://www.w3cplus.com/css/css-specificity-things-you-should-know.html" target="_blank" rel="noopener">http://www.w3cplus.com/css/css-specificity-things-you-should-know.html</a></p><p><a href="http://www.dannysite.com/blog/28/" target="_blank" rel="noopener">http://www.dannysite.com/blog/28/</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;&lt;a href=&quot;http://www.w3cplus.com/css/css-specificity-things-you-should-know.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;http://www.w3cplus.com/cs
-      
-    
-    </summary>
-    
-      <category term="前端" scheme="https://21cm.js.org/categories/%E5%89%8D%E7%AB%AF/"/>
-    
-    
-      <category term="css" scheme="https://21cm.js.org/tags/css/"/>
-    
-      <category term="css-选择器" scheme="https://21cm.js.org/tags/css-%E9%80%89%E6%8B%A9%E5%99%A8/"/>
     
   </entry>
   
