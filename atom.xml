@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://21cm.js.org/"/>
-  <updated>2018-05-27T04:10:01.427Z</updated>
+  <updated>2018-05-27T04:12:11.803Z</updated>
   <id>https://21cm.js.org/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>前端知识点总结之javascript-循环建议</title>
+    <link href="https://21cm.js.org/2018/05/27/js-unfor...in/"/>
+    <id>https://21cm.js.org/2018/05/27/js-unfor...in/</id>
+    <published>2018-05-27T04:10:00.000Z</published>
+    <updated>2018-05-27T04:12:11.803Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="不要对数组使用for…in循环"><a href="#不要对数组使用for…in循环" class="headerlink" title="不要对数组使用for…in循环!!!"></a>不要对数组使用for…in循环!!!</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for (var index in myArray) &#123; // 千万别这样做</span><br><span class="line">  console.log(myArray[index]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>这绝对是一个糟糕的选择，为什么呢？</p><ul><li>在这段代码中，赋给index的值不是实际的数字，而是字符串“0”、“1”、“2”，此时很可能在无意之间进行字符串算数计算，例如：“2” + 1 == “21”，这给编码过程带来极大的不便。</li><li>作用于数组的for-in循环体除了遍历数组元素外，还会遍历自定义属性。举个例子，如果你的数组中有一个可枚举属性myArray.name，循环将额外执行一次，遍历到名为“name”的索引。就连数组原型链上的属性都能被访问到。</li><li>最让人震惊的是，在某些情况下，这段代码可能按照随机顺序遍历数组元素。</li></ul><p><code>简而言之，for-in是为普通对象设计的，你可以遍历得到字符串类型的键，因此不适用于数组遍历。</code></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h4 id=&quot;不要对数组使用for…in循环&quot;&gt;&lt;a href=&quot;#不要对数组使用for…in循环&quot; class=&quot;headerlink&quot; title=&quot;不要对数组使用for…in循环!!!&quot;&gt;&lt;/a&gt;不要对数组使用for…in循环!!!&lt;/h4&gt;&lt;figure class=&quot;
+      
+    
+    </summary>
+    
+      <category term="前端" scheme="https://21cm.js.org/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="javascript" scheme="https://21cm.js.org/tags/javascript/"/>
+    
+      <category term="javascript-循环" scheme="https://21cm.js.org/tags/javascript-%E5%BE%AA%E7%8E%AF/"/>
+    
+  </entry>
   
   <entry>
     <title>前端知识点总结之javascript-严格模式</title>
@@ -580,33 +607,6 @@
       <category term="css-inline-block" scheme="https://21cm.js.org/tags/css-inline-block/"/>
     
       <category term="css-block" scheme="https://21cm.js.org/tags/css-block/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>前端知识点总结之css box-sizing属性</title>
-    <link href="https://21cm.js.org/2018/05/24/css-Box-sizing/"/>
-    <id>https://21cm.js.org/2018/05/24/css-Box-sizing/</id>
-    <published>2018-05-24T09:30:00.000Z</published>
-    <updated>2018-05-24T09:38:07.137Z</updated>
-    
-    <content type="html"><![CDATA[<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">box-sizing属性主要用来控制元素的盒模型的解析模式。默认值是content-box。</span><br><span class="line"></span><br><span class="line">content-box：让元素维持W3C的标准盒模型。元素的宽度/高度由border + padding + content的宽度/高度决定，</span><br><span class="line">设置width/height属性指的是content部分的宽/高</span><br><span class="line"></span><br><span class="line">border-box：让元素维持IE传统盒模型（IE6以下版本和IE6~7的怪异模式）。</span><br><span class="line">设置width/height属性指的是border + padding + content</span><br><span class="line"></span><br><span class="line">标准浏览器下，按照W3C规范对盒模型解析，一旦修改了元素的边框或内距，就会影响元素的盒子尺寸，</span><br><span class="line">就不得不重新计算元素的盒子尺寸，从而影响整个页面的布局。</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class
-      
-    
-    </summary>
-    
-      <category term="前端" scheme="https://21cm.js.org/categories/%E5%89%8D%E7%AB%AF/"/>
-    
-    
-      <category term="css" scheme="https://21cm.js.org/tags/css/"/>
-    
-      <category term="css-box-sizing属性" scheme="https://21cm.js.org/tags/css-box-sizing%E5%B1%9E%E6%80%A7/"/>
     
   </entry>
   
