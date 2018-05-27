@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="https://21cm.js.org">
   <title>数据结构与算法之斐波那契数列 | 21cm</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="123456789101112131415161718192021222324252627function fibonacci(n) &amp;#123;//递归,速度慢的不行,n到50几乎就无法算出,可能栈溢出!!!//        if (n &amp;lt;= 0) &amp;#123;//            return 0;//        &amp;#125;////        if (n == 1) &amp;">
+  <meta name="description" content="123456789101112131415161718192021222324252627    function fibonacci(n) &amp;#123;        //递归,速度慢的不行,n到50几乎就无法算出,可能栈溢出!!!//        if (n &amp;lt;= 0) &amp;#123;//            return 0;//        &amp;#125;////        i">
 <meta name="keywords" content="javascript,fibonacci,斐波那契数列">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据结构与算法之斐波那契数列">
 <meta property="og:url" content="https://21cm.js.org/2018/05/27/fibonacci/index.html">
 <meta property="og:site_name" content="21cm">
-<meta property="og:description" content="123456789101112131415161718192021222324252627function fibonacci(n) &amp;#123;//递归,速度慢的不行,n到50几乎就无法算出,可能栈溢出!!!//        if (n &amp;lt;= 0) &amp;#123;//            return 0;//        &amp;#125;////        if (n == 1) &amp;">
+<meta property="og:description" content="123456789101112131415161718192021222324252627    function fibonacci(n) &amp;#123;        //递归,速度慢的不行,n到50几乎就无法算出,可能栈溢出!!!//        if (n &amp;lt;= 0) &amp;#123;//            return 0;//        &amp;#125;////        i">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-05-27T05:34:57.401Z">
+<meta property="og:updated_time" content="2018-05-27T16:15:22.222Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构与算法之斐波那契数列">
-<meta name="twitter:description" content="123456789101112131415161718192021222324252627function fibonacci(n) &amp;#123;//递归,速度慢的不行,n到50几乎就无法算出,可能栈溢出!!!//        if (n &amp;lt;= 0) &amp;#123;//            return 0;//        &amp;#125;////        if (n == 1) &amp;">
+<meta name="twitter:description" content="123456789101112131415161718192021222324252627    function fibonacci(n) &amp;#123;        //递归,速度慢的不行,n到50几乎就无法算出,可能栈溢出!!!//        if (n &amp;lt;= 0) &amp;#123;//            return 0;//        &amp;#125;////        i">
   
     <link rel="alternative" href="/atom.xml" title="21cm" type="application/atom+xml">
   
@@ -167,7 +167,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">function fibonacci(n) &#123;</span><br><span class="line">//递归,速度慢的不行,n到50几乎就无法算出,可能栈溢出!!!</span><br><span class="line">//        if (n &lt;= 0) &#123;</span><br><span class="line">//            return 0;</span><br><span class="line">//        &#125;</span><br><span class="line">//</span><br><span class="line">//        if (n == 1) &#123;</span><br><span class="line">//            return 1;</span><br><span class="line">//        &#125;</span><br><span class="line">//</span><br><span class="line">//        return fibonacci(n - 1) + fibonacci(n - 2);</span><br><span class="line"></span><br><span class="line">    if (n &lt;= 0) &#123;</span><br><span class="line">        return 0;</span><br><span class="line">    &#125;</span><br><span class="line">    if (n == 1) &#123;</span><br><span class="line">        return 1;</span><br><span class="line">    &#125;</span><br><span class="line">    var n1 = 0, n2 = 1, result;</span><br><span class="line">    for (var i = 2; i &lt;= n; i++) &#123;</span><br><span class="line">        result = n1 + n2;</span><br><span class="line">        n1 = n2;</span><br><span class="line">        n2 = result;</span><br><span class="line">    &#125;</span><br><span class="line">    return result;</span><br><span class="line">   &#125;</span><br><span class="line">console.log(fibonacci(200));</span><br></pre></td></tr></table></figure>
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">    function fibonacci(n) &#123;</span><br><span class="line">        //递归,速度慢的不行,n到50几乎就无法算出,可能栈溢出!!!</span><br><span class="line">//        if (n &lt;= 0) &#123;</span><br><span class="line">//            return 0;</span><br><span class="line">//        &#125;</span><br><span class="line">//</span><br><span class="line">//        if (n == 1) &#123;</span><br><span class="line">//            return 1;</span><br><span class="line">//   &#125;</span><br><span class="line"></span><br><span class="line">//   return fibonacci(n - 1) + fibonacci(n - 2);</span><br><span class="line"></span><br><span class="line">        if (n &lt;= 0) &#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        if (n == 1) &#123;</span><br><span class="line">            return 1;</span><br><span class="line">        &#125;</span><br><span class="line">        var n1 = 0, n2 = 1, result;</span><br><span class="line">        for (var i = 2; i &lt;= n; i++) &#123;</span><br><span class="line">            result = n1 + n2;</span><br><span class="line">            n1 = n2;</span><br><span class="line">            n2 = result;</span><br><span class="line">        &#125;</span><br><span class="line">        return result;</span><br><span class="line">  &#125;</span><br><span class="line">    console.log(fibonacci(200));</span><br></pre></td></tr></table></figure>
       
 
       
@@ -268,6 +268,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2018/05/28/js-lookup/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          前端算法之查找算法
+        
+      </div>
+    </a>
   
   
     <a href="/2018/05/27/js-unfor...in/" id="article-nav-older" class="article-nav-link-wrap">
@@ -397,11 +406,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">html 标准模式与怪异模式</a>
+                <a href="javascript:void(0)" class="js-tag color5">web语义化的理解</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">web语义化的理解</a>
+                <a href="javascript:void(0)" class="js-tag color5">html 标准模式与怪异模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -410,10 +419,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">css兼容性问题</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">html cookie和session完全总结</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -437,6 +442,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">html cookie和session完全总结</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">css-居中</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">css-box-sizing属性</a>
               </li>
              
@@ -449,7 +462,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">css-居中</a>
+                <a href="javascript:void(0)" class="js-tag color3">css-预处理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">css-盒模型</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -473,7 +490,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">css-盒模型</a>
+                <a href="javascript:void(0)" class="js-tag color3">css-选择器</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -481,35 +498,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">css-预处理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">css-选择器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">html data-xxx属性</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">html-doctype</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">fibonacci</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">斐波那契数列</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">html get和post的区别</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -517,7 +506,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">html-doctype</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">html5新元素</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">html get和post的区别</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -529,7 +530,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">javascript颗粒化</a>
+                <a href="javascript:void(0)" class="js-tag color1">javascript原型式继承</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">object.create</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -541,35 +546,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript-attribute</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">javascript-property</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">javascript-缓存</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript原型式继承</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">object.create</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript-call</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">javascript-apply</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript-bind</a>
+                <a href="javascript:void(0)" class="js-tag color4">javascript颗粒化</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -589,11 +566,51 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">javascript-new</a>
+                <a href="javascript:void(0)" class="js-tag color1">javascript-call</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">javascript-apply</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript-bind</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javascript-性能优化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">javascript-缓存</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">javascript-XSS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript-csrf</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">javascript-xss</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript-attribute</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">javascript-property</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">javascript-ready</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">javascript-onload</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -605,6 +622,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">javascript-new</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javascript-严格模式</a>
               </li>
              
@@ -613,19 +634,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">javascript-xss</a>
+                <a href="javascript:void(0)" class="js-tag color5">fibonacci</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript-csrf</a>
+                <a href="javascript:void(0)" class="js-tag color2">斐波那契数列</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">javascript-ready</a>
+                <a href="javascript:void(0)" class="js-tag color5">查找算法-线性查找</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">javascript-onload</a>
+                <a href="javascript:void(0)" class="js-tag color5">查找算法-二分查找</a>
               </li>
             
             <div class="clearfix"></div>

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://21cm.js.org/"/>
-  <updated>2018-05-27T05:34:57.401Z</updated>
+  <updated>2018-05-27T16:39:42.101Z</updated>
   <id>https://21cm.js.org/</id>
   
   <author>
@@ -17,13 +17,47 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>前端算法之查找算法</title>
+    <link href="https://21cm.js.org/2018/05/28/js-lookup/"/>
+    <id>https://21cm.js.org/2018/05/28/js-lookup/</id>
+    <published>2018-05-27T16:00:00.000Z</published>
+    <updated>2018-05-27T16:39:42.101Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li>顺序查找</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 23, 45, 55, 44, 22, 33];</span><br><span class="line">function find(array, data) &#123;</span><br><span class="line">    var length = array.length;</span><br><span class="line">    for (var i = 0; i &lt; length; i++) &#123;</span><br><span class="line">        if (data === array[i]) &#123;</span><br><span class="line">            return i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    if (i === length) &#123;</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">console.log(find(arr, 2)); //1 </span><br><span class="line">console.log(find(arr, 33)); //14</span><br><span class="line">console.log(find(arr, 100)); //-1</span><br></pre></td></tr></table></figure><ul><li>二分法查找:适用于有序的数据</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">var arr = [];</span><br><span class="line">for (var m = 1; m &lt;= 100; m++) &#123;</span><br><span class="line">    arr.push(m);</span><br><span class="line">&#125;</span><br><span class="line">function binarySearch(array, data) &#123;</span><br><span class="line">    var l = array.length;</span><br><span class="line">    var low = 0,</span><br><span class="line">        high = l - 1;</span><br><span class="line">    while (low &lt;= high) &#123;</span><br><span class="line">        var middle = Math.floor((low + high) / 2);</span><br><span class="line">        if (data &lt; array[middle]) &#123;</span><br><span class="line">            high = middle - 1;</span><br><span class="line">        &#125; else if (data &gt; array[middle]) &#123;</span><br><span class="line">            low = middle + 1;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            return middle;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return -1;</span><br><span class="line">&#125;</span><br><span class="line">console.log(binarySearch(arr, 50));     //49</span><br><span class="line">console.log(binarySearch(arr, 33));     //32</span><br><span class="line">console.log(binarySearch(arr, 1));      //0</span><br><span class="line">console.log(binarySearch(arr, 100));    //99</span><br><span class="line">console.log(binarySearch(arr, 1000));   //-1</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;ul&gt;
+&lt;li&gt;顺序查找&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line
+      
+    
+    </summary>
+    
+      <category term="前端" scheme="https://21cm.js.org/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="前端算法" scheme="https://21cm.js.org/categories/%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="javascript" scheme="https://21cm.js.org/tags/javascript/"/>
+    
+      <category term="查找算法-线性查找" scheme="https://21cm.js.org/tags/%E6%9F%A5%E6%89%BE%E7%AE%97%E6%B3%95-%E7%BA%BF%E6%80%A7%E6%9F%A5%E6%89%BE/"/>
+    
+      <category term="查找算法-二分查找" scheme="https://21cm.js.org/tags/%E6%9F%A5%E6%89%BE%E7%AE%97%E6%B3%95-%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/"/>
+    
+  </entry>
+  
+  <entry>
     <title>数据结构与算法之斐波那契数列</title>
     <link href="https://21cm.js.org/2018/05/27/fibonacci/"/>
     <id>https://21cm.js.org/2018/05/27/fibonacci/</id>
     <published>2018-05-27T05:00:00.000Z</published>
-    <updated>2018-05-27T05:34:57.401Z</updated>
+    <updated>2018-05-27T16:15:22.222Z</updated>
     
-    <content type="html"><![CDATA[<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">function fibonacci(n) &#123;</span><br><span class="line">//递归,速度慢的不行,n到50几乎就无法算出,可能栈溢出!!!</span><br><span class="line">//        if (n &lt;= 0) &#123;</span><br><span class="line">//            return 0;</span><br><span class="line">//        &#125;</span><br><span class="line">//</span><br><span class="line">//        if (n == 1) &#123;</span><br><span class="line">//            return 1;</span><br><span class="line">//        &#125;</span><br><span class="line">//</span><br><span class="line">//        return fibonacci(n - 1) + fibonacci(n - 2);</span><br><span class="line"></span><br><span class="line">    if (n &lt;= 0) &#123;</span><br><span class="line">        return 0;</span><br><span class="line">    &#125;</span><br><span class="line">    if (n == 1) &#123;</span><br><span class="line">        return 1;</span><br><span class="line">    &#125;</span><br><span class="line">    var n1 = 0, n2 = 1, result;</span><br><span class="line">    for (var i = 2; i &lt;= n; i++) &#123;</span><br><span class="line">        result = n1 + n2;</span><br><span class="line">        n1 = n2;</span><br><span class="line">        n2 = result;</span><br><span class="line">    &#125;</span><br><span class="line">    return result;</span><br><span class="line">   &#125;</span><br><span class="line">console.log(fibonacci(200));</span><br></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">    function fibonacci(n) &#123;</span><br><span class="line">        //递归,速度慢的不行,n到50几乎就无法算出,可能栈溢出!!!</span><br><span class="line">//        if (n &lt;= 0) &#123;</span><br><span class="line">//            return 0;</span><br><span class="line">//        &#125;</span><br><span class="line">//</span><br><span class="line">//        if (n == 1) &#123;</span><br><span class="line">//            return 1;</span><br><span class="line">//   &#125;</span><br><span class="line"></span><br><span class="line">//   return fibonacci(n - 1) + fibonacci(n - 2);</span><br><span class="line"></span><br><span class="line">        if (n &lt;= 0) &#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        if (n == 1) &#123;</span><br><span class="line">            return 1;</span><br><span class="line">        &#125;</span><br><span class="line">        var n1 = 0, n2 = 1, result;</span><br><span class="line">        for (var i = 2; i &lt;= n; i++) &#123;</span><br><span class="line">            result = n1 + n2;</span><br><span class="line">            n1 = n2;</span><br><span class="line">            n2 = result;</span><br><span class="line">        &#125;</span><br><span class="line">        return result;</span><br><span class="line">  &#125;</span><br><span class="line">    console.log(fibonacci(200));</span><br></pre></td></tr></table></figure>]]></content>
     
     <summary type="html">
     
@@ -226,9 +260,9 @@
     
       <category term="javascript" scheme="https://21cm.js.org/tags/javascript/"/>
     
-      <category term="javascript-xss" scheme="https://21cm.js.org/tags/javascript-xss/"/>
-    
       <category term="javascript-csrf" scheme="https://21cm.js.org/tags/javascript-csrf/"/>
+    
+      <category term="javascript-xss" scheme="https://21cm.js.org/tags/javascript-xss/"/>
     
   </entry>
   
@@ -570,41 +604,6 @@
       <category term="link" scheme="https://21cm.js.org/tags/link/"/>
     
       <category term="@import" scheme="https://21cm.js.org/tags/import/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>前端知识点总结之css定位</title>
-    <link href="https://21cm.js.org/2018/05/24/css-position/"/>
-    <id>https://21cm.js.org/2018/05/24/css-position/</id>
-    <published>2018-05-24T09:50:00.000Z</published>
-    <updated>2018-05-24T12:38:07.522Z</updated>
-    
-    <content type="html"><![CDATA[<h4 id="position的值"><a href="#position的值" class="headerlink" title="position的值"></a>position的值</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">absolute :生成绝对定位的元素， 相对于最近一级的 定位不是 static 的父元素来进行定位。</span><br><span class="line"></span><br><span class="line">fixed （老IE不支持）生成绝对定位的元素，通常相对于浏览器窗口或 frame 进行定位。</span><br><span class="line"></span><br><span class="line">relative 生成相对定位的元素，相对于其在普通流中的位置进行定位。</span><br><span class="line"></span><br><span class="line">static 默认值。没有定位，元素出现在正常的流中</span><br><span class="line"></span><br><span class="line">sticky 生成粘性定位的元素，容器的位置根据正常文档流计算得出</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h4 id=&quot;position的值&quot;&gt;&lt;a href=&quot;#position的值&quot; class=&quot;headerlink&quot; title=&quot;position的值&quot;&gt;&lt;/a&gt;position的值&lt;/h4&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;t
-      
-    
-    </summary>
-    
-      <category term="前端" scheme="https://21cm.js.org/categories/%E5%89%8D%E7%AB%AF/"/>
-    
-    
-      <category term="css" scheme="https://21cm.js.org/tags/css/"/>
-    
-      <category term="position-absolute" scheme="https://21cm.js.org/tags/position-absolute/"/>
-    
-      <category term="position-fixed" scheme="https://21cm.js.org/tags/position-fixed/"/>
-    
-      <category term="position-relative" scheme="https://21cm.js.org/tags/position-relative/"/>
-    
-      <category term="position-static" scheme="https://21cm.js.org/tags/position-static/"/>
-    
-      <category term="position-sticky" scheme="https://21cm.js.org/tags/position-sticky/"/>
     
   </entry>
   
