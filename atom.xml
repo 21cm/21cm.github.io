@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://21cm.js.org/"/>
-  <updated>2018-05-27T03:32:30.450Z</updated>
+  <updated>2018-05-27T03:56:27.545Z</updated>
   <id>https://21cm.js.org/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>前端知识点总结之javascript-XSS &amp;&amp;javascript-csrf</title>
+    <link href="https://21cm.js.org/2018/05/27/js-xss&amp;&amp;ja-csrf/"/>
+    <id>https://21cm.js.org/2018/05/27/js-xss&amp;&amp;ja-csrf/</id>
+    <published>2018-05-27T02:00:00.000Z</published>
+    <updated>2018-05-27T03:56:27.545Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="XSS原理及防范"><a href="#XSS原理及防范" class="headerlink" title="XSS原理及防范"></a>XSS原理及防范</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Xss(cross-site scripting)攻击指的是攻击者往Web页面里插入恶意 html标签或者javascript代码。</span><br><span class="line">比如：攻击者在论坛中放一个看似安全的链接，骗取用户点击后，窃取cookie中的用户私密信息；或者攻击者在论坛中加一个恶意表单，</span><br><span class="line">当用户提交表单的时候，却把信息传送到攻击者的服务器中，而不是用户原本以为的信任站点。</span><br><span class="line"></span><br><span class="line">XSS防范方法</span><br><span class="line">首先代码里对用户输入的地方和变量都需要仔细检查长度和对”&lt;”,”&gt;”,”;”,”’”等字符做过滤；</span><br><span class="line">其次任何内容写到页面之前都必须加以encode，避免不小心把html tag 弄出来。这一个层面做好，至少可以堵住超过一半的XSS 攻击。</span><br><span class="line">首先，避免直接在cookie 中泄露用户隐私，例如email、密码等等。</span><br><span class="line">其次，通过使cookie 和系统ip 绑定来降低cookie 泄露后的危险。这样攻击者得到的cookie 没有实际价值，不可能拿来重放。</span><br><span class="line">如果网站不需要再浏览器端对cookie 进行操作，可以在Set-Cookie 末尾加上HttpOnly 来防止javascript 代码直接获取cookie 。</span><br><span class="line">尽量采用POST 而非GET 提交表单</span><br></pre></td></tr></table></figure><h4 id="XSS与CSRF有什么区别吗？"><a href="#XSS与CSRF有什么区别吗？" class="headerlink" title="XSS与CSRF有什么区别吗？"></a>XSS与CSRF有什么区别吗？</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">XSS是获取信息，不需要提前知道其他用户页面的代码和数据包。CSRF是代替用户完成指定的动作，需要知道其他用户页面的代码和数据包。</span><br></pre></td></tr></table></figure><h5 id="要完成一次CSRF攻击，受害者必须依次完成两个步骤："><a href="#要完成一次CSRF攻击，受害者必须依次完成两个步骤：" class="headerlink" title="要完成一次CSRF攻击，受害者必须依次完成两个步骤："></a>要完成一次CSRF攻击，受害者必须依次完成两个步骤：</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">登录受信任网站A，并在本地生成Cookie。</span><br><span class="line">在不登出A的情况下，访问危险网站B。</span><br></pre></td></tr></table></figure><h4 id="CSRF的防御"><a href="#CSRF的防御" class="headerlink" title="CSRF的防御"></a>CSRF的防御</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">服务端的CSRF方式方法很多样，但总的思想都是一致的，就是</span><br><span class="line">1. 在客户端页面增加伪随机数。</span><br><span class="line">2. 通过验证码的方法</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h4 id=&quot;XSS原理及防范&quot;&gt;&lt;a href=&quot;#XSS原理及防范&quot; class=&quot;headerlink&quot; title=&quot;XSS原理及防范&quot;&gt;&lt;/a&gt;XSS原理及防范&lt;/h4&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td cl
+      
+    
+    </summary>
+    
+    
+      <category term="javascript" scheme="https://21cm.js.org/tags/javascript/"/>
+    
+      <category term="javascript-xss" scheme="https://21cm.js.org/tags/javascript-xss/"/>
+    
+      <category term="javascript-csrf" scheme="https://21cm.js.org/tags/javascript-csrf/"/>
+    
+  </entry>
   
   <entry>
     <title>前端知识点总结之javascript-缓存</title>
@@ -584,33 +611,6 @@
       <category term="css" scheme="https://21cm.js.org/tags/css/"/>
     
       <category term="css-选择器" scheme="https://21cm.js.org/tags/css-%E9%80%89%E6%8B%A9%E5%99%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>前端知识点总结之css-浮动</title>
-    <link href="https://21cm.js.org/2018/05/24/css-float/"/>
-    <id>https://21cm.js.org/2018/05/24/css-float/</id>
-    <published>2018-05-24T08:30:00.000Z</published>
-    <updated>2018-05-24T08:08:17.474Z</updated>
-    
-    <content type="html"><![CDATA[<h4 id="浮动元素引起的问题和解决办法？"><a href="#浮动元素引起的问题和解决办法？" class="headerlink" title="浮动元素引起的问题和解决办法？"></a>浮动元素引起的问题和解决办法？</h4><p>浮动元素引起的问题：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">（1）父元素的高度无法被撑开，影响与父元素同级的元素</span><br><span class="line"></span><br><span class="line">（2）与浮动元素同级的非浮动元素（内联元素）会跟随其后</span><br><span class="line"></span><br><span class="line">（3）若非第一个元素浮动，则该元素之前的元素也需要浮动，否则会影响页面显示的结构</span><br></pre></td></tr></table></figure></p><p>解决方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">使用CSS中的clear:both;属性来清除元素的浮动可解决2、3问题，对于问题1，添加如下样式，给父元素添加clearfix样式：</span><br><span class="line"></span><br><span class="line">    .clearfix:after&#123;content: &quot;.&quot;;display: block;height: 0;clear: both;visibility: hidden;&#125;</span><br><span class="line"></span><br><span class="line">    .clearfix&#123;display: inline-block;&#125; /* for IE/Mac */</span><br></pre></td></tr></table></figure></p><h4 id="清除浮动的几种方法："><a href="#清除浮动的几种方法：" class="headerlink" title="清除浮动的几种方法："></a>清除浮动的几种方法：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">1，额外标签法，&lt;div style=&quot;clear:both;&quot;&gt;&lt;/div&gt;（缺点：不过这个办法会增加额外的标签使HTML结构看起来不够简洁。）</span><br><span class="line"></span><br><span class="line">2，使用after伪类</span><br><span class="line"></span><br><span class="line">#parent:after&#123;</span><br><span class="line"></span><br><span class="line">    content:&quot;.&quot;;</span><br><span class="line"></span><br><span class="line">    height:0;</span><br><span class="line"></span><br><span class="line">    visibility:hidden;</span><br><span class="line"></span><br><span class="line">    display:block;</span><br><span class="line"></span><br><span class="line">    clear:both;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">3,浮动外部元素</span><br><span class="line"></span><br><span class="line">4,设置overflow为hidden或者auto</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h4 id=&quot;浮动元素引起的问题和解决办法？&quot;&gt;&lt;a href=&quot;#浮动元素引起的问题和解决办法？&quot; class=&quot;headerlink&quot; title=&quot;浮动元素引起的问题和解决办法？&quot;&gt;&lt;/a&gt;浮动元素引起的问题和解决办法？&lt;/h4&gt;&lt;p&gt;浮动元素引起的问题：&lt;br&gt;&lt;fig
-      
-    
-    </summary>
-    
-      <category term="前端" scheme="https://21cm.js.org/categories/%E5%89%8D%E7%AB%AF/"/>
-    
-    
-      <category term="css" scheme="https://21cm.js.org/tags/css/"/>
-    
-      <category term="css-浮动" scheme="https://21cm.js.org/tags/css-%E6%B5%AE%E5%8A%A8/"/>
     
   </entry>
   
