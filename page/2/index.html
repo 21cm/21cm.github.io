@@ -148,6 +148,127 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-js-cache" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/27/js-cache/">前端知识点总结之javascript-缓存</a>
+    </h1>
+  
+
+        
+        <a href="/2018/05/27/js-cache/" class="archive-article-date">
+  	<time datetime="2018-05-27T01:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="浏览器缓存的优点有："><a href="#浏览器缓存的优点有：" class="headerlink" title="浏览器缓存的优点有："></a>浏览器缓存的优点有：</h4><ul>
+<li>减少了冗余的数据传输，节省了网费</li>
+<li>减少了服务器的负担，大大提升了网站的性能</li>
+<li>加快了客户端加载网页的速度<br>在前端开发面试中，浏览器缓存是web性能优化面试题中很重要的一个知识点，从而说明浏览器缓存是提升web性能的一大利器，<br>但是浏览器缓存如果使用不当，也会产生很多问题，正所谓是，想说爱你，并不是很容易的事。</li>
+</ul>
+<h4 id="浏览器缓存的分类"><a href="#浏览器缓存的分类" class="headerlink" title="浏览器缓存的分类"></a>浏览器缓存的分类</h4><p>浏览器缓存主要有两类：<code>协商缓存</code>和<code>强缓存</code>。</p>
+<p>浏览器在第一次请求发生后，再次请求时：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">浏览器会先获取该资源缓存的header信息，根据其中的expires和cahe-control判断是否命中强缓存，若命中则直接从缓存中获取资源，</span><br><span class="line">包括缓存的header信息，本次请求不会与服务器进行通信；</span><br><span class="line">如果没有命中强缓存，浏览器会发送请求到服务器，该请求会携带第一次请求返回的有关缓存的header字段信息</span><br><span class="line">（Last-Modified/IF-Modified-Since、Etag/IF-None-Match）,由服务器根据请求中的相关header信息来对比结果是否命中协商缓存，</span><br><span class="line">若命中，则服务器返回新的响应header信息更新缓存中的对应header信息，但是并不返回资源内容，它会告知浏览器可以直接从缓存获取；</span><br><span class="line">否则返回最新的资源内容。</span><br></pre></td></tr></table></figure></p>
+<h4 id="强缓存-强缓存是利用http的返回头中的Expires或者Cache-Control两个字段来控制的，用来表示资源的缓存时间。"><a href="#强缓存-强缓存是利用http的返回头中的Expires或者Cache-Control两个字段来控制的，用来表示资源的缓存时间。" class="headerlink" title="强缓存: 强缓存是利用http的返回头中的Expires或者Cache-Control两个字段来控制的，用来表示资源的缓存时间。"></a>强缓存: 强缓存是利用http的返回头中的<code>Expires</code>或者<code>Cache-Control</code>两个字段来控制的，用来表示资源的缓存时间。</h4><p><strong>Expires</strong><br>该字段是http1.0时的规范，它的值为一个绝对时间的GMT格式的时间字符串，比如Expires:Mon,18 Oct 2066 23:59:59 GMT。<br>这个时间代表着这个资源的失效时间，在此时间之前，即命中缓存。这种方式有一个明显的缺点，由于失效时间是一个绝对时间，<br>所以当服务器与客户端时间偏差较大时，就会导致缓存混乱。</p>
+<p><strong>Cache-Control</strong><br>Cache-Control是http1.1时出现的header信息，主要是利用该字段的max-age值来进行判断，它是一个相对时间，<br>例如Cache-Control:max-age=3600，代表着资源的有效期是3600秒。cache-control除了该字段外，还有下面几个比较常用的设置值：</p>
+<ul>
+<li>no-cache：不使用本地缓存。需要使用缓存协商，先与服务器确认返回的响应是否被更改，如果之前的响应中存在ETag，<br>那么请求的时候会与服务端验证，如果资源未被更改，则可以避免重新下载。</li>
+<li>no-store：直接禁止游览器缓存数据，每次用户请求该资源，都会向服务器发送一个请求，每次都会下载完整的资源。</li>
+<li>public：可以被所有的用户缓存，包括终端用户和CDN等中间代理服务器。</li>
+<li>private：只能被终端用户的浏览器缓存，不允许CDN等中继缓存服务器对其缓存。</li>
+</ul>
+<p><code>Cache-Control与Expires可以在服务端配置同时启用，同时启用的时候Cache-Control优先级高。</code></p>
+<h4 id="协商缓存-协商缓存就是由服务器来确定缓存资源是否可用，所以客户端与服务器端要通过某种标识来进行通信，"><a href="#协商缓存-协商缓存就是由服务器来确定缓存资源是否可用，所以客户端与服务器端要通过某种标识来进行通信，" class="headerlink" title="协商缓存: 协商缓存就是由服务器来确定缓存资源是否可用，所以客户端与服务器端要通过某种标识来进行通信，"></a>协商缓存: 协商缓存就是由服务器来确定缓存资源是否可用，所以客户端与服务器端要通过某种标识来进行通信，</h4><p>从而让服务器判断请求资源是否可以缓存访问，这主要涉及到下面两组header字段，这两组搭档都是成对出现的，<br>即第一次请求的响应头带上某个字段（Last-Modified或者Etag），<br>则后续请求则会带上对应的请求字段（If-Modified-Since或者If-None-Match），<br>若响应头没有Last-Modified或者Etag字段，则请求头也不会有对应的字段。</p>
+<p><strong>Last-Modified/If-Modify-Since</strong></p>
+<p>浏览器第一次请求一个资源的时候，服务器返回的header中会加上Last-Modified，Last-modified是一个时间标识该资源的最后修改时间，<br>例如Last-Modified: Thu,31 Dec 2037 23:59:59 GMT。</p>
+<p>当浏览器再次请求该资源时，request的请求头中会包含If-Modify-Since，该值为缓存之前返回的Last-Modified。<br>服务器收到If-Modify-Since后，根据资源的最后修改时间判断是否命中缓存。</p>
+<p>如果命中缓存，则返回304，并且不会返回资源内容，并且不会返回Last-Modified。</p>
+<p><strong>ETag/If-None-Match</strong></p>
+<p>与Last-Modify/If-Modify-Since不同的是，Etag/If-None-Match返回的是一个校验码。<br>ETag可以保证每一个资源是唯一的，资源变化都会导致ETag变化。服务器根据浏览器上送的If-None-Match值来判断是否命中缓存。</p>
+<p>与Last-Modified不一样的是，当服务器返回304 Not Modified的响应时，由于ETag重新生成过，response header中还会把这个ETag返回，<br>即使这个ETag跟之前的没有变化。</p>
+<p><code>为什么要有Etag</code></p>
+<p>你可能会觉得使用Last-Modified已经足以让浏览器知道本地的缓存副本是否足够新，为什么还需要Etag呢？<br>HTTP1.1中Etag的出现主要是为了解决几个Last-Modified比较难解决的问题：</p>
+<ul>
+<li>一些文件也许会周期性的更改，但是他的内容并不改变(仅仅改变的修改时间)，这个时候我们并不希望客户端认为这个文件被修改了，而重新GET；</li>
+<li>某些文件修改非常频繁，比如在秒以下的时间内进行修改，(比方说1s内修改了N次)，If-Modified-Since能检查到的粒度是s级的，<br>这种修改无法判断(或者说UNIX记录MTIME只能精确到秒)；</li>
+<li>某些服务器不能精确的得到文件的最后修改时间。</li>
+</ul>
+<p><code>Last-Modified与ETag是可以一起使用的，服务器会优先验证ETag，一致的情况下，才会继续比对Last-Modified，最后才决定是否返回304。</code></p>
+<h4 id="代码更新到线上后用户浏览器不能自行更新，我们不能要求客户在系统更新后都进行一次缓存清理的操作。到底该如何解决呢？"><a href="#代码更新到线上后用户浏览器不能自行更新，我们不能要求客户在系统更新后都进行一次缓存清理的操作。到底该如何解决呢？" class="headerlink" title="代码更新到线上后用户浏览器不能自行更新，我们不能要求客户在系统更新后都进行一次缓存清理的操作。到底该如何解决呢？"></a>代码更新到线上后用户浏览器不能自行更新，我们不能要求客户在系统更新后都进行一次缓存清理的操作。到底该如何解决呢？</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">在资源请求的URL中增加一个参数，比如：JS/mian.js?ver=0.7.1。这个参数是一个版本号，每一次部署的时候变更一下，</span><br><span class="line">当这个参数变化的时候，强缓存都会失效并重新加载。这样一来，静态资源，部署以后就需要重新加载。这样就比较完美的解决了问题。</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">javascript-缓存</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/前端//" class="article-tag-list-link color3">前端</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/05/27/js-cache/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-js-optimization" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -590,128 +711,6 @@
 
 
   
-    <article id="post-js-Granulation-of-advanced-functions" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/26/js-Granulation-of-advanced-functions/">javascript高级函数与颗粒化</a>
-    </h1>
-  
-
-        
-        <a href="/2018/05/26/js-Granulation-of-advanced-functions/" class="archive-article-date">
-  	<time datetime="2018-05-26T01:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li>currying又称为部分求值。</li>
-<li>一个currying函数接受了一些参数后,并不会立即求值,而是继续返回另外一个函数,并利用闭包将刚才传入的参数保存起来。</li>
-<li><p>等到函数需要真正求值的时候,之前传入的参数会被一次性用于求值。</p>
-</li>
-<li><p>例子1:加入要编写一个函数,计算每个月的开销。每天需要将当天的花销也保存下来。</p>
-</li>
-<li>下面代码中,虽然是要计算月底花销,但实际每天都计算了一次,而实际上我们不关心每天开销了多少,只需要在月底做一次计算即可</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var monthCost = 0;</span><br><span class="line">var cost = function (dayCost) &#123;</span><br><span class="line">    monthCost += dayCost;</span><br><span class="line">&#125;</span><br><span class="line">cost(100);  //第一天开销</span><br><span class="line">cost(80);   //第二天开销</span><br><span class="line">cost(120);  //第三天开销</span><br><span class="line">cost(200);  //当月最后一天开销</span><br><span class="line">console.log(monthCost);  //总共500</span><br></pre></td></tr></table></figure>
-<ul>
-<li>cost柯里化的简陋实现</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">var cost = (function () &#123;</span><br><span class="line">    var args = [];  //使用闭包来记录每次传入的参数</span><br><span class="line">    return function () &#123;</span><br><span class="line">        if (arguments.length === 0) &#123;  //没有传递参数时,求值</span><br><span class="line">            var total = 0;</span><br><span class="line">            for (var i = 0; i &lt; args.length; i++) &#123;</span><br><span class="line">                total += args[i];</span><br><span class="line">            &#125;</span><br><span class="line">            return total;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            [].push.apply(args, arguments);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line">cost(100);  //未求值</span><br><span class="line">cost(200);  //未求值</span><br><span class="line">cost(300, 400, 500);  //未求值</span><br><span class="line">console.log(cost());  //求值! 1500</span><br></pre></td></tr></table></figure>
-<ul>
-<li>通用的currying函数,接受一个函数作为参数,并将该函数柯里化</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">var currying = function (fn) &#123;</span><br><span class="line">    var args = [];</span><br><span class="line">    return function () &#123;</span><br><span class="line">        if (arguments.length === 0) &#123;</span><br><span class="line">            return fn.apply(this, args);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            [].push.apply(args, arguments);</span><br><span class="line">            return arguments.callee;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var cost = (function () &#123;</span><br><span class="line">    var money = 0;</span><br><span class="line">    return function () &#123;</span><br><span class="line">        for (var i = 0, l = arguments.length; i &lt; l; i++) &#123;</span><br><span class="line">            money += arguments[i];</span><br><span class="line">        &#125;</span><br><span class="line">        return money;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line">var cost = currying(cost);  //柯里化cost函数</span><br><span class="line">cost(100);</span><br><span class="line">cost(200);</span><br><span class="line">cost(300, 400);</span><br><span class="line">console.log(cost()); //1000</span><br></pre></td></tr></table></figure>
-<ul>
-<li>反柯里化uncurrying:</li>
-<li>使用call和apply时,能够把任意对象当做this传入某个方法,这样,方法中用到的this就不再局限于原来规定的对象,</li>
-<li>而是加以泛化而得到更广的适用性。</li>
-<li>有没有办法把泛化this的过程提取出来? 这就是uncurrying要做的事情!</li>
-<li>下面是uncurrying的一种实现:</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function.prototype.uncurrying = function () &#123;</span><br><span class="line">    var self = this;</span><br><span class="line">    return function () &#123;</span><br><span class="line">        var context = Array.prototype.shift.call(arguments);</span><br><span class="line">        return self.apply(context, arguments);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>下面就可以将<code>Array.prototype.push.call</code>转换成一个泛化得函数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var push = Array.prototype.push.uncurrying();</span><br><span class="line">var slice = Array.prototype.slice.uncurrying();</span><br><span class="line">(function () &#123;</span><br><span class="line">    push(arguments, 4);</span><br><span class="line">    console.log(slice(arguments));</span><br><span class="line">&#125;)(1, 2, 3);</span><br></pre></td></tr></table></figure></p>
-<ul>
-<li>下面是uncurrying的另一种实现</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function.prototype.uncurrying2 = function () &#123;</span><br><span class="line">    var self = this;</span><br><span class="line">    return function () &#123;</span><br><span class="line">        return Function.prototype.call.apply(self, arguments);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">javascript高级函数</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">javascript颗粒化</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/前端//" class="article-tag-list-link color3">前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/26/js-Granulation-of-advanced-functions/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -809,10 +808,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">web语义化的理解</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">html 标准模式与怪异模式</a>
               </li>
              
@@ -825,15 +820,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">web语义化的理解</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">html cookie和session完全总结</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">link</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">@import</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -846,6 +837,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">css-block</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">link</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">@import</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -869,6 +868,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">css-预处理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">position-absolute</a>
               </li>
              
@@ -889,19 +892,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">css-预处理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">css-reset</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">css-选择器</a>
+                <a href="javascript:void(0)" class="js-tag color1">html data-xxx属性</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">html data-xxx属性</a>
+                <a href="javascript:void(0)" class="js-tag color3">css-选择器</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -965,10 +964,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">javascript-闭包</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javascript-call</a>
               </li>
              
@@ -981,6 +976,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">javascript-闭包</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">javascript-跨域</a>
               </li>
              
@@ -990,6 +989,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">javascript内存泄露</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">javascript-new</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -148,6 +148,128 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-js-Granulation-of-advanced-functions" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/26/js-Granulation-of-advanced-functions/">javascript高级函数与颗粒化</a>
+    </h1>
+  
+
+        
+        <a href="/2018/05/26/js-Granulation-of-advanced-functions/" class="archive-article-date">
+  	<time datetime="2018-05-26T01:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>currying又称为部分求值。</li>
+<li>一个currying函数接受了一些参数后,并不会立即求值,而是继续返回另外一个函数,并利用闭包将刚才传入的参数保存起来。</li>
+<li><p>等到函数需要真正求值的时候,之前传入的参数会被一次性用于求值。</p>
+</li>
+<li><p>例子1:加入要编写一个函数,计算每个月的开销。每天需要将当天的花销也保存下来。</p>
+</li>
+<li>下面代码中,虽然是要计算月底花销,但实际每天都计算了一次,而实际上我们不关心每天开销了多少,只需要在月底做一次计算即可</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var monthCost = 0;</span><br><span class="line">var cost = function (dayCost) &#123;</span><br><span class="line">    monthCost += dayCost;</span><br><span class="line">&#125;</span><br><span class="line">cost(100);  //第一天开销</span><br><span class="line">cost(80);   //第二天开销</span><br><span class="line">cost(120);  //第三天开销</span><br><span class="line">cost(200);  //当月最后一天开销</span><br><span class="line">console.log(monthCost);  //总共500</span><br></pre></td></tr></table></figure>
+<ul>
+<li>cost柯里化的简陋实现</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">var cost = (function () &#123;</span><br><span class="line">    var args = [];  //使用闭包来记录每次传入的参数</span><br><span class="line">    return function () &#123;</span><br><span class="line">        if (arguments.length === 0) &#123;  //没有传递参数时,求值</span><br><span class="line">            var total = 0;</span><br><span class="line">            for (var i = 0; i &lt; args.length; i++) &#123;</span><br><span class="line">                total += args[i];</span><br><span class="line">            &#125;</span><br><span class="line">            return total;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            [].push.apply(args, arguments);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line">cost(100);  //未求值</span><br><span class="line">cost(200);  //未求值</span><br><span class="line">cost(300, 400, 500);  //未求值</span><br><span class="line">console.log(cost());  //求值! 1500</span><br></pre></td></tr></table></figure>
+<ul>
+<li>通用的currying函数,接受一个函数作为参数,并将该函数柯里化</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">var currying = function (fn) &#123;</span><br><span class="line">    var args = [];</span><br><span class="line">    return function () &#123;</span><br><span class="line">        if (arguments.length === 0) &#123;</span><br><span class="line">            return fn.apply(this, args);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            [].push.apply(args, arguments);</span><br><span class="line">            return arguments.callee;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var cost = (function () &#123;</span><br><span class="line">    var money = 0;</span><br><span class="line">    return function () &#123;</span><br><span class="line">        for (var i = 0, l = arguments.length; i &lt; l; i++) &#123;</span><br><span class="line">            money += arguments[i];</span><br><span class="line">        &#125;</span><br><span class="line">        return money;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line">var cost = currying(cost);  //柯里化cost函数</span><br><span class="line">cost(100);</span><br><span class="line">cost(200);</span><br><span class="line">cost(300, 400);</span><br><span class="line">console.log(cost()); //1000</span><br></pre></td></tr></table></figure>
+<ul>
+<li>反柯里化uncurrying:</li>
+<li>使用call和apply时,能够把任意对象当做this传入某个方法,这样,方法中用到的this就不再局限于原来规定的对象,</li>
+<li>而是加以泛化而得到更广的适用性。</li>
+<li>有没有办法把泛化this的过程提取出来? 这就是uncurrying要做的事情!</li>
+<li>下面是uncurrying的一种实现:</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function.prototype.uncurrying = function () &#123;</span><br><span class="line">    var self = this;</span><br><span class="line">    return function () &#123;</span><br><span class="line">        var context = Array.prototype.shift.call(arguments);</span><br><span class="line">        return self.apply(context, arguments);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>下面就可以将<code>Array.prototype.push.call</code>转换成一个泛化得函数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var push = Array.prototype.push.uncurrying();</span><br><span class="line">var slice = Array.prototype.slice.uncurrying();</span><br><span class="line">(function () &#123;</span><br><span class="line">    push(arguments, 4);</span><br><span class="line">    console.log(slice(arguments));</span><br><span class="line">&#125;)(1, 2, 3);</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>下面是uncurrying的另一种实现</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function.prototype.uncurrying2 = function () &#123;</span><br><span class="line">    var self = this;</span><br><span class="line">    return function () &#123;</span><br><span class="line">        return Function.prototype.call.apply(self, arguments);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">javascript高级函数</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">javascript颗粒化</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/前端//" class="article-tag-list-link color3">前端</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/05/26/js-Granulation-of-advanced-functions/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-js-closure" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -578,98 +700,6 @@ console.log(obj2.name + &apos;-&apos; + obj2.age);
 
 
   
-    <article id="post-css link&amp;&amp;@import" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/24/css link&&@import/">CSS中link和@import的区别</a>
-    </h1>
-  
-
-        
-        <a href="/2018/05/24/css link&&@import/" class="archive-article-date">
-  	<time datetime="2018-05-24T10:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="CSS中link和-import的区别"><a href="#CSS中link和-import的区别" class="headerlink" title="CSS中link和@import的区别:"></a>CSS中link和@import的区别:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">(1) link属于HTML标签，而@import是CSS提供的;</span><br><span class="line"></span><br><span class="line">(2) 页面被加载的时，link会同时被加载，而@import被引用的CSS会等到引用它的CSS文件被加载完再加载;</span><br><span class="line"></span><br><span class="line">(3) import只在IE5以上才能识别，而link是HTML标签，无兼容问题;</span><br><span class="line"></span><br><span class="line">(4) link方式的样式的权重 高于@import的权重.</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">css</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">link</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">@import</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/前端//" class="article-tag-list-link color3">前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/24/css link&&@import/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
@@ -767,10 +797,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">web语义化的理解</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">html 标准模式与怪异模式</a>
               </li>
              
@@ -783,15 +809,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">web语义化的理解</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">html cookie和session完全总结</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">link</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">@import</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -804,6 +826,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">css-block</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">link</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">@import</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -827,6 +857,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">css-预处理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">position-absolute</a>
               </li>
              
@@ -847,19 +881,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">css-预处理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">css-reset</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">css-选择器</a>
+                <a href="javascript:void(0)" class="js-tag color1">html data-xxx属性</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">html data-xxx属性</a>
+                <a href="javascript:void(0)" class="js-tag color3">css-选择器</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -923,10 +953,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">javascript-闭包</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javascript-call</a>
               </li>
              
@@ -939,6 +965,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">javascript-闭包</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">javascript-跨域</a>
               </li>
              
@@ -948,6 +978,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">javascript内存泄露</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">javascript-new</a>
               </li>
              
               <li class="article-tag-list-item">
