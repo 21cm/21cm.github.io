@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="https://21cm.js.org">
   <title>前端算法之排序 | 21cm</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="123456789101112131415161718192021222324var Stack = require(&amp;apos;https://21cm.js.org//lib/Stack&amp;apos;); * 利用栈来做数制转换 * @param number  待转换的数字,十进制数 * @param base   要转换成的进制(10进制以内)var numericalTransform =">
+  <meta name="description" content="123456789101112131415161718192021222324* 利用栈来做数制转换* @param number  待转换的数字,十进制数* @param base   要转换成的进制(10进制以内)var Stack = require(&amp;apos;https://21cm.js.org/lib/Stack&amp;apos;);var numericalTransform = fun">
 <meta name="keywords" content="javascript,排序">
 <meta property="og:type" content="article">
 <meta property="og:title" content="前端算法之排序">
 <meta property="og:url" content="https://21cm.js.org/2018/05/28/js-Stacks/index.html">
 <meta property="og:site_name" content="21cm">
-<meta property="og:description" content="123456789101112131415161718192021222324var Stack = require(&amp;apos;https://21cm.js.org//lib/Stack&amp;apos;); * 利用栈来做数制转换 * @param number  待转换的数字,十进制数 * @param base   要转换成的进制(10进制以内)var numericalTransform =">
+<meta property="og:description" content="123456789101112131415161718192021222324* 利用栈来做数制转换* @param number  待转换的数字,十进制数* @param base   要转换成的进制(10进制以内)var Stack = require(&amp;apos;https://21cm.js.org/lib/Stack&amp;apos;);var numericalTransform = fun">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-05-28T09:46:42.406Z">
+<meta property="og:updated_time" content="2018-05-28T09:56:42.520Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端算法之排序">
-<meta name="twitter:description" content="123456789101112131415161718192021222324var Stack = require(&amp;apos;https://21cm.js.org//lib/Stack&amp;apos;); * 利用栈来做数制转换 * @param number  待转换的数字,十进制数 * @param base   要转换成的进制(10进制以内)var numericalTransform =">
+<meta name="twitter:description" content="123456789101112131415161718192021222324* 利用栈来做数制转换* @param number  待转换的数字,十进制数* @param base   要转换成的进制(10进制以内)var Stack = require(&amp;apos;https://21cm.js.org/lib/Stack&amp;apos;);var numericalTransform = fun">
   
     <link rel="alternative" href="/atom.xml" title="21cm" type="application/atom+xml">
   
@@ -164,7 +164,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">var Stack = require(&apos;https://21cm.js.org//lib/Stack&apos;);</span><br><span class="line"></span><br><span class="line"> * 利用栈来做数制转换</span><br><span class="line"> * @param number  待转换的数字,十进制数</span><br><span class="line"> * @param base   要转换成的进制(10进制以内)</span><br><span class="line">var numericalTransform = function (number, base) &#123;</span><br><span class="line">    if (typeof number !== &apos;number&apos; || typeof base !== &apos;number&apos;) &#123;</span><br><span class="line">        console.log(&apos;Parameter error!&apos;);</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line">    var stack = new Stack();</span><br><span class="line">    do &#123;</span><br><span class="line">        stack.push(number % base);</span><br><span class="line">        number = Math.floor(number / base);</span><br><span class="line">    &#125; while (number !== 0)</span><br><span class="line">    //依次出栈,得到结果</span><br><span class="line">    var result = &apos;&apos;;</span><br><span class="line">    while (stack.length()) &#123;</span><br><span class="line">        result += stack.pop();</span><br><span class="line">    &#125;</span><br><span class="line">    return result;</span><br><span class="line">&#125;</span><br><span class="line">console.log(numericalTransform(231, 8));</span><br><span class="line">console.log(numericalTransform(65, 2));</span><br></pre></td></tr></table></figure>
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">* 利用栈来做数制转换</span><br><span class="line">* @param number  待转换的数字,十进制数</span><br><span class="line">* @param base   要转换成的进制(10进制以内)</span><br><span class="line"></span><br><span class="line">var Stack = require(&apos;https://21cm.js.org/lib/Stack&apos;);</span><br><span class="line">var numericalTransform = function (number, base) &#123;</span><br><span class="line">    if (typeof number !== &apos;number&apos; || typeof base !== &apos;number&apos;) &#123;</span><br><span class="line">        console.log(&apos;Parameter error!&apos;);</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line">    var stack = new Stack();</span><br><span class="line">    do &#123;</span><br><span class="line">        stack.push(number % base);</span><br><span class="line">        number = Math.floor(number / base);</span><br><span class="line">    &#125; while (number !== 0)</span><br><span class="line">    //依次出栈,得到结果</span><br><span class="line">    var result = &apos;&apos;;</span><br><span class="line">    while (stack.length()) &#123;</span><br><span class="line">        result += stack.pop();</span><br><span class="line">    &#125;</span><br><span class="line">    return result;</span><br><span class="line">&#125;</span><br><span class="line">console.log(numericalTransform(231, 8));</span><br><span class="line">console.log(numericalTransform(65, 2));</span><br></pre></td></tr></table></figure>
       
 
       
@@ -386,11 +386,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">html 标准模式与怪异模式</a>
+                <a href="javascript:void(0)" class="js-tag color5">web语义化的理解</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">web语义化的理解</a>
+                <a href="javascript:void(0)" class="js-tag color5">html 标准模式与怪异模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -426,19 +426,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">css-清除浮动</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">css-box-sizing属性</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">css-浮动</a>
+                <a href="javascript:void(0)" class="js-tag color4">css-清除浮动</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">css-居中</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">css-浮动</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -534,19 +534,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript-attribute</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">javascript-property</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javascript原型式继承</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">object.create</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript-attribute</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">javascript-property</a>
               </li>
              
               <li class="article-tag-list-item">
