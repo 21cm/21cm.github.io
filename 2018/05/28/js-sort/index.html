@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="21cm">
 <meta property="og:description" content="排序算法分析比较  1 快速排序（QuickSort）123456789快速排序是一个就地排序，分而治之，大规模递归的算法。从本质上来说，它是归并排序的就地版本。快速排序可以由下面四步组成。（1） 如果不多于1个数据，直接返回。（2） 一般选择序列最左边的值作为支点数据。（3） 将序列分成2部分，一部分都大于支点数据，另外一部分都小于支点数据。（4） 对两边利用递归排序数列。快速排序比大部分排序">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-05-28T06:55:44.298Z">
+<meta property="og:updated_time" content="2018-05-28T06:57:59.116Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端算法之排序">
 <meta name="twitter:description" content="排序算法分析比较  1 快速排序（QuickSort）123456789快速排序是一个就地排序，分而治之，大规模递归的算法。从本质上来说，它是归并排序的就地版本。快速排序可以由下面四步组成。（1） 如果不多于1个数据，直接返回。（2） 一般选择序列最左边的值作为支点数据。（3） 将序列分成2部分，一部分都大于支点数据，另外一部分都小于支点数据。（4） 对两边利用递归排序数列。快速排序比大部分排序">
@@ -390,9 +390,9 @@
 </table>
 <p>可以看出a[5]前面的数字都小于它，a[5]后面的数字都大于它。因此再对a[0…4]和a[6…9]这二个子区间重复上述步骤就可以了。</p>
 <h4 id="对挖坑填数进行总结"><a href="#对挖坑填数进行总结" class="headerlink" title="对挖坑填数进行总结"></a>对挖坑填数进行总结</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1．i =L; j = R; 将基准数挖出形成第一个坑a[i]。</span><br><span class="line"></span><br><span class="line">2．j--由后向前找比它小的数，找到后挖出此数填前一个坑a[i]中。</span><br><span class="line"></span><br><span class="line">3．i++由前向后找比它大的数，找到后也挖出此数填到前一个坑a[j]中。</span><br><span class="line"></span><br><span class="line">4．再重复执行2，3二步，直到i==j，将基准数填入a[i]中。</span><br></pre></td></tr></table></figure>
-<p>照着这个总结很容易实现挖坑填数的代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">[cpp]</span><br><span class="line">int AdjustArray(int s[], int l, int r) //返回调整后基准数的位置  </span><br><span class="line">&#123;  </span><br><span class="line">    int i = l, j = r;  </span><br><span class="line">    int x = s[l]; //s[l]即s[i]就是第一个坑  </span><br><span class="line">    while (i &lt; j)  </span><br><span class="line">    &#123;  </span><br><span class="line">        // 从右向左找小于x的数来填s[i]  </span><br><span class="line">        while(i &lt; j &amp;&amp; s[j] &gt;= x)   </span><br><span class="line">            j--;    </span><br><span class="line">        if(i &lt; j)   </span><br><span class="line">        &#123;  </span><br><span class="line">            s[i] = s[j]; //将s[j]填到s[i]中，s[j]就形成了一个新的坑  </span><br><span class="line">            i++;  </span><br><span class="line">        &#125;  </span><br><span class="line">  </span><br><span class="line">        // 从左向右找大于或等于x的数来填s[j]  </span><br><span class="line">        while(i &lt; j &amp;&amp; s[i] &lt; x)  </span><br><span class="line">            i++;    </span><br><span class="line">        if(i &lt; j)   </span><br><span class="line">        &#123;  </span><br><span class="line">            s[j] = s[i]; //将s[i]填到s[j]中，s[i]就形成了一个新的坑  </span><br><span class="line">            j--;  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">    //退出时，i等于j。将x填到这个坑中。  </span><br><span class="line">    s[i] = x;  </span><br><span class="line">  </span><br><span class="line">    return i;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>再写分治法的代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[cpp]</span><br><span class="line">void quick_sort1(int s[], int l, int r)  </span><br><span class="line">&#123;  </span><br><span class="line">    if (l &lt; r)  </span><br><span class="line">    &#123;  </span><br><span class="line">        int i = AdjustArray(s, l, r);//先成挖坑填数法调整s[]  </span><br><span class="line">        quick_sort1(s, l, i - 1); // 递归调用   </span><br><span class="line">        quick_sort1(s, i + 1, r);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>这样的代码显然不够简洁，对其组合整理下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">[cpp]</span><br><span class="line">//快速排序  </span><br><span class="line">void quick_sort(int s[], int l, int r)  </span><br><span class="line">&#123;  </span><br><span class="line">    if (l &lt; r)  </span><br><span class="line">    &#123;  </span><br><span class="line">        //Swap(s[l], s[(l + r) / 2]); //将中间的这个数和第一个数交换(以数组中间的数作为基准值!!)  </span><br><span class="line">        int i = l, j = r, x = s[l];  </span><br><span class="line">        while (i &lt; j)  </span><br><span class="line">        &#123;  </span><br><span class="line">            while(i &lt; j &amp;&amp; s[j] &gt;= x) // 从右向左找第一个小于x的数  </span><br><span class="line">                j--;    </span><br><span class="line">            if(i &lt; j)   </span><br><span class="line">                s[i++] = s[j];  </span><br><span class="line">              </span><br><span class="line">            while(i &lt; j &amp;&amp; s[i] &lt; x) // 从左向右找第一个大于等于x的数  </span><br><span class="line">                i++;    </span><br><span class="line">            if(i &lt; j)   </span><br><span class="line">                s[j--] = s[i];  </span><br><span class="line">        &#125;  </span><br><span class="line">        s[i] = x;  </span><br><span class="line">        quick_sort(s, l, i - 1); // 递归调用   </span><br><span class="line">        quick_sort(s, i + 1, r);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>照着这个总结很容易实现挖坑填数的代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">int AdjustArray(int s[], int l, int r) //返回调整后基准数的位置  </span><br><span class="line">&#123;  </span><br><span class="line">    int i = l, j = r;  </span><br><span class="line">    int x = s[l]; //s[l]即s[i]就是第一个坑  </span><br><span class="line">    while (i &lt; j)  </span><br><span class="line">    &#123;  // 从右向左找小于x的数来填s[i]  </span><br><span class="line">        while(i &lt; j &amp;&amp; s[j] &gt;= x)   </span><br><span class="line">            j--;    </span><br><span class="line">        if(i &lt; j)   </span><br><span class="line">        &#123;  </span><br><span class="line">            s[i] = s[j]; //将s[j]填到s[i]中，s[j]就形成了一个新的坑  </span><br><span class="line">            i++;  </span><br><span class="line">        &#125;  </span><br><span class="line">        // 从左向右找大于或等于x的数来填s[j]  </span><br><span class="line">        while(i &lt; j &amp;&amp; s[i] &lt; x)  </span><br><span class="line">            i++;    </span><br><span class="line">        if(i &lt; j)   </span><br><span class="line">        &#123;  </span><br><span class="line">            s[j] = s[i]; //将s[i]填到s[j]中，s[i]就形成了一个新的坑  </span><br><span class="line">            j--;  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">    //退出时，i等于j。将x填到这个坑中。  </span><br><span class="line">    s[i] = x;  </span><br><span class="line">    return i;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>再写分治法的代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">void quick_sort1(int s[], int l, int r)  </span><br><span class="line">&#123;  </span><br><span class="line">    if (l &lt; r)  </span><br><span class="line">    &#123;  </span><br><span class="line">        int i = AdjustArray(s, l, r);//先成挖坑填数法调整s[]  </span><br><span class="line">        quick_sort1(s, l, i - 1); // 递归调用   </span><br><span class="line">        quick_sort1(s, i + 1, r);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这样的代码显然不够简洁，对其组合整理下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">void quick_sort(int s[], int l, int r)  </span><br><span class="line">&#123;  </span><br><span class="line">    if (l &lt; r)  </span><br><span class="line">    &#123;  </span><br><span class="line">        //Swap(s[l], s[(l + r) / 2]); //将中间的这个数和第一个数交换(以数组中间的数作为基准值!!)  </span><br><span class="line">        int i = l, j = r, x = s[l];  </span><br><span class="line">        while (i &lt; j)  </span><br><span class="line">        &#123;  </span><br><span class="line">            while(i &lt; j &amp;&amp; s[j] &gt;= x) // 从右向左找第一个小于x的数  </span><br><span class="line">                j--;    </span><br><span class="line">            if(i &lt; j)   </span><br><span class="line">                s[i++] = s[j];  </span><br><span class="line">              </span><br><span class="line">            while(i &lt; j &amp;&amp; s[i] &lt; x) // 从左向右找第一个大于等于x的数  </span><br><span class="line">                i++;    </span><br><span class="line">            if(i &lt; j)   </span><br><span class="line">                s[j--] = s[i];  </span><br><span class="line">        &#125;  </span><br><span class="line">        s[i] = x;  </span><br><span class="line">        quick_sort(s, l, i - 1); // 递归调用   </span><br><span class="line">        quick_sort(s, i + 1, r);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p><strong>快速排序还有很多改进版本，如随机选择基准数，区间内数据较少时直接用另的方法排序以减小递归深度。</strong></p>
 <p><code>注1，有的书上是以中间的数作为基准数的，要实现这个方便非常方便，直接将中间的数和第一个数进行交换就可以了。</code></p>
 <ul>
@@ -661,15 +661,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">html cookie和session完全总结</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">css</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">css兼容性问题</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">html cookie和session完全总结</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -701,15 +701,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">css-浮动</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">css-居中</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">css-浮动</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">css-盒模型</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">css-预处理</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -733,15 +737,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">css-预处理</a>
+                <a href="javascript:void(0)" class="js-tag color5">css-reset</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">css-选择器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">css-reset</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -750,6 +750,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">html-doctype</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">html get和post的区别</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -762,10 +766,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">斐波那契数列</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">html get和post的区别</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -789,19 +789,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">ajax</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript-ajax</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javascript-attribute</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">javascript-property</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">ajax</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript-ajax</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -865,15 +865,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript-性能优化</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">javascript-ready</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">javascript-onload</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript-性能优化</a>
               </li>
              
               <li class="article-tag-list-item">
