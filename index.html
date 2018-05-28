@@ -414,6 +414,21 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">解决了上面的合并有序数列问题，再来看归并排序，其的基本思路就是将数组分成二组A，B，如果这二组组内的数据都是有序的，</span><br><span class="line">那么就可以很方便的将这二组数据进行排序。如何让这二组组内数据有序了？</span><br><span class="line"></span><br><span class="line">可以将A，B组各自再分成二组。依次类推，当分出来的小组只有一个数据时，可以认为这个小组组内已经达到了有序，</span><br><span class="line">然后再合并相邻的二个小组就可以了。这样通过先递归的分解数列，再合并数列就完成了归并排序。</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">[cpp]</span><br><span class="line">//将有二个有序数列a[first...mid]和a[mid...last]合并。  </span><br><span class="line">void mergearray(int a[], int first, int mid, int last, int temp[])  </span><br><span class="line">&#123;  </span><br><span class="line">    int i = first, j = mid + 1;  </span><br><span class="line">    int m = mid,   n = last;  </span><br><span class="line">    int k = 0;  </span><br><span class="line">      </span><br><span class="line">    while (i &lt;= m &amp;&amp; j &lt;= n)  </span><br><span class="line">    &#123;  </span><br><span class="line">        if (a[i] &lt;= a[j])  </span><br><span class="line">            temp[k++] = a[i++];  </span><br><span class="line">        else  </span><br><span class="line">            temp[k++] = a[j++];  </span><br><span class="line">    &#125;  </span><br><span class="line">      </span><br><span class="line">    while (i &lt;= m)  </span><br><span class="line">        temp[k++] = a[i++];  </span><br><span class="line">      </span><br><span class="line">    while (j &lt;= n)  </span><br><span class="line">        temp[k++] = a[j++];  </span><br><span class="line">      </span><br><span class="line">    for (i = 0; i &lt; k; i++)  </span><br><span class="line">        a[first + i] = temp[i];  </span><br><span class="line">&#125;  </span><br><span class="line"></span><br><span class="line">void mergesort(int a[], int first, int last, int temp[])  </span><br><span class="line">&#123;  </span><br><span class="line">    if (first &lt; last)  </span><br><span class="line">    &#123;  </span><br><span class="line">        int mid = (first + last) / 2;  </span><br><span class="line">        mergesort(a, first, mid, temp);    //左边有序  </span><br><span class="line">        mergesort(a, mid + 1, last, temp); //右边有序  </span><br><span class="line">        mergearray(a, first, mid, last, temp); //再将二个有序数列合并  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line">bool MergeSort(int a[], int n)  </span><br><span class="line">&#123;  </span><br><span class="line">    int *p = new int[n];  </span><br><span class="line">    if (p == NULL)  </span><br><span class="line">        return false;  </span><br><span class="line">    mergesort(a, 0, n - 1, p);  </span><br><span class="line">    delete[] p;  </span><br><span class="line">    return true;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">归并排序的效率是比较高的，设数列长为N，将数列分开成小数列一共要logN步，每步都是一个合并有序数列的过程，</span><br><span class="line">时间复杂度可以记为O(N)，故一共为O(N*logN)。因为归并排序每次都是在相邻的数据中进行操作，</span><br><span class="line">所以归并排序在O(N*logN)的几种排序方法（快速排序，归并排序，希尔排序，堆排序）也是效率比较高的。</span><br></pre></td></tr></table></figure>
+<ul>
+<li>堆排序<br>1.堆<br>堆实际上是一棵完全二叉树，其任何一非叶节点满足性质：<br><code>Key[i]&lt;=key[2i+1]&amp;&amp;Key[i]&lt;=key[2i+2]或者Key[i]&gt;=Key[2i+1]&amp;&amp;key&gt;=key[2i+2]</code><br>即任何一非叶节点的关键字不大于或者不小于其左右孩子节点的关键字。<br>堆分为大顶堆和小顶堆，满足<code>Key[i]&gt;=Key[2i+1]&amp;&amp;key&gt;=key[2i+2]</code>称为大顶堆，<br>满足<code>Key[i]&lt;=key[2i+1]&amp;&amp;Key[i]&lt;=key[2i+2]</code>称为小顶堆。<br>由上述性质可知大顶堆的堆顶的关键字肯定是所有关键字中最大的，小顶堆的堆顶的关键字是所有关键字中最小的。<br>2.堆排序的思想<br>利用大顶堆(小顶堆)堆顶记录的是最大关键字(最小关键字)这一特性，使得每次从无序中选择最大记录(最小记录)变得简单。<br>其基本思想为(大顶堆)：<br>1)将初始待排序关键字序列(R1,R2….Rn)构建成大顶堆，此堆为初始的无须区；<br>2)将堆顶元素<code>R[1]</code>与最后一个元素<code>R[n]</code>交换，此时得到新的无序区<code>(R1,R2,......Rn-1)</code>和新的有序区<code>(Rn)</code>,<br>且满足<code>R[1,2...n-1]&lt;=R[n]</code>;<br>3)由于交换后新的堆顶R[1]可能违反堆的性质，因此需要对当前无序区<code>(R1,R2,......Rn-1)</code>调整为新堆，<br>然后再次将<code>R[1]</code>与无序区最后一个元素交换，得到新的无序区<code>(R1,R2....Rn-2)</code>和新的有序区<code>(Rn-1,Rn)</code>。<br>不断重复此过程直到有序区的元素个数为<code>n-1</code>，则整个排序过程完成。<br>操作过程如下：<br>1)初始化堆：将<code>R[1..n]</code>构造为堆；<br>2)将当前无序区的堆顶元素<code>R[1]</code>同该区间的最后一个记录交换，然后将新的无序区调整为新的堆。<br>因此对于堆排序，最重要的两个操作就是构造初始堆和调整堆，其实构造初始堆事实上也是调整堆的过程， 只不过构造初始堆是对所有的非叶节点都进行调整。</li>
+<li>堆排序</li>
+<li>堆排序适合于数据量非常大的场合（百万数据）。</li>
+<li>堆排序不需要大量的递归或者多维的暂存数组。这对于数据量非常巨大的序列是合适的。</li>
+<li>比如超过数百万条记录，因为快速排序，归并排序都使用递归来设计算法，在数据量非常大的时候，可能会发生堆栈溢出错误。</li>
+<li>堆排序会将所有的数据建成一个堆，最大的数据在堆顶，然后将堆顶数据和序列的最后一个数据交换。</li>
+<li>接下来再次重建堆，交换数据，依次下去，就可以排序所有的数据。</li>
+<li>若在输出堆顶的最小值之后，使得剩余n-1个元素的序列重又建成一个堆，则得到n个元素的次小值。</li>
+<li>如此反复执行，便能得到一个有序序列，这个过程称之为堆排序。</li>
+<li>实现堆排序需要解决两个问题：<br>　　　　1.如何由一个无序序列建成一个堆？<br>　　　　2.如何在输出堆顶元素之后，调整剩余元素成为一个新的堆？<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">var generateTestData = require(&apos;./TestDataGenerator&apos;);</span><br><span class="line">/*方法说明：调整堆,维护堆的性质</span><br><span class="line"> @param  arr 数组</span><br><span class="line"> @param  x   数组下标</span><br><span class="line"> @param  len 堆大小*/</span><br><span class="line">function adjustHeap(arr, x, len) &#123;</span><br><span class="line">    var l = 2 * x, r = 2 * x + 1, largest = x, temp;</span><br><span class="line">    if (l &lt; len &amp;&amp; arr[l] &gt; arr[largest]) &#123;</span><br><span class="line">        largest = l;</span><br><span class="line">    &#125;</span><br><span class="line">    if (r &lt; len &amp;&amp; arr[r] &gt; arr[largest]) &#123;</span><br><span class="line">        largest = r;</span><br><span class="line">    &#125;</span><br><span class="line">    if (largest != x) &#123;</span><br><span class="line">        temp = arr[x];</span><br><span class="line">        arr[x] = arr[largest];</span><br><span class="line">        arr[largest] = temp;</span><br><span class="line">        adjustHeap(arr, largest, len);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>/*方法说明：堆排序<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">function heapSort(array) &#123;</span><br><span class="line">    //建堆</span><br><span class="line">    var heapSize = array.length, temp;</span><br><span class="line">    for (var i = Math.floor(heapSize / 2); i &gt;= 0; i--) &#123;</span><br><span class="line">        adjustHeap(array, i, heapSize);</span><br><span class="line">    &#125;</span><br><span class="line">    //堆排序</span><br><span class="line">    for (var j = heapSize - 1; j &gt;= 1; j--) &#123;</span><br><span class="line">        temp = array[0];</span><br><span class="line">        array[0] = array[j];</span><br><span class="line">        array[j] = temp;</span><br><span class="line">        adjustHeap(array, 0, --heapSize);</span><br><span class="line">    &#125;</span><br><span class="line">    return array;</span><br><span class="line">&#125;</span><br><span class="line">var data = generateTestData(20000);</span><br><span class="line">// console.log(data);</span><br><span class="line">var start = new Date().getTime();</span><br><span class="line">console.log(&apos;start sorting....&apos;);</span><br><span class="line">var result = heapSort(data);</span><br><span class="line">var end = new Date().getTime();</span><br><span class="line">console.log(&apos;耗时: &apos; + (end - start) + &apos; ms&apos;);</span><br><span class="line">// console.log(result);</span><br></pre></td></tr></table></figure></p>
+
       
 
       
@@ -1000,6 +1015,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">html cookie和session完全总结</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">css-inline</a>
               </li>
              
@@ -1009,10 +1028,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">css-block</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">html cookie和session完全总结</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1100,11 +1115,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">html5新元素</a>
+                <a href="javascript:void(0)" class="js-tag color3">http状态码</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">http状态码</a>
+                <a href="javascript:void(0)" class="js-tag color4">html5新元素</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1172,15 +1187,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">javascript内存泄露</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">查找算法-线性查找</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">查找算法-二分查找</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">javascript内存泄露</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1244,15 +1259,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">javascript-循环</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">javascript-xss</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javascript-csrf</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">javascript-循环</a>
               </li>
             
             <div class="clearfix"></div>
