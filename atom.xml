@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://21cm.js.org/"/>
-  <updated>2018-05-28T09:56:42.520Z</updated>
+  <updated>2018-05-28T09:58:41.126Z</updated>
   <id>https://21cm.js.org/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>前端算法之排序</title>
-    <link href="https://21cm.js.org/2018/05/28/js-Stacks/"/>
-    <id>https://21cm.js.org/2018/05/28/js-Stacks/</id>
+    <title>前端算法之排序之数制转换</title>
+    <link href="https://21cm.js.org/2018/05/28/js-Number-System-Conversion/"/>
+    <id>https://21cm.js.org/2018/05/28/js-Number-System-Conversion/</id>
     <published>2018-05-28T04:00:00.000Z</published>
-    <updated>2018-05-28T09:56:42.520Z</updated>
+    <updated>2018-05-28T09:58:41.126Z</updated>
     
     <content type="html"><![CDATA[<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">* 利用栈来做数制转换</span><br><span class="line">* @param number  待转换的数字,十进制数</span><br><span class="line">* @param base   要转换成的进制(10进制以内)</span><br><span class="line"></span><br><span class="line">var Stack = require(&apos;https://21cm.js.org/lib/Stack&apos;);</span><br><span class="line">var numericalTransform = function (number, base) &#123;</span><br><span class="line">    if (typeof number !== &apos;number&apos; || typeof base !== &apos;number&apos;) &#123;</span><br><span class="line">        console.log(&apos;Parameter error!&apos;);</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line">    var stack = new Stack();</span><br><span class="line">    do &#123;</span><br><span class="line">        stack.push(number % base);</span><br><span class="line">        number = Math.floor(number / base);</span><br><span class="line">    &#125; while (number !== 0)</span><br><span class="line">    //依次出栈,得到结果</span><br><span class="line">    var result = &apos;&apos;;</span><br><span class="line">    while (stack.length()) &#123;</span><br><span class="line">        result += stack.pop();</span><br><span class="line">    &#125;</span><br><span class="line">    return result;</span><br><span class="line">&#125;</span><br><span class="line">console.log(numericalTransform(231, 8));</span><br><span class="line">console.log(numericalTransform(65, 2));</span><br></pre></td></tr></table></figure>]]></content>
     
@@ -41,7 +41,7 @@
     
       <category term="javascript" scheme="https://21cm.js.org/tags/javascript/"/>
     
-      <category term="排序" scheme="https://21cm.js.org/tags/%E6%8E%92%E5%BA%8F/"/>
+      <category term="数制转换" scheme="https://21cm.js.org/tags/%E6%95%B0%E5%88%B6%E8%BD%AC%E6%8D%A2/"/>
     
   </entry>
   

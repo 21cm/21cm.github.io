@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://21cm.js.org">
-  <title>前端知识点总结之css inline、inline-block、block区别 | 21cm</title>
+  <title>前端算法之排序之数制转换 | 21cm</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="总体概念1234567891011block和inline这两个概念是简略的说法，完整确切的说应该是 block-level elements (块级元素) 和 inline elements (内联元素)。block元素通常被现实为独立的一块，会单独换一行；inline元素则前后不会产生换行，一系列inline元素都在一行内显示，直到该行排满。大体来说HTML元素各有其自身的布局级别（block">
-<meta name="keywords" content="css,css-inline,css-inline-block,css-block">
+  <meta name="description" content="123456789101112131415161718192021222324* 利用栈来做数制转换* @param number  待转换的数字,十进制数* @param base   要转换成的进制(10进制以内)var Stack = require(&amp;apos;https://21cm.js.org/lib/Stack&amp;apos;);var numericalTransform = fun">
+<meta name="keywords" content="javascript,数制转换">
 <meta property="og:type" content="article">
-<meta property="og:title" content="前端知识点总结之css inline、inline-block、block区别">
-<meta property="og:url" content="https://21cm.js.org/2018/05/24/css inline&&inline-block&&block/index.html">
+<meta property="og:title" content="前端算法之排序之数制转换">
+<meta property="og:url" content="https://21cm.js.org/2018/05/28/js-Number-System-Conversion/index.html">
 <meta property="og:site_name" content="21cm">
-<meta property="og:description" content="总体概念1234567891011block和inline这两个概念是简略的说法，完整确切的说应该是 block-level elements (块级元素) 和 inline elements (内联元素)。block元素通常被现实为独立的一块，会单独换一行；inline元素则前后不会产生换行，一系列inline元素都在一行内显示，直到该行排满。大体来说HTML元素各有其自身的布局级别（block">
+<meta property="og:description" content="123456789101112131415161718192021222324* 利用栈来做数制转换* @param number  待转换的数字,十进制数* @param base   要转换成的进制(10进制以内)var Stack = require(&amp;apos;https://21cm.js.org/lib/Stack&amp;apos;);var numericalTransform = fun">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-05-24T09:41:13.451Z">
+<meta property="og:updated_time" content="2018-05-28T09:58:41.126Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="前端知识点总结之css inline、inline-block、block区别">
-<meta name="twitter:description" content="总体概念1234567891011block和inline这两个概念是简略的说法，完整确切的说应该是 block-level elements (块级元素) 和 inline elements (内联元素)。block元素通常被现实为独立的一块，会单独换一行；inline元素则前后不会产生换行，一系列inline元素都在一行内显示，直到该行排满。大体来说HTML元素各有其自身的布局级别（block">
+<meta name="twitter:title" content="前端算法之排序之数制转换">
+<meta name="twitter:description" content="123456789101112131415161718192021222324* 利用栈来做数制转换* @param number  待转换的数字,十进制数* @param base   要转换成的进制(10进制以内)var Stack = require(&amp;apos;https://21cm.js.org/lib/Stack&amp;apos;);var numericalTransform = fun">
   
     <link rel="alternative" href="/atom.xml" title="21cm" type="application/atom+xml">
   
@@ -144,31 +144,27 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-css inline&amp;&amp;inline-block&amp;&amp;block" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-js-Number-System-Conversion" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      前端知识点总结之css inline、inline-block、block区别
+      前端算法之排序之数制转换
     </h1>
   
 
         
-        <a href="/2018/05/24/css inline&&inline-block&&block/" class="archive-article-date">
-  	<time datetime="2018-05-24T09:40:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-24</time>
+        <a href="/2018/05/28/js-Number-System-Conversion/" class="archive-article-date">
+  	<time datetime="2018-05-28T04:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-28</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="总体概念"><a href="#总体概念" class="headerlink" title="总体概念"></a>总体概念</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">block和inline这两个概念是简略的说法，完整确切的说应该是 block-level elements (块级元素) 和 inline elements (内联元素)。</span><br><span class="line">block元素通常被现实为独立的一块，会单独换一行；</span><br><span class="line">inline元素则前后不会产生换行，一系列inline元素都在一行内显示，直到该行排满。</span><br><span class="line"></span><br><span class="line">大体来说HTML元素各有其自身的布局级别（block元素还是inline元素）：</span><br><span class="line">常见的块级元素有 DIV, FORM, TABLE, P, PRE, H1~H6, DL, OL, UL 等。</span><br><span class="line">常见的内联元素有 SPAN, A, STRONG, EM, LABEL, INPUT, SELECT, TEXTAREA, IMG, BR 等。</span><br><span class="line"></span><br><span class="line">block元素可以包含block元素和inline元素；但inline元素只能包含inline元素。</span><br><span class="line">要注意的是这个是个大概的说法，每个特定的元素能包含的元素也是特定的，所以具体到个别元素上，这条规律是不适用的。</span><br><span class="line">比如 P 元素，只能包含inline元素，而不能包含block元素。</span><br></pre></td></tr></table></figure>
-<p><code>一般来说，可以通过display:inline和display:block的设置，改变元素的布局级别。</code></p>
-<h4 id="block，inline和inlinke-block细节对比"><a href="#block，inline和inlinke-block细节对比" class="headerlink" title="block，inline和inlinke-block细节对比"></a>block，inline和inlinke-block细节对比</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">display:block</span><br><span class="line">block元素会独占一行，多个block元素会各自新起一行。默认情况下，block元素宽度自动填满其父元素宽度。</span><br><span class="line">block元素可以设置width,height属性。块级元素即使设置了宽度,仍然是独占一行。</span><br><span class="line">block元素可以设置margin和padding属性。</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">display:inline</span><br><span class="line">inline元素不会独占一行，多个相邻的行内元素会排列在同一行里，直到一行排列不下，才会新换一行，其宽度随元素的内容而变化。</span><br><span class="line">inline元素设置width,height属性无效。</span><br><span class="line">inline元素的margin和padding属性，水平方向的padding-left, padding-right, margin-left, margin-right都产生边距效果；</span><br><span class="line">但竖直方向的padding-top, padding-bottom, margin-top, margin-bottom不会产生边距效果。</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">display:inline-block</span><br><span class="line">简单来说就是将对象呈现为inline对象，但是对象的内容作为block对象呈现。之后的内联对象会被排列在同一行内。</span><br><span class="line">比如我们可以给一个link（a元素）inline-block属性值，使其既具有block的宽度高度特性又具有inline的同行特性。</span><br></pre></td></tr></table></figure>
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">* 利用栈来做数制转换</span><br><span class="line">* @param number  待转换的数字,十进制数</span><br><span class="line">* @param base   要转换成的进制(10进制以内)</span><br><span class="line"></span><br><span class="line">var Stack = require(&apos;https://21cm.js.org/lib/Stack&apos;);</span><br><span class="line">var numericalTransform = function (number, base) &#123;</span><br><span class="line">    if (typeof number !== &apos;number&apos; || typeof base !== &apos;number&apos;) &#123;</span><br><span class="line">        console.log(&apos;Parameter error!&apos;);</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line">    var stack = new Stack();</span><br><span class="line">    do &#123;</span><br><span class="line">        stack.push(number % base);</span><br><span class="line">        number = Math.floor(number / base);</span><br><span class="line">    &#125; while (number !== 0)</span><br><span class="line">    //依次出栈,得到结果</span><br><span class="line">    var result = &apos;&apos;;</span><br><span class="line">    while (stack.length()) &#123;</span><br><span class="line">        result += stack.pop();</span><br><span class="line">    &#125;</span><br><span class="line">    return result;</span><br><span class="line">&#125;</span><br><span class="line">console.log(numericalTransform(231, 8));</span><br><span class="line">console.log(numericalTransform(65, 2));</span><br></pre></td></tr></table></figure>
       
 
       
@@ -181,19 +177,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">css</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">css-inline</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">css-inline-block</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">css-block</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数制转换</a>
         		</li>
       		
 		</ul>
@@ -206,6 +194,10 @@
 			 
         		<li class="article-tag-list-item">
         			<a href="/categories/前端//" class="article-tag-list-link color3">前端</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/前端/前端算法//" class="article-tag-list-link color5">前端算法</a>
         		</li>
       		
 		</ul>
@@ -260,7 +252,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://21cm.js.org/2018/05/24/css inline&&inline-block&&block/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://21cm.js.org/2018/05/28/js-Number-System-Conversion/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -274,18 +266,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/05/24/css-position/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          前端知识点总结之css定位
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/05/24/css-Box-sizing/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">前端知识点总结之css box-sizing属性</div>
+    <a href="/2018/05/28/js-sort/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">前端算法之排序</div>
       <i class="icon-circle-right"></i>
     </a>
   
