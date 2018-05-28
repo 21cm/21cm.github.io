@@ -403,7 +403,11 @@
 <li>我们取两张牌中小的那张取出放在手中。两个牌堆中又是两张牌暴露在最上面，继续取小的那张放在手中……</li>
 <li>直到所有的牌都放入手中，那么整副牌就排好顺序了。这就是归并排序。</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">var generateTestData = require(&apos;./TestDataGenerator&apos;);</span><br><span class="line"> * js数组方法实现merge非常简洁,但是效率不高,见通用版本的merge方法!!!</span><br><span class="line">function merge(left, right) &#123;</span><br><span class="line">    var result = [];</span><br><span class="line">    while (left.length &gt; 0 &amp;&amp; right.length &gt; 0) &#123;</span><br><span class="line">        if (left[0] &lt; right[0]) &#123;</span><br><span class="line">            result.push(left.shift());</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            result.push(right.shift());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return result.concat(left).concat(right);</span><br><span class="line">&#125;</span><br><span class="line">function mergeSort(items) &#123;</span><br><span class="line">     * 此句为递归结束条件,绝对不能遗漏!!!!</span><br><span class="line">    if (items.length == 1) &#123;</span><br><span class="line">        return items;</span><br><span class="line">    &#125;</span><br><span class="line">    var middle = Math.floor(items.length / 2),</span><br><span class="line">        left = items.slice(0, middle),</span><br><span class="line">        right = items.slice(middle);</span><br><span class="line">    return merge(mergeSort(left), mergeSort(right));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">var data = generateTestData(300000);</span><br><span class="line">// console.log(data);</span><br><span class="line">var start = new Date().getTime();</span><br><span class="line">console.log(&apos;start sorting....&apos;);</span><br><span class="line">var result = mergeSort(data);</span><br><span class="line">var end = new Date().getTime();</span><br><span class="line">console.log(&apos;耗时: &apos; + (end - start) + &apos; ms&apos;);</span><br><span class="line">// console.log(result);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">var generateTestData = require(&apos;./TestDataGenerator&apos;);</span><br><span class="line"> * js数组方法实现merge非常简洁,但是效率不高,见通用版本的merge方法!!!</span><br><span class="line">function merge(left, right) &#123;</span><br><span class="line">    var result = [];</span><br><span class="line">    while (left.length &gt; 0 &amp;&amp; right.length &gt; 0) &#123;</span><br><span class="line">        if (left[0] &lt; right[0]) &#123;</span><br><span class="line">            result.push(left.shift());</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            result.push(right.shift());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return result.concat(left).concat(right);</span><br><span class="line">&#125;</span><br><span class="line">function mergeSort(items) &#123;</span><br><span class="line">     * 此句为递归结束条件,绝对不能遗漏!!!!</span><br><span class="line">    if (items.length == 1) &#123;</span><br><span class="line">        return items;</span><br><span class="line">    &#125;</span><br><span class="line">    var middle = Math.floor(items.length / 2),</span><br><span class="line">        left = items.slice(0, middle),</span><br><span class="line">        right = items.slice(middle);</span><br><span class="line">    return merge(mergeSort(left), mergeSort(right));</span><br><span class="line">&#125;</span><br><span class="line">var data = generateTestData(300000);</span><br><span class="line">// console.log(data);</span><br><span class="line">var start = new Date().getTime();</span><br><span class="line">console.log(&apos;start sorting....&apos;);</span><br><span class="line">var result = mergeSort(data);</span><br><span class="line">var end = new Date().getTime();</span><br><span class="line">console.log(&apos;耗时: &apos; + (end - start) + &apos; ms&apos;);</span><br><span class="line">// console.log(result);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>归并排序通用版本</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">var generateTestData = require(&apos;./TestDataGenerator&apos;);</span><br><span class="line">function merge(a1, a2) &#123;</span><br><span class="line">    var result = [];</span><br><span class="line">    var i = 0,</span><br><span class="line">        j = 0,</span><br><span class="line">        l1 = a1.length,</span><br><span class="line">        l2 = a2.length;</span><br><span class="line">    while (i &lt; l1 &amp;&amp; j &lt; l2) &#123;</span><br><span class="line">        if (a1[i] &lt; a2[j]) &#123;</span><br><span class="line">            result.push(a1[i++]);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            result.push(a2[j++]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    if (i &lt; l1) &#123;</span><br><span class="line">        for (; i &lt; l1; i++) &#123;</span><br><span class="line">            result.push(a1[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    if (j &lt; l2) &#123;</span><br><span class="line">        for (; j &lt; l2; j++) &#123;</span><br><span class="line">            result.push(a2[j]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return result;</span><br><span class="line">&#125;</span><br><span class="line">function mergeSort(data) &#123;</span><br><span class="line">    /***</span><br><span class="line">     * 此句为递归结束条件,绝对不能遗漏!!!!</span><br><span class="line">     */</span><br><span class="line">    if (data.length === 1) &#123;</span><br><span class="line">        return data;</span><br><span class="line">    &#125;</span><br><span class="line">    var middle = Math.floor(data.length / 2);</span><br><span class="line">    var left = data.slice(0, middle),</span><br><span class="line">        right = data.slice(middle);</span><br><span class="line">    return merge(mergeSort(left), mergeSort(right));</span><br><span class="line">&#125;</span><br><span class="line">var data = generateTestData(3000000);</span><br><span class="line">// console.log(data);</span><br><span class="line">var start = new Date().getTime();</span><br><span class="line">console.log(&apos;start sorting....&apos;);</span><br><span class="line">var result = mergeSort(data);</span><br><span class="line">var end = new Date().getTime();</span><br><span class="line">console.log(&apos;耗时: &apos; + (end - start) + &apos; ms&apos;);</span><br><span class="line">// console.log(result);</span><br></pre></td></tr></table></figure>
 
       
 
@@ -983,15 +987,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">html cookie和session完全总结</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">css</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">css兼容性问题</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">html cookie和session完全总结</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1023,19 +1027,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">css-居中</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">css-浮动</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">css-盒模型</a>
+                <a href="javascript:void(0)" class="js-tag color2">css-居中</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">css-预处理</a>
+                <a href="javascript:void(0)" class="js-tag color3">css-盒模型</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1059,6 +1059,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">css-预处理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">css-reset</a>
               </li>
              
@@ -1075,10 +1079,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">html get和post的区别</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
              
@@ -1088,6 +1088,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">斐波那契数列</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">html get和post的区别</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1111,19 +1115,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript-attribute</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">javascript-property</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">ajax</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javascript-ajax</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript-attribute</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">javascript-property</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1187,15 +1191,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript-性能优化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">javascript-ready</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">javascript-onload</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript-性能优化</a>
               </li>
              
               <li class="article-tag-list-item">
