@@ -144,6 +144,144 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-js-sort" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/28/js-sort/">前端算法之排序</a>
+    </h1>
+  
+
+        
+        <a href="/2018/05/28/js-sort/" class="archive-article-date">
+  	<time datetime="2018-05-28T02:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>排序算法分析比较</li>
+</ul>
+<h4 id="1-快速排序（QuickSort）"><a href="#1-快速排序（QuickSort）" class="headerlink" title="1 快速排序（QuickSort）"></a>1 快速排序（QuickSort）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">快速排序是一个就地排序，分而治之，大规模递归的算法。从本质上来说，它是归并排序的就地版本。快速排序可以由下面四步组成。</span><br><span class="line"></span><br><span class="line">（1） 如果不多于1个数据，直接返回。</span><br><span class="line">（2） 一般选择序列最左边的值作为支点数据。</span><br><span class="line">（3） 将序列分成2部分，一部分都大于支点数据，另外一部分都小于支点数据。</span><br><span class="line">（4） 对两边利用递归排序数列。</span><br><span class="line"></span><br><span class="line">快速排序比大部分排序算法都要快。尽管我们可以在某些特殊的情况下写出比快速排序快的算法，但是就通常情况而言，没有比它更快的了。</span><br><span class="line">快速排序是递归的，对于内存非常有限的机器来说，它不是一个好的选择。</span><br></pre></td></tr></table></figure>
+<h4 id="2-归并排序（MergeSort）"><a href="#2-归并排序（MergeSort）" class="headerlink" title="2 归并排序（MergeSort）"></a>2 归并排序（MergeSort）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">归并排序先分解要排序的序列，从1分成2，2分成4，依次分解，当分解到只有1个一组的时候，就可以排序这些分组，</span><br><span class="line">然后依次合并回原来的序列中，这样就可以排序所有数据。合并排序比堆排序稍微快一点，但是需要比堆排序多一倍的内存空间，</span><br><span class="line">因为它需要一个额外的数组。</span><br></pre></td></tr></table></figure>
+<h4 id="3-堆排序（HeapSort）"><a href="#3-堆排序（HeapSort）" class="headerlink" title="3 堆排序（HeapSort）"></a>3 堆排序（HeapSort）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">堆排序适合于数据量非常大的场合（百万数据）。</span><br><span class="line"></span><br><span class="line">堆排序不需要大量的递归或者多维的暂存数组。这对于数据量非常巨大的序列是合适的。</span><br><span class="line">比如超过数百万条记录，因为快速排序，归并排序都使用递归来设计算法，在数据量非常大的时候，可能会发生堆栈溢出错误。</span><br><span class="line"></span><br><span class="line">堆排序会将所有的数据建成一个堆，最大的数据在堆顶，然后将堆顶数据和序列的最后一个数据交换。</span><br><span class="line">接下来再次重建堆，交换数据，依次下去，就可以排序所有的数据。</span><br></pre></td></tr></table></figure>
+<h4 id="4-Shell排序（ShellSort）"><a href="#4-Shell排序（ShellSort）" class="headerlink" title="4 Shell排序（ShellSort）"></a>4 Shell排序（ShellSort）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Shell排序通过将数据分成不同的组，先对每一组进行排序，然后再对所有的元素进行一次插入排序，以减少数据交换和移动的次数。</span><br><span class="line">平均效率是O(nlogn)。其中分组的合理性会对算法产生重要的影响。现在多用D.E.Knuth的分组方法。</span><br><span class="line"></span><br><span class="line">Shell排序比冒泡排序快5倍，比插入排序大致快2倍。Shell排序比起QuickSort，MergeSort，HeapSort慢很多。</span><br><span class="line">但是它相对比较简单，它适合于数据量在5000以下并且速度并不是特别重要的场合。它对于数据量较小的数列重复排序是非常好的。</span><br></pre></td></tr></table></figure>
+<h4 id="5-插入排序（InsertSort）"><a href="#5-插入排序（InsertSort）" class="headerlink" title="5 插入排序（InsertSort）"></a>5 插入排序（InsertSort）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">插入排序通过把序列中的值插入一个已经排序好的序列中，直到该序列的结束。插入排序是对冒泡排序的改进。它比冒泡排序快2倍。</span><br><span class="line">一般不用在数据大于1000的场合下使用插入排序，或者重复排序超过200数据项的序列。</span><br></pre></td></tr></table></figure>
+<h4 id="6-冒泡排序（BubbleSort）"><a href="#6-冒泡排序（BubbleSort）" class="headerlink" title="6 冒泡排序（BubbleSort）"></a>6 冒泡排序（BubbleSort）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">冒泡排序是最慢的排序算法。在实际运用中它是效率最低的算法。它通过一趟又一趟地比较数组中的每一个元素，使较大的数据下沉，</span><br><span class="line">较小的数据上升。它是O(n^2)的算法。</span><br></pre></td></tr></table></figure>
+<h4 id="7-选择排序（SelectSort）"><a href="#7-选择排序（SelectSort）" class="headerlink" title="7 选择排序（SelectSort）"></a>7 选择排序（SelectSort）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">这两种排序方法都是交换方法的排序算法，效率都是 O(n2)。在实际应用中处于和冒泡排序基本相同的地位。</span><br><span class="line">它们只是排序算法发展的初级阶段，在实际中使用较少。</span><br></pre></td></tr></table></figure>
+<h4 id="8-基数排序（RadixSort）"><a href="#8-基数排序（RadixSort）" class="headerlink" title="8 基数排序（RadixSort）"></a>8 基数排序（RadixSort）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">基数排序和通常的排序算法并不走同样的路线。它是一种比较新颖的算法，但是它只能用于整数的排序，</span><br><span class="line">如果我们要把同样的办法运用到浮点数上，我们必须了解浮点数的存储格式，并通过特殊的方式将浮点数映射到整数上，</span><br><span class="line">然后再映射回去，这是非常麻烦的事情，因此，它的使用同样也不多。而且，最重要的是，这样算法也需要较多的存储空间。</span><br></pre></td></tr></table></figure>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><table><br>    <thead><br>        <tr><br>            <th>排序法</th><br>            <th>平均时间</th><br>            <th>最差情形</th><br>            <th>稳定度</th><br>            <th>额外空间</th><br>            <th>备注</th><br>        </tr><br>    </thead><br>    <tbody><br>        <tr><br>            <td>冒泡排序</td><br>            <td>O(n2)</td><br>            <td>O(n2)</td><br>            <td>稳定</td><br>            <td>O(1)</td><br>            <td>效率最低,n很小时可以使用,一般不用</td><br>        </tr><br>        <tr><br>            <td>选择排序</td><br>            <td>O(n2)</td><br>            <td>O(n2)</td><br>            <td>不稳定</td><br>            <td>O(1)</td><br>            <td>效率很低,n很小时可以使用,一般不用</td><br>        </tr><br>        <tr><br>            <td>插入排序</td><br>            <td>O(n2)</td><br>            <td>O(n2)</td><br>            <td>稳定</td><br>            <td>O(1)</td><br>            <td>大部分已排序时比较好</td><br>        </tr><br>        <tr><br>            <td>希尔排序</td><br>            <td>O(nlogn)</td><br>            <td>O(n的s次方)</td><br>            <td>不稳定</td><br>            <td>O(1)</td><br>            <td>1&lt;s&lt;2</td><br>        </tr><br>        <tr><br>            <td>快速排序</td><br>            <td>O(nlogn)</td><br>            <td>O(n2)</td><br>            <td>不稳定</td><br>            <td>O(nlogn)</td><br>            <td>数据量很大时好,平均效率最高的算法</td><br>        </tr><br>        <tr><br>            <td>归并排序</td><br>            <td>O(nlogn)</td><br>            <td>O(nlogn)</td><br>            <td>稳定</td><br>            <td>O(1)</td><br>            <td>数据量很大时好</td><br>        </tr><br>        <tr><br>            <td>堆排序</td><br>            <td>O(nlogn)</td><br>            <td>O(nlogn)</td><br>            <td>不稳定</td><br>            <td>O(1)</td><br>            <td>数据量很大时好</td><br>        </tr><br>    </tbody><br></table>
+
+
+
+<ul>
+<li>冒泡排序: 最慢的排序算法,基本上用不着!!!</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">var generateTestData = require(&apos;./00-TestDataGenerator&apos;);</span><br><span class="line"></span><br><span class="line">var bubbleSort = function (data) &#123;</span><br><span class="line">    var l = data.length;</span><br><span class="line">    for (var i = 0; i &lt;= l - 1; i++) &#123;  //外层循环表示要进行length趟排序</span><br><span class="line">        //内层循环表示在每一趟中两两交换进行排序</span><br><span class="line">        for (var j = 1; j &lt;= l; j++) &#123;</span><br><span class="line">            if (data[j] &lt; data[j - 1]) &#123;</span><br><span class="line">                var tmp = data[j];</span><br><span class="line">                data[j] = data[j - 1];</span><br><span class="line">                data[j - 1] = tmp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return data;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var data = generateTestData(20000);</span><br><span class="line"></span><br><span class="line">var start = new Date().getTime();</span><br><span class="line">console.log(&apos;start sorting....&apos;);</span><br><span class="line"></span><br><span class="line">var result = bubbleSort(data);</span><br><span class="line"></span><br><span class="line">var end = new Date().getTime();</span><br><span class="line">console.log(&apos;耗时: &apos; + (end - start) + &apos; ms&apos;);</span><br><span class="line"></span><br><span class="line">// console.log(result);</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">排序</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">冒泡排序</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">选择排序</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">插入排序</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">希尔排序</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">快速排序</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">归并排序</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">堆排序</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/前端//" class="article-tag-list-link color3">前端</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/前端/前端算法//" class="article-tag-list-link color5">前端算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/05/28/js-sort/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-js-lookup" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -526,83 +664,6 @@
 
 
   
-    <article id="post-js-new" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/27/js-new/">前端知识点总结之javascript-new操作符</a>
-    </h1>
-  
-
-        
-        <a href="/2018/05/27/js-new/" class="archive-article-date">
-  	<time datetime="2018-05-27T02:50:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-27</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="new操作符具体干了什么呢"><a href="#new操作符具体干了什么呢" class="headerlink" title="new操作符具体干了什么呢?"></a>new操作符具体干了什么呢?</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">   1、创建一个空对象，并且 this 变量引用该对象，同时还继承了该函数的原型。</span><br><span class="line"></span><br><span class="line">   2、属性和方法被加入到 this 引用的对象中。</span><br><span class="line"></span><br><span class="line">   3、新创建的对象由 this 所引用，并且最后隐式的返回 this 。</span><br><span class="line"></span><br><span class="line">var obj  = &#123;&#125;;</span><br><span class="line"></span><br><span class="line">obj.__proto__ = Base.prototype;</span><br><span class="line"></span><br><span class="line">Base.call(obj);</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">javascript-new</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/27/js-new/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -700,15 +761,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">html cookie和session完全总结</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">css</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">css兼容性问题</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">html cookie和session完全总结</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -732,11 +793,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">css-清除浮动</a>
+                <a href="javascript:void(0)" class="js-tag color2">css-box-sizing属性</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">css-box-sizing属性</a>
+                <a href="javascript:void(0)" class="js-tag color4">css-清除浮动</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -745,6 +806,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">css-居中</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">css-盒模型</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -768,15 +833,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">css-盒模型</a>
+                <a href="javascript:void(0)" class="js-tag color3">css-预处理</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">css-reset</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">css-预处理</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -812,15 +873,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">http状态码</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">javascript高级函数</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">javascript-AOP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">http状态码</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -896,14 +957,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript-null</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript-undefined</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javascript-性能优化</a>
               </li>
              
@@ -913,6 +966,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">javascript-onload</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript-null</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript-undefined</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -929,6 +990,38 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javascript-csrf</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">排序</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">冒泡排序</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">选择排序</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">插入排序</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">希尔排序</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">快速排序</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">归并排序</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">堆排序</a>
               </li>
             
             <div class="clearfix"></div>
