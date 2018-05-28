@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="21cm">
 <meta property="og:description" content="排序算法分析比较  1 快速排序（QuickSort）123456789快速排序是一个就地排序，分而治之，大规模递归的算法。从本质上来说，它是归并排序的就地版本。快速排序可以由下面四步组成。（1） 如果不多于1个数据，直接返回。（2） 一般选择序列最左边的值作为支点数据。（3） 将序列分成2部分，一部分都大于支点数据，另外一部分都小于支点数据。（4） 对两边利用递归排序数列。快速排序比大部分排序">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-05-28T01:59:22.512Z">
+<meta property="og:updated_time" content="2018-05-28T02:20:30.302Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端算法之排序">
 <meta name="twitter:description" content="排序算法分析比较  1 快速排序（QuickSort）123456789快速排序是一个就地排序，分而治之，大规模递归的算法。从本质上来说，它是归并排序的就地版本。快速排序可以由下面四步组成。（1） 如果不多于1个数据，直接返回。（2） 一般选择序列最左边的值作为支点数据。（3） 将序列分成2部分，一部分都大于支点数据，另外一部分都小于支点数据。（4） 对两边利用递归排序数列。快速排序比大部分排序">
@@ -174,14 +174,82 @@
 <h4 id="6-冒泡排序（BubbleSort）"><a href="#6-冒泡排序（BubbleSort）" class="headerlink" title="6 冒泡排序（BubbleSort）"></a>6 冒泡排序（BubbleSort）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">冒泡排序是最慢的排序算法。在实际运用中它是效率最低的算法。它通过一趟又一趟地比较数组中的每一个元素，使较大的数据下沉，</span><br><span class="line">较小的数据上升。它是O(n^2)的算法。</span><br></pre></td></tr></table></figure>
 <h4 id="7-选择排序（SelectSort）"><a href="#7-选择排序（SelectSort）" class="headerlink" title="7 选择排序（SelectSort）"></a>7 选择排序（SelectSort）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">这两种排序方法都是交换方法的排序算法，效率都是 O(n2)。在实际应用中处于和冒泡排序基本相同的地位。</span><br><span class="line">它们只是排序算法发展的初级阶段，在实际中使用较少。</span><br></pre></td></tr></table></figure>
 <h4 id="8-基数排序（RadixSort）"><a href="#8-基数排序（RadixSort）" class="headerlink" title="8 基数排序（RadixSort）"></a>8 基数排序（RadixSort）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">基数排序和通常的排序算法并不走同样的路线。它是一种比较新颖的算法，但是它只能用于整数的排序，</span><br><span class="line">如果我们要把同样的办法运用到浮点数上，我们必须了解浮点数的存储格式，并通过特殊的方式将浮点数映射到整数上，</span><br><span class="line">然后再映射回去，这是非常麻烦的事情，因此，它的使用同样也不多。而且，最重要的是，这样算法也需要较多的存储空间。</span><br></pre></td></tr></table></figure>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><table><br>    <thead><br>        <tr><br>            <th>排序法</th><br>            <th>平均时间</th><br>            <th>最差情形</th><br>            <th>稳定度</th><br>            <th>额外空间</th><br>            <th>备注</th><br>        </tr><br>    </thead><br>    <tbody><br>        <tr><br>            <td>冒泡排序</td><br>            <td>O(n2)</td><br>            <td>O(n2)</td><br>            <td>稳定</td><br>            <td>O(1)</td><br>            <td>效率最低,n很小时可以使用,一般不用</td><br>        </tr><br>        <tr><br>            <td>选择排序</td><br>            <td>O(n2)</td><br>            <td>O(n2)</td><br>            <td>不稳定</td><br>            <td>O(1)</td><br>            <td>效率很低,n很小时可以使用,一般不用</td><br>        </tr><br>        <tr><br>            <td>插入排序</td><br>            <td>O(n2)</td><br>            <td>O(n2)</td><br>            <td>稳定</td><br>            <td>O(1)</td><br>            <td>大部分已排序时比较好</td><br>        </tr><br>        <tr><br>            <td>希尔排序</td><br>            <td>O(nlogn)</td><br>            <td>O(n的s次方)</td><br>            <td>不稳定</td><br>            <td>O(1)</td><br>            <td>1&lt;s&lt;2</td><br>        </tr><br>        <tr><br>            <td>快速排序</td><br>            <td>O(nlogn)</td><br>            <td>O(n2)</td><br>            <td>不稳定</td><br>            <td>O(nlogn)</td><br>            <td>数据量很大时好,平均效率最高的算法</td><br>        </tr><br>        <tr><br>            <td>归并排序</td><br>            <td>O(nlogn)</td><br>            <td>O(nlogn)</td><br>            <td>稳定</td><br>            <td>O(1)</td><br>            <td>数据量很大时好</td><br>        </tr><br>        <tr><br>            <td>堆排序</td><br>            <td>O(nlogn)</td><br>            <td>O(nlogn)</td><br>            <td>不稳定</td><br>            <td>O(1)</td><br>            <td>数据量很大时好</td><br>        </tr><br>    </tbody><br></table>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><pre><code>排序法
+平均时间
+最差情形
+稳定度
+额外空间
+备注
 
 
 
-<ul>
+
+冒泡排序
+O(n2)
+O(n2)
+稳定
+O(1)
+效率最低,n很小时可以使用,一般不用
+
+
+选择排序
+O(n2)
+O(n2)
+不稳定
+O(1)
+效率很低,n很小时可以使用,一般不用
+
+
+插入排序
+O(n2)
+O(n2)
+稳定
+O(1)
+大部分已排序时比较好
+
+
+希尔排序
+O(nlogn)
+O(n的s次方)
+不稳定
+O(1)
+1&amp;lt;s&amp;lt;2
+
+
+快速排序
+O(nlogn)
+O(n2)
+不稳定
+O(nlogn)
+数据量很大时好,平均效率最高的算法
+
+
+归并排序
+O(nlogn)
+O(nlogn)
+稳定
+O(1)
+数据量很大时好
+
+
+堆排序
+O(nlogn)
+O(nlogn)
+不稳定
+O(1)
+数据量很大时好
+</code></pre><ul>
 <li>冒泡排序: 最慢的排序算法,基本上用不着!!!</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">var generateTestData = require(&apos;./00-TestDataGenerator&apos;);</span><br><span class="line"></span><br><span class="line">var bubbleSort = function (data) &#123;</span><br><span class="line">    var l = data.length;</span><br><span class="line">    for (var i = 0; i &lt;= l - 1; i++) &#123;  //外层循环表示要进行length趟排序</span><br><span class="line">        //内层循环表示在每一趟中两两交换进行排序</span><br><span class="line">        for (var j = 1; j &lt;= l; j++) &#123;</span><br><span class="line">            if (data[j] &lt; data[j - 1]) &#123;</span><br><span class="line">                var tmp = data[j];</span><br><span class="line">                data[j] = data[j - 1];</span><br><span class="line">                data[j - 1] = tmp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return data;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var data = generateTestData(20000);</span><br><span class="line"></span><br><span class="line">var start = new Date().getTime();</span><br><span class="line">console.log(&apos;start sorting....&apos;);</span><br><span class="line"></span><br><span class="line">var result = bubbleSort(data);</span><br><span class="line"></span><br><span class="line">var end = new Date().getTime();</span><br><span class="line">console.log(&apos;耗时: &apos; + (end - start) + &apos; ms&apos;);</span><br><span class="line"></span><br><span class="line">// console.log(result);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"> * 生成测试数据 (TestDataGenerator.js 文件)</span><br><span class="line">var generateTestData = function (n) &#123;</span><br><span class="line">    var number = n || 1000;</span><br><span class="line">    var arr = [];</span><br><span class="line">    for (var i = 0; i &lt; number; i++) &#123;</span><br><span class="line">        var data = Math.floor(Math.random() * number);</span><br><span class="line">        arr.push(data);</span><br><span class="line">    &#125;</span><br><span class="line">    return arr;</span><br><span class="line">&#125;</span><br><span class="line">module.exports = generateTestData;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">var generateTestData = require(&apos;./TestDataGenerator&apos;);</span><br><span class="line"></span><br><span class="line">var bubbleSort = function (data) &#123;</span><br><span class="line">    var l = data.length;</span><br><span class="line">    for (var i = 0; i &lt;= l - 1; i++) &#123;  //外层循环表示要进行length趟排序</span><br><span class="line">        //内层循环表示在每一趟中两两交换进行排序</span><br><span class="line">        for (var j = 1; j &lt;= l; j++) &#123;</span><br><span class="line">            if (data[j] &lt; data[j - 1]) &#123;</span><br><span class="line">                var tmp = data[j];</span><br><span class="line">                data[j] = data[j - 1];</span><br><span class="line">                data[j - 1] = tmp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return data;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var data = generateTestData(20000);</span><br><span class="line"></span><br><span class="line">var start = new Date().getTime();</span><br><span class="line">console.log(&apos;start sorting....&apos;);</span><br><span class="line"></span><br><span class="line">var result = bubbleSort(data);</span><br><span class="line"></span><br><span class="line">var end = new Date().getTime();</span><br><span class="line">console.log(&apos;耗时: &apos; + (end - start) + &apos; ms&apos;);</span><br><span class="line"></span><br><span class="line">// console.log(result);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>选择排序</li>
+<li>选择排序是先找到起始数组中最小的元素，将它交换到i=0；</li>
+<li>然后寻找剩下元素中最小的元素，将它交换到i=1的位置…… 直到找到第二大的元素，将它交换到n-2的位置。</li>
+<li>这时，整个数组的排序完成。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">var generateTestData = require(&apos;./00-TestDataGenerator&apos;)</span><br><span class="line">var selectionSort = function (data) &#123;</span><br><span class="line">    // var l = data.length;</span><br><span class="line">    // for (var i = 0; i &lt;= l - 2; i++) &#123;</span><br><span class="line">    //     for (var j = i + 1; j &lt;= l - 1; j++) &#123;</span><br><span class="line">    //         if (data[j] &lt; data[i]) &#123;</span><br><span class="line">    //             var tmp = data[i];</span><br><span class="line">    //             data[i] = data[j];</span><br><span class="line">    //             data[j] = tmp;</span><br><span class="line">    //         &#125;</span><br><span class="line">    //     &#125;</span><br><span class="line">    // &#125;</span><br><span class="line">    var l = data.length,</span><br><span class="line">        min_index;</span><br><span class="line">    for (var i = 0; i &lt;= l - 2; i++) &#123;</span><br><span class="line">        min_index = i;</span><br><span class="line">        //在后面的部分中找到最小值得index</span><br><span class="line">        for (var j = i + 1; j &lt;= l - 1; j++) &#123;</span><br><span class="line">            if (data[j] &lt; data[min_index]) &#123;</span><br><span class="line">                min_index = j;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        //将最小值交换到未排序部分的头部</span><br><span class="line">        var tmp = data[i];</span><br><span class="line">        data[i] = data[min_index];</span><br><span class="line">        data[min_index] = tmp;</span><br><span class="line">    &#125;</span><br><span class="line">    return data;</span><br><span class="line">&#125;</span><br><span class="line">var data = generateTestData(100000);</span><br><span class="line">// console.log(data);</span><br><span class="line">var start = new Date().getTime();</span><br><span class="line">console.log(&apos;start sorting....&apos;);</span><br><span class="line">var result = selectionSort(data);</span><br><span class="line">var end = new Date().getTime();</span><br><span class="line">console.log(&apos;耗时: &apos; + (end - start) + &apos; ms&apos;);</span><br><span class="line">// console.log(result);</span><br></pre></td></tr></table></figure>
       
 
       
@@ -427,11 +495,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">html</a>
+                <a href="javascript:void(0)" class="js-tag color4">css</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">web语义化的理解</a>
+                <a href="javascript:void(0)" class="js-tag color4">css兼容性问题</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">html</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -439,11 +511,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">css</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">css兼容性问题</a>
+                <a href="javascript:void(0)" class="js-tag color5">web语义化的理解</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -635,6 +703,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript-null</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript-undefined</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javascript-性能优化</a>
               </li>
              
@@ -647,27 +723,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript-null</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript-undefined</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javascript-严格模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">javascript-循环</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">javascript-xss</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript-csrf</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -700,6 +756,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">堆排序</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">javascript-循环</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">javascript-xss</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript-csrf</a>
               </li>
             
             <div class="clearfix"></div>
