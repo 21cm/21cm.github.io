@@ -408,7 +408,12 @@
 <li>归并排序通用版本</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">var generateTestData = require(&apos;./TestDataGenerator&apos;);</span><br><span class="line">function merge(a1, a2) &#123;</span><br><span class="line">    var result = [];</span><br><span class="line">    var i = 0,</span><br><span class="line">        j = 0,</span><br><span class="line">        l1 = a1.length,</span><br><span class="line">        l2 = a2.length;</span><br><span class="line">    while (i &lt; l1 &amp;&amp; j &lt; l2) &#123;</span><br><span class="line">        if (a1[i] &lt; a2[j]) &#123;</span><br><span class="line">            result.push(a1[i++]);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            result.push(a2[j++]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    if (i &lt; l1) &#123;</span><br><span class="line">        for (; i &lt; l1; i++) &#123;</span><br><span class="line">            result.push(a1[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    if (j &lt; l2) &#123;</span><br><span class="line">        for (; j &lt; l2; j++) &#123;</span><br><span class="line">            result.push(a2[j]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return result;</span><br><span class="line">&#125;</span><br><span class="line">function mergeSort(data) &#123;</span><br><span class="line">    /***</span><br><span class="line">     * 此句为递归结束条件,绝对不能遗漏!!!!</span><br><span class="line">     */</span><br><span class="line">    if (data.length === 1) &#123;</span><br><span class="line">        return data;</span><br><span class="line">    &#125;</span><br><span class="line">    var middle = Math.floor(data.length / 2);</span><br><span class="line">    var left = data.slice(0, middle),</span><br><span class="line">        right = data.slice(middle);</span><br><span class="line">    return merge(mergeSort(left), mergeSort(right));</span><br><span class="line">&#125;</span><br><span class="line">var data = generateTestData(3000000);</span><br><span class="line">// console.log(data);</span><br><span class="line">var start = new Date().getTime();</span><br><span class="line">console.log(&apos;start sorting....&apos;);</span><br><span class="line">var result = mergeSort(data);</span><br><span class="line">var end = new Date().getTime();</span><br><span class="line">console.log(&apos;耗时: &apos; + (end - start) + &apos; ms&apos;);</span><br><span class="line">// console.log(result);</span><br></pre></td></tr></table></figure>
-
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">归并排序是建立在归并操作上的一种有效的排序算法。该算法是采用分治法（Divide and Conquer）的一个非常典型的应用。</span><br></pre></td></tr></table></figure>
+<p>首先考虑下如何将将二个有序数列合并。这个非常简单，只要从比较二个数列的第一个数，谁小就先取谁，<br>取了后就在对应数列中删除这个数。然后再进行比较，如果有数列为空，那直接将另一个数列的数据依次取出即可。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">[cpp]</span><br><span class="line">//将有序数组a[]和b[]合并到c[]中  </span><br><span class="line">void MemeryArray(int a[], int n, int b[], int m, int c[])  </span><br><span class="line">&#123;  </span><br><span class="line">    int i, j, k;  </span><br><span class="line">    i = j = k = 0;  </span><br><span class="line">    while (i &lt; n &amp;&amp; j &lt; m)  </span><br><span class="line">    &#123;  </span><br><span class="line">        if (a[i] &lt; b[j])  </span><br><span class="line">            c[k++] = a[i++];  </span><br><span class="line">        else  </span><br><span class="line">            c[k++] = b[j++];   </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    while (i &lt; n)  </span><br><span class="line">        c[k++] = a[i++];  </span><br><span class="line">  </span><br><span class="line">    while (j &lt; m)  </span><br><span class="line">        c[k++] = b[j++];  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>可以看出合并有序数列的效率是比较高的，可以达到O(n)。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">解决了上面的合并有序数列问题，再来看归并排序，其的基本思路就是将数组分成二组A，B，如果这二组组内的数据都是有序的，</span><br><span class="line">那么就可以很方便的将这二组数据进行排序。如何让这二组组内数据有序了？</span><br><span class="line"></span><br><span class="line">可以将A，B组各自再分成二组。依次类推，当分出来的小组只有一个数据时，可以认为这个小组组内已经达到了有序，</span><br><span class="line">然后再合并相邻的二个小组就可以了。这样通过先递归的分解数列，再合并数列就完成了归并排序。</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">[cpp]</span><br><span class="line">//将有二个有序数列a[first...mid]和a[mid...last]合并。  </span><br><span class="line">void mergearray(int a[], int first, int mid, int last, int temp[])  </span><br><span class="line">&#123;  </span><br><span class="line">    int i = first, j = mid + 1;  </span><br><span class="line">    int m = mid,   n = last;  </span><br><span class="line">    int k = 0;  </span><br><span class="line">      </span><br><span class="line">    while (i &lt;= m &amp;&amp; j &lt;= n)  </span><br><span class="line">    &#123;  </span><br><span class="line">        if (a[i] &lt;= a[j])  </span><br><span class="line">            temp[k++] = a[i++];  </span><br><span class="line">        else  </span><br><span class="line">            temp[k++] = a[j++];  </span><br><span class="line">    &#125;  </span><br><span class="line">      </span><br><span class="line">    while (i &lt;= m)  </span><br><span class="line">        temp[k++] = a[i++];  </span><br><span class="line">      </span><br><span class="line">    while (j &lt;= n)  </span><br><span class="line">        temp[k++] = a[j++];  </span><br><span class="line">      </span><br><span class="line">    for (i = 0; i &lt; k; i++)  </span><br><span class="line">        a[first + i] = temp[i];  </span><br><span class="line">&#125;  </span><br><span class="line"></span><br><span class="line">void mergesort(int a[], int first, int last, int temp[])  </span><br><span class="line">&#123;  </span><br><span class="line">    if (first &lt; last)  </span><br><span class="line">    &#123;  </span><br><span class="line">        int mid = (first + last) / 2;  </span><br><span class="line">        mergesort(a, first, mid, temp);    //左边有序  </span><br><span class="line">        mergesort(a, mid + 1, last, temp); //右边有序  </span><br><span class="line">        mergearray(a, first, mid, last, temp); //再将二个有序数列合并  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line">bool MergeSort(int a[], int n)  </span><br><span class="line">&#123;  </span><br><span class="line">    int *p = new int[n];  </span><br><span class="line">    if (p == NULL)  </span><br><span class="line">        return false;  </span><br><span class="line">    mergesort(a, 0, n - 1, p);  </span><br><span class="line">    delete[] p;  </span><br><span class="line">    return true;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">归并排序的效率是比较高的，设数列长为N，将数列分开成小数列一共要logN步，每步都是一个合并有序数列的过程，</span><br><span class="line">时间复杂度可以记为O(N)，故一共为O(N*logN)。因为归并排序每次都是在相邻的数据中进行操作，</span><br><span class="line">所以归并排序在O(N*logN)的几种排序方法（快速排序，归并排序，希尔排序，堆排序）也是效率比较高的。</span><br></pre></td></tr></table></figure>
       
 
       
@@ -995,10 +1000,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">html cookie和session完全总结</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">css-inline</a>
               </li>
              
@@ -1008,6 +1009,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">css-block</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">html cookie和session完全总结</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1167,15 +1172,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">javascript内存泄露</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">查找算法-线性查找</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">查找算法-二分查找</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">javascript内存泄露</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1239,15 +1244,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">javascript-循环</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">javascript-xss</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javascript-csrf</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">javascript-循环</a>
               </li>
             
             <div class="clearfix"></div>
