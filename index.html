@@ -175,71 +175,77 @@
 <h4 id="6-冒泡排序（BubbleSort）"><a href="#6-冒泡排序（BubbleSort）" class="headerlink" title="6 冒泡排序（BubbleSort）"></a>6 冒泡排序（BubbleSort）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">冒泡排序是最慢的排序算法。在实际运用中它是效率最低的算法。它通过一趟又一趟地比较数组中的每一个元素，使较大的数据下沉，</span><br><span class="line">较小的数据上升。它是O(n^2)的算法。</span><br></pre></td></tr></table></figure>
 <h4 id="7-选择排序（SelectSort）"><a href="#7-选择排序（SelectSort）" class="headerlink" title="7 选择排序（SelectSort）"></a>7 选择排序（SelectSort）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">这两种排序方法都是交换方法的排序算法，效率都是 O(n2)。在实际应用中处于和冒泡排序基本相同的地位。</span><br><span class="line">它们只是排序算法发展的初级阶段，在实际中使用较少。</span><br></pre></td></tr></table></figure>
 <h4 id="8-基数排序（RadixSort）"><a href="#8-基数排序（RadixSort）" class="headerlink" title="8 基数排序（RadixSort）"></a>8 基数排序（RadixSort）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">基数排序和通常的排序算法并不走同样的路线。它是一种比较新颖的算法，但是它只能用于整数的排序，</span><br><span class="line">如果我们要把同样的办法运用到浮点数上，我们必须了解浮点数的存储格式，并通过特殊的方式将浮点数映射到整数上，</span><br><span class="line">然后再映射回去，这是非常麻烦的事情，因此，它的使用同样也不多。而且，最重要的是，这样算法也需要较多的存储空间。</span><br></pre></td></tr></table></figure>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><pre><code>排序法
-平均时间
-最差情形
-稳定度
-额外空间
-备注
-
-
-
-
-冒泡排序
-O(n2)
-O(n2)
-稳定
-O(1)
-效率最低,n很小时可以使用,一般不用
-
-
-选择排序
-O(n2)
-O(n2)
-不稳定
-O(1)
-效率很低,n很小时可以使用,一般不用
-
-
-插入排序
-O(n2)
-O(n2)
-稳定
-O(1)
-大部分已排序时比较好
-
-
-希尔排序
-O(nlogn)
-O(n的s次方)
-不稳定
-O(1)
-1&amp;lt;s&amp;lt;2
-
-
-快速排序
-O(nlogn)
-O(n2)
-不稳定
-O(nlogn)
-数据量很大时好,平均效率最高的算法
-
-
-归并排序
-O(nlogn)
-O(nlogn)
-稳定
-O(1)
-数据量很大时好
-
-
-堆排序
-O(nlogn)
-O(nlogn)
-不稳定
-O(1)
-数据量很大时好
-</code></pre><ul>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">排序法</th>
+<th style="text-align:center">平均时间</th>
+<th style="text-align:center">最差情形</th>
+<th style="text-align:center">稳定度</th>
+<th style="text-align:center">额外空间</th>
+<th style="text-align:center">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">冒泡排序</td>
+<td style="text-align:center">O(nlogn)</td>
+<td style="text-align:center">O(n2)</td>
+<td style="text-align:center">稳定</td>
+<td style="text-align:center">O(1)</td>
+<td style="text-align:center">效率最低,n很小时可以使用,一般不用</td>
+</tr>
+<tr>
+<td style="text-align:center">选择排序</td>
+<td style="text-align:center">O(nlogn)</td>
+<td style="text-align:center">O(n2)</td>
+<td style="text-align:center">不稳定</td>
+<td style="text-align:center">O(1)</td>
+<td style="text-align:center">效率很低,n很小时可以使用,一般不用</td>
+</tr>
+<tr>
+<td style="text-align:center">插入排序</td>
+<td style="text-align:center">O(nlogn)</td>
+<td style="text-align:center">O(n2)</td>
+<td style="text-align:center">稳定</td>
+<td style="text-align:center">O(1)</td>
+<td style="text-align:center">大部分已排序时比较好</td>
+</tr>
+<tr>
+<td style="text-align:center">希尔排序</td>
+<td style="text-align:center">O(nlogn)</td>
+<td style="text-align:center">O(n的s次方)</td>
+<td style="text-align:center">不稳定</td>
+<td style="text-align:center">O(1)</td>
+<td style="text-align:center">1&lt;s&lt;2</td>
+</tr>
+<tr>
+<td style="text-align:center">快速排序</td>
+<td style="text-align:center">O(nlogn)</td>
+<td style="text-align:center">O(n2)</td>
+<td style="text-align:center">不稳定</td>
+<td style="text-align:center">O(nlogn)</td>
+<td style="text-align:center">数据量很大时好,平均效率最高的算法</td>
+</tr>
+<tr>
+<td style="text-align:center">归并排序</td>
+<td style="text-align:center">O(nlogn)</td>
+<td style="text-align:center">O(nlogn)</td>
+<td style="text-align:center">稳定</td>
+<td style="text-align:center">O(1)</td>
+<td style="text-align:center">数据量很大时好</td>
+</tr>
+<tr>
+<td style="text-align:center">堆排序</td>
+<td style="text-align:center">O(nlogn)</td>
+<td style="text-align:center">O(nlogn)</td>
+<td style="text-align:center">不稳定</td>
+<td style="text-align:center">O(1)</td>
+<td style="text-align:center">数据量很大时好</td>
+</tr>
+</tbody>
+</table>
+<ul>
 <li>冒泡排序: 最慢的排序算法,基本上用不着!!!</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"> * 生成测试数据 (TestDataGenerator.js 文件)</span><br><span class="line">var generateTestData = function (n) &#123;</span><br><span class="line">    var number = n || 1000;</span><br><span class="line">    var arr = [];</span><br><span class="line">    for (var i = 0; i &lt; number; i++) &#123;</span><br><span class="line">        var data = Math.floor(Math.random() * number);</span><br><span class="line">        arr.push(data);</span><br><span class="line">    &#125;</span><br><span class="line">    return arr;</span><br><span class="line">&#125;</span><br><span class="line">module.exports = generateTestData;</span><br></pre></td></tr></table></figure>
@@ -817,14 +823,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">css</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">css兼容性问题</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">html</a>
               </li>
              
@@ -834,6 +832,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">web语义化的理解</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">css</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">css兼容性问题</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1045,10 +1051,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript-严格模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">排序</a>
               </li>
              
@@ -1078,6 +1080,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">堆排序</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript-严格模式</a>
               </li>
              
               <li class="article-tag-list-item">
