@@ -169,8 +169,7 @@
 <li>利用2个栈实现一个队列, 只需要实现先进先出的功能</li>
 <li>@constructor</li>
 </ul>
-<p>var Stack = require(‘<a href="https://21cm.js.org/lib/stack&#39;)">https://21cm.js.org/lib/stack&#39;)</a>;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">var Queue = function () &#123;</span><br><span class="line">    this.stack1 = new Stack();</span><br><span class="line">    this.stack2 = new Stack();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Queue.prototype.enqueue = function (ele) &#123;</span><br><span class="line">    this.stack1.push(ele);   //入队操作都压入栈1</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Queue.prototype.dequeue = function () &#123;</span><br><span class="line">    if (this.stack2.length()) &#123;  //栈2不空,直接pop</span><br><span class="line">        return this.stack2.pop();</span><br><span class="line">    &#125; else &#123;  //若第二个栈不空,则将第一个栈中的所有元素出栈并压入栈2,并pop一次</span><br><span class="line">        while (this.stack1.length()) &#123;</span><br><span class="line">            this.stack2.push(this.stack1.pop());</span><br><span class="line">        &#125;</span><br><span class="line">        return this.stack2.pop();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var q = new Queue();</span><br><span class="line">q.enqueue(1);</span><br><span class="line">q.enqueue(2);</span><br><span class="line">q.enqueue(3);</span><br><span class="line"></span><br><span class="line">console.log(q.dequeue());</span><br><span class="line">console.log(q.dequeue());</span><br><span class="line">console.log(q.stack1);</span><br><span class="line">console.log(q.stack2);</span><br><span class="line"></span><br><span class="line">console.log(&apos;----------------------------&apos;);</span><br><span class="line"></span><br><span class="line">q.enqueue(4);</span><br><span class="line">q.enqueue(5);</span><br><span class="line">console.log(q.dequeue());</span><br><span class="line">console.log(q.stack1);</span><br><span class="line">console.log(q.stack2);</span><br><span class="line"></span><br><span class="line">console.log(&apos;----------------------------&apos;);</span><br><span class="line"></span><br><span class="line">console.log(q.dequeue());</span><br><span class="line">console.log(q.dequeue());</span><br><span class="line">console.log(q.stack1);</span><br><span class="line">console.log(q.stack2);</span><br><span class="line"></span><br><span class="line">console.log(&apos;----------------------------&apos;);</span><br></pre></td></tr></table></figure></p>
-
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">var Stack = require(&apos;https://21cm.js.org/lib/stack&apos;);</span><br><span class="line">var Queue = function () &#123;</span><br><span class="line">    this.stack1 = new Stack();</span><br><span class="line">    this.stack2 = new Stack();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Queue.prototype.enqueue = function (ele) &#123;</span><br><span class="line">    this.stack1.push(ele);   //入队操作都压入栈1</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Queue.prototype.dequeue = function () &#123;</span><br><span class="line">    if (this.stack2.length()) &#123;  //栈2不空,直接pop</span><br><span class="line">        return this.stack2.pop();</span><br><span class="line">    &#125; else &#123;  //若第二个栈不空,则将第一个栈中的所有元素出栈并压入栈2,并pop一次</span><br><span class="line">        while (this.stack1.length()) &#123;</span><br><span class="line">            this.stack2.push(this.stack1.pop());</span><br><span class="line">        &#125;</span><br><span class="line">        return this.stack2.pop();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var q = new Queue();</span><br><span class="line">q.enqueue(1);</span><br><span class="line">q.enqueue(2);</span><br><span class="line">q.enqueue(3);</span><br><span class="line"></span><br><span class="line">console.log(q.dequeue());</span><br><span class="line">console.log(q.dequeue());</span><br><span class="line">console.log(q.stack1);</span><br><span class="line">console.log(q.stack2);</span><br><span class="line"></span><br><span class="line">console.log(&apos;----------------------------&apos;);</span><br><span class="line"></span><br><span class="line">q.enqueue(4);</span><br><span class="line">q.enqueue(5);</span><br><span class="line">console.log(q.dequeue());</span><br><span class="line">console.log(q.stack1);</span><br><span class="line">console.log(q.stack2);</span><br><span class="line"></span><br><span class="line">console.log(&apos;----------------------------&apos;);</span><br><span class="line"></span><br><span class="line">console.log(q.dequeue());</span><br><span class="line">console.log(q.dequeue());</span><br><span class="line">console.log(q.stack1);</span><br><span class="line">console.log(q.stack2);</span><br><span class="line"></span><br><span class="line">console.log(&apos;----------------------------&apos;);</span><br></pre></td></tr></table></figure>
       
 
       
@@ -1003,11 +1002,27 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">判断回文数</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">html</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">web语义化的理解</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">html 标准模式与怪异模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">多队列</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1016,18 +1031,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">css兼容性问题</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">web语义化的理解</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">判断回文数</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1043,7 +1046,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">css-box-sizing属性</a>
+                <a href="javascript:void(0)" class="js-tag color4">html cookie和session完全总结</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1055,7 +1058,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">html cookie和session完全总结</a>
+                <a href="javascript:void(0)" class="js-tag color2">css-box-sizing属性</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1063,11 +1066,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">css-居中</a>
+                <a href="javascript:void(0)" class="js-tag color2">css-浮动</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">css-浮动</a>
+                <a href="javascript:void(0)" class="js-tag color2">css-居中</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1131,10 +1134,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">http状态码</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">javascript高级函数</a>
               </li>
              
@@ -1143,19 +1142,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">http状态码</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">javascript颗粒化</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数制转换</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript原型式继承</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">object.create</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1172,6 +1167,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">javascript-property</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript原型式继承</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">object.create</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1219,6 +1222,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">javascript-ready</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">javascript-onload</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javascript-null</a>
               </li>
              
@@ -1231,11 +1242,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">javascript-ready</a>
+                <a href="javascript:void(0)" class="js-tag color4">javascript-循环</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">javascript-onload</a>
+                <a href="javascript:void(0)" class="js-tag color1">javascript-严格模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1271,23 +1282,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript-严格模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">javascript-循环</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">javascript-xss</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javascript-csrf</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">多队列</a>
               </li>
             
             <div class="clearfix"></div>
