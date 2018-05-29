@@ -165,36 +165,19 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="Applicative编程-将函数作为参数传递给另外一个函数-并且调用它。"><a href="#Applicative编程-将函数作为参数传递给另外一个函数-并且调用它。" class="headerlink" title="Applicative编程: 将函数作为参数传递给另外一个函数,并且调用它。"></a>Applicative编程: 将函数作为参数传递给另外一个函数,并且调用它。</h3><p> 最常见的有数组的 map、reduce、filter函数等。</p>
+        <h3 id="Applicative编程-将函数作为参数传递给另外一个函数-并且调用它。"><a href="#Applicative编程-将函数作为参数传递给另外一个函数-并且调用它。" class="headerlink" title="Applicative编程: 将函数作为参数传递给另外一个函数,并且调用它。"></a>Applicative编程: 将函数作为参数传递给另外一个函数,并且调用它。</h3><p>最常见的有数组的 map、reduce、filter函数等。</p>
 <ul>
-<li>例子1: 实现一个函数,查找出某个数组中所有数字,可能实现一个findNumber方法,<br>那如果后面又有查找字母、查找大于10的数字…这些需求呢? 难道每个需求都要添加一个函数?<br>可以使用高阶函数,将一个条件判断的函数当做参数传递到一个通用的find函数中!</li>
+<li>例一: 实现一个函数,查找出某个数组中所有数字,可能实现一个findNumber方法,<br>那如果后面又有查找字母、查找大于10的数字…这些需求呢? 难道每个需求都要添加一个函数?<br>可以使用高阶函数,将一个条件判断的函数当做参数传递到一个通用的find函数中!</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">function find(array, pred/!*function*!/) &#123;</span><br><span class="line">   var result = [];</span><br><span class="line">   array.forEach(function (item, index) &#123;</span><br><span class="line">       if (pred(item)) &#123;</span><br><span class="line">           result.push(item);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;)</span><br><span class="line">   return result;</span><br><span class="line">   &#125;</span><br><span class="line">var result = find([1, 2, 3, 4, &apos;a&apos;, &apos;c&apos;, 5], function (item) &#123;</span><br><span class="line">       // return item &gt;= 0 &amp;&amp; item &lt;= 9;   //查找数字</span><br><span class="line">       return item &gt;= &apos;a&apos; &amp;&amp; item &lt;= &apos;c&apos;;   //查找字母</span><br><span class="line">   &#125;);</span><br><span class="line">console.log(result);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">function find(array, pred/!*function*!/) &#123;</span><br><span class="line">   var result = [];</span><br><span class="line">   array.forEach(function (item, index) &#123;</span><br><span class="line">       if (pred(item)) &#123;</span><br><span class="line">           result.push(item);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;)</span><br><span class="line">   return result;</span><br><span class="line">   &#125;</span><br><span class="line">var result = find([1, 2, 3, 4, &apos;a&apos;, &apos;c&apos;, 5], function (item) &#123;</span><br><span class="line">       // return item &gt;= 0 &amp;&amp; item &lt;= 9;   //查找数字 1,2,3,4,5</span><br><span class="line">       return item &gt;= &apos;a&apos; &amp;&amp; item &lt;= &apos;c&apos;;   //查找字母 a,c</span><br><span class="line">   &#125;);</span><br><span class="line">console.log(result); 1,2,3,4</span><br></pre></td></tr></table></figure>
 <ul>
-<li>例子1的代码还可以写成如下形式,通过返回函数来定制不同行为</li>
+<li>例一的代码还可以写成如下形式,通过返回函数来定制不同行为</li>
 <li>@param pred</li>
 <li>@returns {Function}</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function find(pred) &#123;</span><br><span class="line">    return function (array) &#123;</span><br><span class="line">        var result = [];</span><br><span class="line">        array.forEach(function (item, index) &#123;</span><br><span class="line">            if (pred(item)) &#123;</span><br><span class="line">                result.push(item);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">function find(pred) &#123;</span><br><span class="line">    return function (array) &#123;</span><br><span class="line">        var result = [];</span><br><span class="line">        array.forEach(function (item, index) &#123;</span><br><span class="line">            if (pred(item)) &#123;</span><br><span class="line">                result.push(item);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"> // * 1.查找数组中的数字</span><br><span class="line">var findNumber = find(function (x) &#123;</span><br><span class="line">    return x &gt;= 0 &amp;&amp; x &lt;= 9</span><br><span class="line">&#125;);</span><br><span class="line">console.log(findNumber([1, 2, 3, &apos;a&apos;, &apos;v&apos;, &apos;b&apos;, 4, &apos;kkk&apos;, &apos;rrr&apos;])); //1,2,3,4</span><br><span class="line"></span><br><span class="line">//  * 2.查找数组中除数字外的元素</span><br><span class="line">var findNotNumber = find(function (x) &#123;</span><br><span class="line">    return !(x &gt;= 0 &amp;&amp; x &lt;= 9);</span><br><span class="line">&#125;)</span><br><span class="line">console.log(findNotNumber([1, 2, 3, &apos;a&apos;, &apos;v&apos;, &apos;b&apos;, 4, &apos;kkk&apos;, &apos;rrr&apos;])); // a,v,b,kkk,rrr</span><br><span class="line"></span><br><span class="line">//  * 3.查找数组中的小写字母</span><br><span class="line"></span><br><span class="line">var findLowerCaseLetters = find(function (x) &#123;</span><br><span class="line">    return x &gt;= &apos;a&apos; &amp;&amp; x &lt;= &apos;z&apos;</span><br><span class="line">&#125;);</span><br><span class="line">console.log(findLowerCaseLetters([1, 2, 3, &apos;a&apos;, &apos;v&apos;, &apos;b&apos;, 4]));  a,v,b</span><br></pre></td></tr></table></figure>
 <ul>
-<li>1.查找数组中的数字</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var findNumber = find(function (x) &#123;</span><br><span class="line">    return x &gt;= 0 &amp;&amp; x &lt;= 9</span><br><span class="line">&#125;);</span><br><span class="line">console.log(findNumber([1, 2, 3, &apos;a&apos;, &apos;v&apos;, &apos;b&apos;, 4, &apos;kkk&apos;, &apos;rrr&apos;]));</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>2.查找数组中除数字外的元素</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var findNotNumber = find(function (x) &#123;</span><br><span class="line">    return !(x &gt;= 0 &amp;&amp; x &lt;= 9);</span><br><span class="line">&#125;)</span><br><span class="line">console.log(findNotNumber([1, 2, 3, &apos;a&apos;, &apos;v&apos;, &apos;b&apos;, 4, &apos;kkk&apos;, &apos;rrr&apos;, &apos;sb&apos;, &apos;2b&apos;]));</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>3.查找数组中的小写字母</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var findLowerCaseLetters = find(function (x) &#123;</span><br><span class="line">    return x &gt;= &apos;a&apos; &amp;&amp; x &lt;= &apos;z&apos;</span><br><span class="line">&#125;);</span><br><span class="line">console.log(findLowerCaseLetters([1, 2, 3, &apos;a&apos;, &apos;v&apos;, &apos;b&apos;, 4]));</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>例二: 写一个函数,来判断传入的参数是不是某种类型的数据</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var isType = function (Type) &#123;</span><br><span class="line">    return function (data) &#123;</span><br><span class="line">        return Object.prototype.toString.call(data) === &apos;[object &apos; + Type + &apos;]&apos;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>1.判断是不是Number类型数据</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var isNumber = isType(&apos;Number&apos;);</span><br><span class="line">console.log(isNumber(0));</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>2.判断数据是不是字符串类型</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var isString = isType(&apos;String&apos;);</span><br><span class="line">console.log(isString(&apos;123&apos;));</span><br><span class="line">console.log(isString(123));</span><br></pre></td></tr></table></figure></li>
+<li>例二: 写一个函数,来判断传入的参数是不是某种类型的数据<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">var isType = function (Type) &#123;</span><br><span class="line">    return function (data) &#123;</span><br><span class="line">        return Object.prototype.toString.call(data) === &apos;[object &apos; + Type + &apos;]&apos;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">//  * 1.判断是不是Number类型数据</span><br><span class="line">var isNumber = isType(&apos;Number&apos;);</span><br><span class="line">console.log(isNumber(0)); //true</span><br><span class="line">//  * 2.判断数据是不是字符串类型</span><br><span class="line">var isString = isType(&apos;String&apos;); //true</span><br><span class="line">console.log(isString(&apos;123&apos;));   //true</span><br><span class="line">console.log(isString(123));     //false</span><br></pre></td></tr></table></figure></li>
 </ul>
 
       
@@ -295,15 +278,13 @@
 </li>
 <li><p>与面向对象编程类似,函数式编程通过”组合”或”黏结”其他函数来构建更大的函数。</p>
 <ul>
-<li>例一: 函数作为参数</li>
-</ul>
-</li>
-</ul>
+<li><p>例一: 函数作为参数</p>
 <pre><code>[&quot;hello&quot;,&quot;hi&quot;].forEach(function (item, i) {
     console.log(item); // hello hi
 })
-</code></pre><ul>
-<li>例二: 返回函数的函数<pre><code>function splat(func) {
+</code></pre></li>
+<li><p>例二: 返回函数的函数</p>
+<pre><code>function splat(func) {
     return function (array) {
         return func.apply(null, array);
     }
@@ -313,6 +294,8 @@ var result = (splat(function (x, y) {
 }))([1, 2]);
 console.log(result); //3
 </code></pre></li>
+</ul>
+</li>
 </ul>
 
       
@@ -761,10 +744,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">判断回文数</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">html</a>
               </li>
              
@@ -781,15 +760,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Applicative编程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">css</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">css兼容性问题</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Applicative编程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -809,6 +788,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">判断回文数</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">link</a>
               </li>
              
@@ -817,11 +800,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">css-box-sizing属性</a>
+                <a href="javascript:void(0)" class="js-tag color4">css-清除浮动</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">css-清除浮动</a>
+                <a href="javascript:void(0)" class="js-tag color2">css-box-sizing属性</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -937,10 +920,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">javascript-闭包</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">javascript-缓存</a>
               </li>
              
@@ -954,6 +933,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javascript-bind</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">javascript-闭包</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1001,10 +984,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript-严格模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">排序</a>
               </li>
              
@@ -1034,6 +1013,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">堆排序</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript-严格模式</a>
               </li>
              
               <li class="article-tag-list-item">
