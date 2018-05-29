@@ -145,6 +145,173 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-js-ready&amp;&amp;js-onload" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/27/js-ready&&js-onload/">前端知识点总结之javascript-ready &amp;&amp; javascript-onload</a>
+    </h1>
+  
+
+        
+        <a href="/2018/05/27/js-ready&&js-onload/" class="archive-article-date">
+  	<time datetime="2018-05-27T02:30:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">jquery中$(document).ready()的作用类似于传统JavaScript中的window.onload方法，</span><br><span class="line">不过与window.onload方法还是有区别的。</span><br></pre></td></tr></table></figure>
+<h4 id="1-执行时间"><a href="#1-执行时间" class="headerlink" title="1.执行时间"></a>1.执行时间</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">window.onload必须等到页面内包括图片的所有元素加载完毕后才能执行。 </span><br><span class="line">$(document).ready()是DOM结构绘制完毕后就执行，不必等到加载完毕。</span><br></pre></td></tr></table></figure>
+<h4 id="2-编写个数不同"><a href="#2-编写个数不同" class="headerlink" title="2.编写个数不同"></a>2.编写个数不同</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">window.onload不能同时编写多个，如果有多个window.onload方法，只会执行一个 </span><br><span class="line">$(document).ready()可以同时编写多个，并且都可以得到执行</span><br></pre></td></tr></table></figure>
+<h4 id="3-简化写法-针对jquery"><a href="#3-简化写法-针对jquery" class="headerlink" title="3.简化写法(针对jquery)"></a>3.简化写法(针对jquery)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">window.onload没有简化写法 </span><br><span class="line">$(document).ready(function()&#123;&#125;)可以简写成$(function()&#123;&#125;);</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">javascript-ready</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">javascript-onload</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/05/27/js-ready&&js-onload/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-js-attribute&amp;&amp;js-property" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/27/js-attribute&&js-property/">前端知识点总结之javascript-attribute &amp;&amp; javascript-property</a>
+    </h1>
+  
+
+        
+        <a href="/2018/05/27/js-attribute&&js-property/" class="archive-article-date">
+  	<time datetime="2018-05-27T02:10:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="attribute和property的区别是什么？"><a href="#attribute和property的区别是什么？" class="headerlink" title="attribute和property的区别是什么？"></a>attribute和property的区别是什么？</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">attribute是dom元素在文档中作为html标签拥有的属性；</span><br><span class="line">property就是dom元素在js中作为对象拥有的属性。</span><br></pre></td></tr></table></figure>
+<p>所以：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">对于html的标准属性来说，attribute和property是同步的，是会自动更新的，</span><br><span class="line">但是对于自定义的属性来说，他们是不同步的.</span><br></pre></td></tr></table></figure></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript-attribute</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">javascript-property</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/05/27/js-attribute&&js-property/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-js-xss&amp;&amp;ja-csrf" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -481,216 +648,6 @@
 
 
   
-    <article id="post-js-cross-domain" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/26/js-cross-domain/">javascript-跨域方式总结</a>
-    </h1>
-  
-
-        
-        <a href="/2018/05/26/js-cross-domain/" class="archive-article-date">
-  	<time datetime="2018-05-26T09:40:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="1-跨域资源共享-CORS"><a href="#1-跨域资源共享-CORS" class="headerlink" title="1. 跨域资源共享 CORS"></a>1. 跨域资源共享 CORS</h4><p>对于web开发来讲，由于浏览器的同源策略，我们需要经常使用一些hack的方法去跨域获取资源，但是hack的方法总归是hack。<br>直到W3C出了一个标准－CORS－”跨域资源共享”（Cross-origin resource sharing）。<br>它允许浏览器向跨源服务器，发出XMLHttpRequest请求，从而克服了AJAX只能同源使用的限制。<br>首先来说 CORS 需要浏览器和服务端同时支持的，对于兼容性来说主要是ie10+，其它现代浏览器都是支持的。<br>使用 CORS 跨域的时候其实和普通的 ajax 过程是一样的，只是浏览器在发现这是一个跨域请求的时候会自动帮我们处理一些事，<br>比如验证等等，所以说只要服务端提供支持，前端是不需要做额外的事情的。</p>
-<p>两种请求<br>CORS 的请求分两种，这也是浏览器为了安全做的一些处理，不同情况下浏览器执行的操作也是不一样的，主要分为两种请求，<br>当然这一切我们是不需要做额外处理的，浏览器会自动处理的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br></pre></td><td class="code"><pre><span class="line">1. 简单请求（simple request）</span><br><span class="line">只要同时满足以下两大条件，就属于简单请求。</span><br><span class="line"></span><br><span class="line">条件</span><br><span class="line"></span><br><span class="line">1) 请求方法是以下三种方法中的一个：</span><br><span class="line">HEAD</span><br><span class="line">GET</span><br><span class="line">POST</span><br><span class="line">2）HTTP的头信息不超出以下几种字段：</span><br><span class="line">Accept</span><br><span class="line">Accept-Language</span><br><span class="line">Content-Language</span><br><span class="line">Last-Event-ID</span><br><span class="line">Content-Type：只限于三个值application/x-www-form-urlencoded、multipart/form-data、text/plain</span><br><span class="line">过程</span><br><span class="line"></span><br><span class="line">对于简单的跨域请求，浏览器会自动在请求的头信息加上 Origin 字段，表示本次请求来自哪个源（协议 + 域名 + 端口），</span><br><span class="line">服务端会获取到这个值，然后判断是否同意这次请求并返回。</span><br><span class="line"></span><br><span class="line">// 请求</span><br><span class="line">GET /cors HTTP/1.1</span><br><span class="line">Origin: http://api.qiutc.me</span><br><span class="line">Host: api.alice.com</span><br><span class="line">Accept-Language: en-US</span><br><span class="line">Connection: keep-alive</span><br><span class="line">User-Agent: Mozilla/5.0...</span><br><span class="line">1.服务端允许</span><br><span class="line"></span><br><span class="line">如果服务端许可本次请求，就会在返回的头信息多出几个字段：</span><br><span class="line"></span><br><span class="line">// 返回</span><br><span class="line">Access-Control-Allow-Origin: http://api.qiutc.me</span><br><span class="line">Access-Control-Allow-Credentials: true</span><br><span class="line">Access-Control-Expose-Headers: Info</span><br><span class="line">Content-Type: text/html; charset=utf-8</span><br><span class="line">这三个带有 Access-Control 开头的字段分别表示：</span><br><span class="line"></span><br><span class="line">Access-Control-Allow-Origin</span><br><span class="line">必须。它的值是请求时Origin字段的值或者 *，表示接受任意域名的请求。</span><br><span class="line">Access-Control-Allow-Credentials；</span><br><span class="line">可选。它的值是一个布尔值，表示是否允许发送Cookie。默认情况下，Cookie不包括在CORS请求之中。</span><br><span class="line">设为true，即表示服务器明确许可，Cookie可以包含在请求中，一起发给服务器。</span><br><span class="line">再需要发送cookie的时候还需要注意要在AJAX请求中打开withCredentials属性：</span><br><span class="line">var xhr = new XMLHttpRequest(); </span><br><span class="line">xhr.withCredentials = true;</span><br><span class="line">需要注意的是，如果要发送Cookie，Access-Control-Allow-Origin就不能设为*，必须指定明确的、与请求网页一致的域名。</span><br><span class="line">同时，Cookie依然遵循同源政策，只有用服务器域名设置的Cookie才会上传，其他域名的Cookie并不会上传，</span><br><span class="line">且原网页代码中的document.cookie也无法读取服务器域名下的Cookie。</span><br><span class="line"></span><br><span class="line">Access-Control-Expose-Headers</span><br><span class="line">可选。CORS请求时，XMLHttpRequest对象的getResponseHeader()方法只能拿到6个基本字段：</span><br><span class="line">Cache-Control、</span><br><span class="line">Content-Language、</span><br><span class="line">Content-Type、</span><br><span class="line">Expires、</span><br><span class="line">Last-Modified、</span><br><span class="line">Pragma。如果想拿到其他字段，就必须在Access-Control-Expose-Headers里面指定。</span><br><span class="line">上面的例子指定，getResponseHeader(&apos;Info&apos;)可以返回Info字段的值。</span><br><span class="line">2.服务端拒绝</span><br><span class="line"></span><br><span class="line">当然我们为了防止接口被乱调用，需要限制源，对于不允许的源，服务端还是会返回一个正常的HTTP回应，</span><br><span class="line">但是不会带上 Access-Control-Allow-Origin 字段，浏览器发现这个跨域请求的返回头信息没有该字段，</span><br><span class="line">就会抛出一个错误，会被 XMLHttpRequest 的 onerror 回调捕获到。</span><br><span class="line">这种错误无法通过 HTTP 状态码判断，因为回应的状态码有可能是200</span><br><span class="line"></span><br><span class="line">2.非简单请求</span><br><span class="line">条件</span><br><span class="line"></span><br><span class="line">出了简单请求以外的CORS请求。</span><br><span class="line">非简单请求是那种对服务器有特殊要求的请求，比如请求方法是PUT或DELETE，或者Content-Type字段的类型是application/json。</span><br><span class="line"></span><br><span class="line">过程</span><br><span class="line"></span><br><span class="line">1）预检请求</span><br><span class="line"></span><br><span class="line">非简单请求的CORS请求，会在正式通信之前，增加一次HTTP查询请求，称为&quot;预检&quot;请求（preflight）。</span><br><span class="line">浏览器先询问服务器，当前网页所在的域名是否在服务器的许可名单之中，以及可以使用哪些HTTP动词和头信息字段。</span><br><span class="line">只有得到肯定答复，浏览器才会发出正式的XMLHttpRequest请求，否则就报错。</span><br><span class="line">预检请求的发送请求：</span><br><span class="line"></span><br><span class="line">OPTIONS /cors HTTP/1.1</span><br><span class="line">Origin: http://api.qiutc.me</span><br><span class="line">Access-Control-Request-Method: PUT</span><br><span class="line">Access-Control-Request-Headers: X-Custom-Header</span><br><span class="line">Host: api.qiutc.com</span><br><span class="line">Accept-Language: en-US</span><br><span class="line">Connection: keep-alive</span><br><span class="line">User-Agent: Mozilla/5.0...</span><br><span class="line">&quot;预检&quot;请求用的请求方法是OPTIONS，表示这个请求是用来询问的。头信息里面，关键字段是Origin，表示请求来自哪个源。</span><br><span class="line">除了Origin字段，&quot;预检&quot;请求的头信息包括两个特殊字段。</span><br><span class="line"></span><br><span class="line">Access-Control-Request-Method</span><br><span class="line">该字段是必须的，用来列出浏览器的CORS请求会用到哪些HTTP方法，上例是PUT。</span><br><span class="line">Access-Control-Request-Headers</span><br><span class="line">该字段是一个逗号分隔的字符串，指定浏览器CORS请求会额外发送的头信息字段，上例是X-Custom-Header。</span><br><span class="line">预检请求的返回：</span><br><span class="line"></span><br><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Date: Mon, 01 Dec 2008 01:15:39 GMT</span><br><span class="line">Server: Apache/2.0.61 (Unix)</span><br><span class="line">Access-Control-Allow-Origin: http://api.qiutc.me</span><br><span class="line">Access-Control-Allow-Methods: GET, POST, PUT</span><br><span class="line">Access-Control-Allow-Headers: X-Custom-Header</span><br><span class="line">Content-Type: text/html; charset=utf-8</span><br><span class="line">Content-Encoding: gzip</span><br><span class="line">Content-Length: 0</span><br><span class="line">Keep-Alive: timeout=2, max=100</span><br><span class="line">Connection: Keep-Alive</span><br><span class="line">Content-Type: text/plain</span><br><span class="line">Access-Control-Allow-Methods</span><br><span class="line">必需，它的值是逗号分隔的一个字符串，表明服务器支持的所有跨域请求的方法。注意，返回的是所有支持的方法，</span><br><span class="line">而不单是浏览器请求的那个方法。这是为了避免多次&quot;预检&quot;请求。</span><br><span class="line">Access-Control-Allow-Headers</span><br><span class="line">如果浏览器请求包括Access-Control-Request-Headers字段，则Access-Control-Allow-Headers字段是必需的。</span><br><span class="line">它也是一个逗号分隔的字符串，表明服务器支持的所有头信息字段，不限于浏览器在&quot;预检&quot;中请求的字段。</span><br><span class="line">Access-Control-Max-Age</span><br><span class="line">该字段可选，用来指定本次预检请求的有效期，单位为秒。上面结果中，有效期是20天（1728000秒），</span><br><span class="line">即允许缓存该条回应1728000秒（即20天），在此期间，不用发出另一条预检请求。</span><br><span class="line">2）浏览器的正常请求和回应</span><br><span class="line"></span><br><span class="line">一旦服务器通过了&quot;预检&quot;请求，以后每次浏览器正常的CORS请求，就都跟简单请求一样，会有一个Origin头信息字段。</span><br><span class="line">服务器的回应，也都会有一个Access-Control-Allow-Origin头信息字段。</span><br><span class="line"></span><br><span class="line">参考：[《跨域资源共享 CORS 详解》]()http://www.ruanyifeng.com/blog/2016/04/cors.html</span><br><span class="line">)</span><br><span class="line">阮大神的文章，复制粘贴了不少。</span><br></pre></td></tr></table></figure></p>
-<h4 id="2-jsonp"><a href="#2-jsonp" class="headerlink" title="2. jsonp"></a>2. jsonp</h4><p>jsonp = json + padding<br>其实对于常用性来说，jsonp应该是使用最经常的一种跨域方式了，他不受浏览器兼容性的限制。但是他也有他的局限性，<code>只能发送 GET 请求</code>，<br>需要服务端和前端规定好，写法丑陋。<br>它的原理在于浏览器请求 script 资源不受同源策略限制，并且请求到 script 资源后立即执行。<br>主要做法是这样的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">在浏览器端：</span><br><span class="line">首先全局注册一个callback回调函数，记住这个函数名字（比如：resolveJson），这个函数接受一个参数，参数是期望的到的服务端返回数据，</span><br><span class="line">函数的具体内容是处理这个数据。然后动态生成一个 script 标签，src 为：请求资源的地址＋获取函数的字段名＋回调函数名称，</span><br><span class="line">这里的获取函数的字段名是要和服务端约定好的，是为了让服务端拿到回调函数名称。（如：www.qiute.com?callbackName=resolveJson）。</span><br><span class="line"></span><br><span class="line">function resolveJosn(result) &#123;</span><br><span class="line">    console.log(result.name);</span><br><span class="line">&#125;</span><br><span class="line">var jsonpScript= document.createElement(&quot;script&quot;);</span><br><span class="line">jsonpScript.type = &quot;text/javascript&quot;;</span><br><span class="line">jsonpScript.src = &quot;http://www.qiute.com?callbackName=resolveJson&quot;;</span><br><span class="line">document.getElementsByTagName(&quot;head&quot;)[0].appendChild(jsonpScript);</span><br><span class="line"></span><br><span class="line">服务端</span><br><span class="line">在接受到浏览器端 script 的请求之后，从url的query的callbackName获取到回调函数的名字，例子中是resolveJson。</span><br><span class="line">然后动态生成一段javascript片段去给这个函数传入参数执行这个函数。比如：</span><br><span class="line"></span><br><span class="line">resolveJson(&#123;name: &apos;qiutc&apos;&#125;);</span><br><span class="line">执行</span><br><span class="line">服务端返回这个 script 之后，浏览器端获取到 script 资源，然后会立即执行这个 javascript，也就是上面那个片段。</span><br><span class="line">这样就能根据之前写好的回调函数处理这些数据了。</span><br><span class="line">在一些第三方库往往都会封装jsonp的操作，比如 jQuery 的$.getJSON。</span><br></pre></td></tr></table></figure></p>
-<h4 id="3-document-domain"><a href="#3-document-domain" class="headerlink" title="3. document.domain"></a>3. document.domain</h4><p>一个页面框架（iframe／frame）之间（父子或同辈），是能够获取到彼此的window对象的，<br>但是这个 window 不能拿到方法和属性（尼玛这有什么用，甩脸）。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">// 当前页面域名 http://blog.qiutc.me/a.html</span><br><span class="line">&lt;script&gt;</span><br><span class="line">function onLoad() &#123;</span><br><span class="line">    var iframe =document.getElementById(&apos;iframe&apos;);</span><br><span class="line">    var iframeWindow = iframe.contentWindow; // 这里可以获取 iframe 里面 window 对象，但是几乎没用</span><br><span class="line">    var doc = iframeWindow.document; // 获取不到</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;iframe src=&quot;http://21cm.github.io/b.html&quot; onload=&quot;onLoad()&quot;&lt;/iframe&gt;</span><br><span class="line">这个时候，document.domain 就可以派上用场了，我们只要把 http://blog.qiutc.me/a.html 和 http://21cm.github.io/b.html </span><br><span class="line">这两个页面的 document.domain 都设成相同的域名就可以了。</span><br><span class="line">前提条件：这两个域名必须属于同一个基础域名!而且所用的协议，端口都要一致。</span><br><span class="line">但要注意的是，document.domain 的设置是有限制的，我们只能把 document.domain 设置成自身或更高一级的父域，且主域必须相同。</span><br><span class="line">例如：a.b.example.com 中某个文档的 document.domain 可以设成a.b.example.com、b.example.com 、example.com中的任意一个，</span><br><span class="line">但是不可以设成 c.a.b.example.com,因为这是当前域的子域，也不可以设成baidu.com,因为主域已经不相同了。</span><br><span class="line">这样我们就可以通过js访问到iframe中的各种属性和对象了。</span><br><span class="line"></span><br><span class="line">// 主页面：http://21cm.github.io/a.html</span><br><span class="line">&lt;script&gt;</span><br><span class="line">document.domain = &apos;qiutc.me&apos;;</span><br><span class="line">function onLoad() &#123;</span><br><span class="line">    var iframe =document.getElementById(&apos;iframe&apos;);</span><br><span class="line">    var iframeWindow = iframe.contentWindow; // 这里可以获取 iframe 里面 window 对象并且能得到方法和属性</span><br><span class="line">    var doc = iframeWindow.document; // 获取到</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;iframe src=&quot;http://21cm.github.io/b.html&quot; onload=&quot;onLoad()&quot;&lt;/iframe&gt;</span><br><span class="line">// iframe 里面的页面</span><br><span class="line">&lt;script&gt;</span><br><span class="line">document.domain = &apos;qiutc.me&apos;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
-<h4 id="4-window-name"><a href="#4-window-name" class="headerlink" title="4. window.name"></a>4. window.name</h4><p>window对象有个name属性，该属性有个特征：即在一个窗口(window)的生命周期内,窗口载入的所有的页面都是共享一个 window.name 的，<br>每个页面对 window.name 都有读写的权限，window.name 是持久存在一个窗口载入过的所有页面中的，并不会因新页面的载入而进行重置。<br>比如有一个21cm.github.io/a.html页面，需要通过a.html页面里的js来获取另一个位于不同域上的页面21cm.github.io/data.html里的数据。<br>data.html页面里的代码很简单，就是给当前的window.name设置一个a.html页面想要得到的数据值。data.html里的代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">window.name = &apos;我是被期望得到的数据&apos;;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">那么在 a.html 页面中，我们怎么把 data.html 页面载入进来呢？显然我们不能直接在 a.html 页面中通过改变 window.location </span><br><span class="line">来载入data.html页面（这简直扯蛋）因为我们想要即使 a.html 页面不跳转也能得到 data.html 里的数据。</span><br><span class="line">答案就是在 a.html 页面中使用一个隐藏的 iframe 来充当一个中间人角色，由 iframe 去获取 data.html 的数据，</span><br><span class="line">然后 a.html 再去得到 iframe 获取到的数据。</span><br><span class="line">充当中间人的 iframe 想要获取到data.html的通过window.name设置的数据，只需要把这个iframe的src设为</span><br><span class="line">www.qiutc.com/data.html就行了。然后a.html想要得到iframe所获取到的数据，也就是想要得到iframe的window.name的值，</span><br><span class="line">还必须把这个iframe的src设成跟a.html页面同一个域才行，不然根据前面讲的同源策略，</span><br><span class="line">a.html是不能访问到iframe里的window.name属性的。这就是整个跨域过程。</span><br><span class="line"></span><br><span class="line">// a.html</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">  &lt;title&gt;Document&lt;/title&gt;</span><br><span class="line">  &lt;script&gt;</span><br><span class="line">    function getData() &#123;</span><br><span class="line">        var iframe =document.getElementById(&apos;iframe&apos;);</span><br><span class="line">        iframe.onload = function() &#123;</span><br><span class="line">            var data = iframe.contentWindow.name; // 得到</span><br><span class="line">        &#125;</span><br><span class="line">        iframe.src = &apos;b.html&apos;;  // 这里b和a同源</span><br><span class="line">    &#125;</span><br><span class="line">  &lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">  &lt;iframe src=&quot;http://www.qiutc.com/data.html&quot; style=&quot;display:none&quot; onload=&quot;getData()&quot;&lt;/iframe&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
-<h4 id="5-HTML5中新引进的window-postMessage"><a href="#5-HTML5中新引进的window-postMessage" class="headerlink" title="5. HTML5中新引进的window.postMessage"></a>5. HTML5中新引进的window.postMessage</h4><p>window.postMessage(message, targetOrigin) 方法是html5新引进的特性，可以使用它来向其它的window对象发送消息，<br>无论这个window对象是属于同源或不同源。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">调用postMessage方法的window对象是指要接收消息的那一个window对象，该方法的第一个参数message为要发送的消息，</span><br><span class="line">类型只能为字符串；第二个参数targetOrigin用来限定接收消息的那个window对象所在的域，如果不想限定域，可以使用通配符 * 。</span><br><span class="line">需要接收消息的window对象，可是通过监听自身的message事件来获取传过来的消息，消息内容储存在该事件对象的data属性中。</span><br><span class="line">上面所说的向其他window对象发送消息，其实就是指一个页面有几个框架的那种情况，因为每一个框架都有一个window对象。</span><br><span class="line">在讨论第种方法的时候，我们说过，不同域的框架间是可以获取到对方的window对象的，虽然没什么用，</span><br><span class="line">但是有一个方法是可用的－window.postMessage。下面看一个简单的示例，有两个页面：</span><br><span class="line"></span><br><span class="line">// 主页面  blog.qiutc.com</span><br><span class="line">&lt;script&gt;</span><br><span class="line">function onLoad() &#123;</span><br><span class="line">    var iframe =document.getElementById(&apos;iframe&apos;);</span><br><span class="line">    var iframeWindow = iframe.contentWindow;</span><br><span class="line">    iframeWindow.postMessage(&quot;I&apos;m message from main page.&quot;);</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;iframe src=&quot;http://21cm.github.io/b.html&quot; onload=&quot;onLoad()&quot;&lt;/iframe&gt;</span><br><span class="line">// b 页面</span><br><span class="line">&lt;script&gt;</span><br><span class="line">window.onmessage = function(e) &#123;</span><br><span class="line">    e = e || event;</span><br><span class="line">    console.log(e.data);</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
-<h4 id="6-CSST-CSS-Text-Transformation"><a href="#6-CSST-CSS-Text-Transformation" class="headerlink" title="6.CSST (CSS Text Transformation)"></a>6.CSST (CSS Text Transformation)</h4><p>一种用 CSS 跨域传输文本的方案。<br>优点：相比 JSONP 更为安全，不需要执行跨站脚本。<br>缺点：没有 JSONP 适配广，CSST 依赖支持 CSS3 的浏览器。<br>原理：通过读取 CSS3 content 属性获取传送内容。<br>具体可以参考：CSST (CSS Text Transformation)</p>
-<h4 id="如何解决跨域问题"><a href="#如何解决跨域问题" class="headerlink" title="如何解决跨域问题"></a>如何解决跨域问题</h4><h4 id="1-JSONP："><a href="#1-JSONP：" class="headerlink" title="1.JSONP："></a>1.JSONP：</h4><p><code>原理是：动态插入script标签，通过script标签引入一个js文件，这个js文件载入成功后会执行我们在url参数中指定的函数，并且会把我们需要的json数据作为参数传入。</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">由于同源策略的限制，XmlHttpRequest只允许请求当前源（域名、协议、端口）的资源，为了实现跨域请求，可以通过script标签实现跨域请求，然后在服务端输出JSON数据并执行回调函数，从而解决了跨域的数据请求。</span><br><span class="line">优点是兼容性好，简单易用，支持浏览器与服务器双向通信。缺点是只支持GET请求。</span><br><span class="line">JSONP：json+padding（内填充），顾名思义，就是把JSON填充到一个盒子里</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    function createJs(sUrl)&#123;</span><br><span class="line">        var oScript = document.createElement(&apos;script&apos;);</span><br><span class="line">        oScript.type = &apos;text/javascript&apos;;</span><br><span class="line">        oScript.src = sUrl;</span><br><span class="line">        document.getElementsByTagName(&apos;head&apos;)[0].appendChild(oScript);</span><br><span class="line">    &#125;</span><br><span class="line">    createJs(&apos;jsonp.js&apos;);</span><br><span class="line">    box(&#123;</span><br><span class="line">       &apos;name&apos;: &apos;test&apos;</span><br><span class="line">    &#125;);</span><br><span class="line">    function box(json)&#123;</span><br><span class="line">        alert(json.name);</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
-<h4 id="2-CORS"><a href="#2-CORS" class="headerlink" title="2.CORS"></a>2.CORS</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">服务器端对于CORS的支持，主要就是通过设置Access-Control-Allow-Origin来进行的。</span><br><span class="line">如果浏览器检测到相应的设置，就可以允许Ajax进行跨域的访问。</span><br></pre></td></tr></table></figure>
-<h4 id="3-通过修改document-domain来跨子域"><a href="#3-通过修改document-domain来跨子域" class="headerlink" title="3.通过修改document.domain来跨子域"></a>3.通过修改document.domain来跨子域</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">将子域和主域的document.domain设为同一个主域.前提条件：这两个域名必须属于同一个基础域名!而且所用的协议，端口都要一致，</span><br><span class="line">否则无法利用document.domain进行跨域,主域相同的使用document.domain</span><br></pre></td></tr></table></figure>
-<h4 id="4-使用window-name来进行跨域"><a href="#4-使用window-name来进行跨域" class="headerlink" title="4.使用window.name来进行跨域"></a>4.使用window.name来进行跨域</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">window对象有个name属性，该属性有个特征：即在一个窗口(window)的生命周期内,窗口载入的所有的页面都是共享一个window.name的，</span><br><span class="line">每个页面对window.name都有读写的权限，window.name是持久存在一个窗口载入过的所有页面中的</span><br></pre></td></tr></table></figure>
-<h4 id="5-使用HTML5中新引进的window-postMessage方法来跨域传送数据"><a href="#5-使用HTML5中新引进的window-postMessage方法来跨域传送数据" class="headerlink" title="5.使用HTML5中新引进的window.postMessage方法来跨域传送数据"></a>5.使用HTML5中新引进的window.postMessage方法来跨域传送数据</h4><h4 id="6-还有flash、在服务器上设置代理页面等跨域方式。"><a href="#6-还有flash、在服务器上设置代理页面等跨域方式。" class="headerlink" title="6.还有flash、在服务器上设置代理页面等跨域方式。"></a>6.还有flash、在服务器上设置代理页面等跨域方式。</h4><p><code>window.name的方法既不复杂，也能兼容到几乎所有浏览器，这真是极好的一种跨域方法。</code></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">javascript-跨域</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript-跨域方式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/前端//" class="article-tag-list-link color3">前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/26/js-cross-domain/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-js-ajax" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/26/js-ajax/">前端知识点总结之javascript-ajax</a>
-    </h1>
-  
-
-        
-        <a href="/2018/05/26/js-ajax/" class="archive-article-date">
-  	<time datetime="2018-05-26T09:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="Ajax工作原理"><a href="#Ajax工作原理" class="headerlink" title="Ajax工作原理"></a>Ajax工作原理</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1.使用CSS和XHTML来表示。</span><br><span class="line">2. 使用DOM模型来交互和动态显示。</span><br><span class="line">3.使用XMLHttpRequest来和服务器进行异步通信。</span><br><span class="line">4.使用javascript来绑定和调用。</span><br></pre></td></tr></table></figure>
-<h4 id="ajax原理和XmlHttpRequest对象"><a href="#ajax原理和XmlHttpRequest对象" class="headerlink" title="ajax原理和XmlHttpRequest对象"></a>ajax原理和XmlHttpRequest对象</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Ajax的原理简单来说通过XmlHttpRequest对象来向服务器发异步请求，从服务器获得数据，然后用javascript来操作DOM而更新页面。</span><br><span class="line">这其中最关键的一步就是从服务器获得请求数据。要清楚这个过程和原理，我们必须对 XMLHttpRequest有所了解。</span><br><span class="line">XMLHttpRequest是ajax的核心机制，它是在IE5中首先引入的，是一种支持异步请求的技术。简单的说，也就是javascript可以及时向服务器提出请求和处理响应，</span><br><span class="line">而不阻塞用户。达到无刷新的效果。</span><br></pre></td></tr></table></figure>
-<p>　首先，我们先来看看XMLHttpRequest这个对象的属性。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">　　onreadystatechange  每次状态改变所触发事件的事件处理程序。</span><br><span class="line">　　responseText     从服务器进程返回数据的字符串形式。</span><br><span class="line">　　responseXML    从服务器进程返回的DOM兼容的文档数据对象。</span><br><span class="line">　　status           从服务器返回的数字代码，比如常见的404（未找到）和200（已就绪）</span><br><span class="line">　　status Text       伴随状态码的字符串信息</span><br><span class="line">　　readyState       对象状态值</span><br><span class="line">　　　　0 (未初始化) 对象已建立，但是尚未初始化（尚未调用open方法）</span><br><span class="line">　　　　1 (初始化) 对象已建立，尚未调用send方法</span><br><span class="line">　　　　2 (发送数据) send方法已调用，但是当前的状态及http头未知</span><br><span class="line">　　　　3 (数据传送中) 已接收部分数据，因为响应及http头不全，这时通过responseBody和responseText获取部分数据会出现错误，</span><br><span class="line">　　　　4 (完成) 数据接收完毕,此时可以通过通过responseXml和responseText获取完整的回应数据</span><br></pre></td></tr></table></figure></p>
-<p>但是，由于各浏览器之间存在差异，所以创建一个XMLHttpRequest对象可能需要不同的方法。这个差异主要体现在IE和其它浏览器之间。<br>下面是一个比较标准的创建XMLHttpRequest对象的方法。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">function CreateXmlHttp() &#123;</span><br><span class="line"></span><br><span class="line">    //非IE浏览器创建XmlHttpRequest对象</span><br><span class="line">    if (window.XmlHttpRequest) &#123;</span><br><span class="line">        xmlhttp = new XmlHttpRequest();</span><br><span class="line">    &#125;</span><br><span class="line">    //IE浏览器创建XmlHttpRequest对象</span><br><span class="line">    if (window.ActiveXObject) &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            xmlhttp = new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        catch (e) &#123;</span><br><span class="line">            try &#123;</span><br><span class="line">                xmlhttp = new ActiveXObject(&quot;msxml2.XMLHTTP&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">            catch (ex) &#123; &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">function ajax() &#123;</span><br><span class="line">    var data = document.getElementById(&quot;username&quot;).value;</span><br><span class="line">    CreateXmlHttp();</span><br><span class="line">    if (!xmlhttp) &#123;</span><br><span class="line">        alert(&quot;创建xmlhttp对象异常！&quot;);</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">    xmlhttp.open(&quot;POST&quot;, url, false);</span><br><span class="line">    xmlhttp.onreadystatechange = function () &#123;</span><br><span class="line">        if (xmlhttp.readyState == 4) &#123;</span><br><span class="line">            document.getElementById(&quot;user1&quot;).innerHTML = &quot;数据正在加载...&quot;;</span><br><span class="line">            if (xmlhttp.status == 200) &#123;</span><br><span class="line">                document.write(xmlhttp.responseText);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    xmlhttp.send();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>如上所示，函数首先检查XMLHttpRequest的整体状态并且保证它已经完成（readyStatus=4），即数据已经发送完毕。<br>然后根据服务器的设定询问请求状态，如果一切已经就绪（status=200），那么就执行下面需要的操作。<br>对于XmlHttpRequest的两个方法，open和send,其中:<br>open方法指定了：<br>a、向服务器提交数据的类型，即post还是get。<br>b、请求的url地址和传递的参数。<br>c、传输方式，false为同步，true为异步。默认为true。如果是异步通信方式(true)，客户机就不等待服务器的响应；<br>如果是同步方式(false)，客户机就要等到服务器返回消息后才去执行其他操作。我们需要根据实际需要来指定同步方式，在某些页面中，<br>可能会发出多个请求，甚至是有组织有计划有队形大规模的高强度的request，而后一个是会覆盖前一个的，这个时候当然要指定同步方式。</p>
-<p>Send方法用来发送请求。</p>
-<p>知道了XMLHttpRequest的工作流程，我们可以看出，XMLHttpRequest是完全用来向服务器发出一个请求的，它的作用也局限于此，<br>但它的作用是整个ajax实现的关键，因为ajax无非是两个过程，发出请求和响应请求。并且它完全是一种客户端的技术。<br>而XMLHttpRequest正是处理了服务器端和客户端通信的问题所以才会如此的重要。<br>现在，我们对ajax的原理大概可以有一个了解了。我们可以把服务器端看成一个数据接口，它返回的是一个纯文本流，当然，这个文本流可以是XML格式，<br>可以是Html，可以是Javascript代码，也可以只是一个字符串。<br>这时候，XMLHttpRequest向服务器端请求这个页面，服务器端将文本的结果写入页面，这和普通的web开发流程是一样的，不同的是，<br>客户端在异步获取这个结果后，不是直接显示在页面，而是先由javascript来处理，然后再显示在页面。至于现在流行的很多ajax控件，<br>比如magicajax等，可以返回DataSet等其它数据类型，只是将这个过程封装了的结果，本质上他们并没有什么太大的区别。</p>
-<h4 id="ajax的优点"><a href="#ajax的优点" class="headerlink" title="ajax的优点"></a>ajax的优点</h4><p>  Ajax的给我们带来的好处大家基本上都深有体会，在这里我只简单的讲几点：<br>  1、最大的一点是页面无刷新，在页面内与服务器通信，给用户的体验非常好。<br>　 2、使用异步方式与服务器通信，不需要打断用户的操作，具有更加迅速的响应能力。<br>　 3、可以把以前一些服务器负担的工作转嫁到客户端，利用客户端闲置的能力来处理，减轻服务器和带宽的负担，节约空间和宽带租用成本。并且减轻服务器的负担，ajax的原则是“按需取数据”，可以最大程度的减少冗余请求，和响应对服务器造成的负担。<br>  4、基于标准化的并被广泛支持的技术，不需要下载插件或者小程序。</p>
-<h4 id="ajax的缺点"><a href="#ajax的缺点" class="headerlink" title="ajax的缺点"></a>ajax的缺点</h4><p>下面所阐述的ajax的缺陷都是它先天所产生的。<br>1、ajax干掉了back按钮，即对浏览器后退机制的破坏。后退按钮是一个标准的web站点的重要功能，但是它没法和js进行很好的合作。<br>   这是ajax所带来的一个比较严重的问题，因为用户往往是希望能够通过后退来取消前一次操作的。那么对于这个问题有没有办法？<br>   答案是肯定的，用过Gmail的知道，Gmail下面采用的ajax技术解决了这个问题，在Gmail下面是可以后退的，但是，它也并不能改变ajax的机制，<br>   它只是采用的一个比较笨但是有效的办法，即用户单击后退按钮访问历史记录时，通过创建或使用一个隐藏的IFRAME来重现页面上的变更。<br>   （例如，当用户在Google Maps中单击后退时，它在一个隐藏的IFRAME中进行搜索，然后将搜索结果反映到Ajax元素上，以便将应用程序状态恢复到当时的状态。）<br>但是，虽然说这个问题是可以解决的，但是它所带来的开发成本是非常高的，和ajax框架所要求的快速开发是相背离的。这是ajax所带来的一个非常严重的问题。<br> 2、安全问题。技术同时也对IT企业带来了新的安全威胁，ajax技术就如同对企业数据建立了一个直接通道。这使得开发者在不经意间会暴露比以前更多的数据<br> 和服务器逻辑。ajax的逻辑可以对客户端的安全扫描技术隐藏起来，允许黑客从远端服务器上建立新的攻击。<br> 还有ajax也难以避免一些已知的安全弱点，诸如跨站点脚步攻击、SQL注入攻击和基于credentials的安全漏洞等。<br> 3、对搜索引擎的支持比较弱。<br> 4、破坏了程序的异常机制。至少从目前看来，像ajax.dll，ajaxpro.dll这些ajax框架是会破坏程序的异常机制的。<br> 5、另外，像其他方面的一些问题，比如说违背了url和资源定位的初衷。<br> 例如，我给你一个url地址，如果采用了ajax技术，也许你在该url地址下面看到的和我在这个url地址下看到的内容是不同的。这个和资源定位的初衷是相背离的。<br> 6、一些手持设备（如手机、PDA等）现在还不能很好的支持ajax，比如说我们在手机的浏览器上打开采用ajax技术的网站时，<br> 它目前是不支持的，当然，这个问题和我们没太多关系。</p>
-<p> 使用jsonp有数据返回，但是success不执行的解决办法。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">    type:&quot;get&quot;,    //请求方式</span><br><span class="line">    async:true,    //是否异步</span><br><span class="line">    url:&quot;http://www.domain.net/url&quot;,</span><br><span class="line">    dataType:&quot;jsonp&quot;,    //跨域json请求一定是jsonp</span><br><span class="line">    jsonp: &quot;callbackparam&quot;,    //跨域请求的参数名，默认是callback</span><br><span class="line">        //jsonpCallback:&quot;successCallback&quot;,    //自定义跨域参数值，回调函数名也是一样，默认为jQuery自动生成的字符串</span><br><span class="line">    data:&#123;&quot;query&quot;:&quot;civilnews&quot;&#125;,    //请求参数</span><br><span class="line">    beforeSend: function() &#123;</span><br><span class="line">        //请求前的处理</span><br><span class="line">    &#125;,</span><br><span class="line">    success: function(data) &#123;</span><br><span class="line">        //请求成功处理，和本地回调完全一样</span><br><span class="line">    &#125;,</span><br><span class="line">    complete: function() &#123;</span><br><span class="line">        //请求完成的处理</span><br><span class="line">    &#125;,</span><br><span class="line">    error: function() &#123;</span><br><span class="line">        //请求出错处理</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>参考文档：<br><a href="https://www.cnblogs.com/freeweb/p/4908832.html" title="jQuery ajax跨域请求的解决方法" target="_blank" rel="noopener">jQuery ajax跨域请求的解决方法</a><br><a href="https://blog.csdn.net/erica_1230/article/details/43983801" title="关于jsonp没有调用success回调方法" target="_blank" rel="noopener">关于jsonp没有调用success回调方法</a><br><a href="https://www.cnblogs.com/ChenChunChang/p/6695411.html" title="JSONP跨域访问数据传输" target="_blank" rel="noopener">JSONP跨域访问数据传输</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">ajax</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript-ajax</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/前端//" class="article-tag-list-link color3">前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/26/js-ajax/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
@@ -713,10 +670,11 @@
     </div>
   </div>
   
-<div  style="text-align: center;">
-<script type="text/javascript" src="https://api.imjad.cn/hitokoto/?cat=&charset=utf-8&length=50&encode=js&fun=sync&source="></script><div id="hitokoto"><script>hitokoto()</script></div>
+<div id="hitokoto" style="text-align: center;">
+风起于青萍之末,浪成于微澜之间。
 </div>
 </footer>
+<script src="https://v1.hitokoto.cn/?encode=js&select=%23hitokoto" defer></script>
     </div>
     <script>
 	var yiliaConfig = {
@@ -776,14 +734,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">css</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">css兼容性问题</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">html</a>
               </li>
              
@@ -792,23 +742,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">css</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">css兼容性问题</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">web语义化的理解</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">html cookie和session完全总结</a>
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">link</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">@import</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">css-box-sizing属性</a>
+                <a href="javascript:void(0)" class="js-tag color1">判断回文数</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -824,11 +774,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">css-清除浮动</a>
+                <a href="javascript:void(0)" class="js-tag color2">css-box-sizing属性</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">css-浮动</a>
+                <a href="javascript:void(0)" class="js-tag color5">link</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">@import</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">html cookie和session完全总结</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">css-清除浮动</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -836,11 +798,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">css-盒模型</a>
+                <a href="javascript:void(0)" class="js-tag color2">css-浮动</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">css-预处理</a>
+                <a href="javascript:void(0)" class="js-tag color3">css-盒模型</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -864,11 +826,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">css-reset</a>
+                <a href="javascript:void(0)" class="js-tag color3">css-预处理</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">html data-xxx属性</a>
+                <a href="javascript:void(0)" class="js-tag color5">css-reset</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -876,19 +838,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">html data-xxx属性</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">html-doctype</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">html get和post的区别</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">html5新元素</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -900,6 +854,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">html get和post的区别</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">html5新元素</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">http状态码</a>
               </li>
              
@@ -908,11 +870,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">javascript-AOP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">javascript颗粒化</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">javascript-AOP</a>
+                <a href="javascript:void(0)" class="js-tag color5">数制转换</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript原型式继承</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">object.create</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -929,18 +903,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">javascript-property</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数制转换</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript原型式继承</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">object.create</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1053,6 +1015,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javascript-csrf</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">多队列</a>
               </li>
             
             <div class="clearfix"></div>

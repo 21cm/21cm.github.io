@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="https://21cm.js.org">
   <title>前端算法排序之数制转换 | 21cm</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="123456789101112131415161718192021222324* 利用栈来做数制转换* @param number  待转换的数字,十进制数* @param base   要转换成的进制(10进制以内)var Stack = require(&amp;apos;https://21cm.js.org/lib/Stack&amp;apos;);var numericalTransform = fun">
+  <meta name="description" content="123456789101112131415161718192021222324* 利用栈来做数制转换* @param number  待转换的数字,十进制数* @param base   要转换成的进制(10进制以内)var Stack = require(&amp;apos;https://21cm.js.org/lib/stack&amp;apos;);var numericalTransform = fun">
 <meta name="keywords" content="javascript,数制转换">
 <meta property="og:type" content="article">
 <meta property="og:title" content="前端算法排序之数制转换">
 <meta property="og:url" content="https://21cm.js.org/2018/05/28/js-Number-System-Conversion/index.html">
 <meta property="og:site_name" content="21cm">
-<meta property="og:description" content="123456789101112131415161718192021222324* 利用栈来做数制转换* @param number  待转换的数字,十进制数* @param base   要转换成的进制(10进制以内)var Stack = require(&amp;apos;https://21cm.js.org/lib/Stack&amp;apos;);var numericalTransform = fun">
+<meta property="og:description" content="123456789101112131415161718192021222324* 利用栈来做数制转换* @param number  待转换的数字,十进制数* @param base   要转换成的进制(10进制以内)var Stack = require(&amp;apos;https://21cm.js.org/lib/stack&amp;apos;);var numericalTransform = fun">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-05-29T07:48:39.047Z">
+<meta property="og:updated_time" content="2018-05-29T08:04:26.357Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端算法排序之数制转换">
-<meta name="twitter:description" content="123456789101112131415161718192021222324* 利用栈来做数制转换* @param number  待转换的数字,十进制数* @param base   要转换成的进制(10进制以内)var Stack = require(&amp;apos;https://21cm.js.org/lib/Stack&amp;apos;);var numericalTransform = fun">
+<meta name="twitter:description" content="123456789101112131415161718192021222324* 利用栈来做数制转换* @param number  待转换的数字,十进制数* @param base   要转换成的进制(10进制以内)var Stack = require(&amp;apos;https://21cm.js.org/lib/stack&amp;apos;);var numericalTransform = fun">
   
     <link rel="alternative" href="/atom.xml" title="21cm" type="application/atom+xml">
   
@@ -164,7 +164,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">* 利用栈来做数制转换</span><br><span class="line">* @param number  待转换的数字,十进制数</span><br><span class="line">* @param base   要转换成的进制(10进制以内)</span><br><span class="line"></span><br><span class="line">var Stack = require(&apos;https://21cm.js.org/lib/Stack&apos;);</span><br><span class="line">var numericalTransform = function (number, base) &#123;</span><br><span class="line">    if (typeof number !== &apos;number&apos; || typeof base !== &apos;number&apos;) &#123;</span><br><span class="line">        console.log(&apos;Parameter error!&apos;);</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line">    var stack = new Stack();</span><br><span class="line">    do &#123;</span><br><span class="line">        stack.push(number % base);</span><br><span class="line">        number = Math.floor(number / base);</span><br><span class="line">    &#125; while (number !== 0)</span><br><span class="line">    //依次出栈,得到结果</span><br><span class="line">    var result = &apos;&apos;;</span><br><span class="line">    while (stack.length()) &#123;</span><br><span class="line">        result += stack.pop();</span><br><span class="line">    &#125;</span><br><span class="line">    return result;</span><br><span class="line">&#125;</span><br><span class="line">console.log(numericalTransform(231, 8));</span><br><span class="line">console.log(numericalTransform(65, 2));</span><br></pre></td></tr></table></figure>
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">* 利用栈来做数制转换</span><br><span class="line">* @param number  待转换的数字,十进制数</span><br><span class="line">* @param base   要转换成的进制(10进制以内)</span><br><span class="line"></span><br><span class="line">var Stack = require(&apos;https://21cm.js.org/lib/stack&apos;);</span><br><span class="line">var numericalTransform = function (number, base) &#123;</span><br><span class="line">    if (typeof number !== &apos;number&apos; || typeof base !== &apos;number&apos;) &#123;</span><br><span class="line">        console.log(&apos;Parameter error!&apos;);</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line">    var stack = new Stack();</span><br><span class="line">    do &#123;</span><br><span class="line">        stack.push(number % base);</span><br><span class="line">        number = Math.floor(number / base);</span><br><span class="line">    &#125; while (number !== 0)</span><br><span class="line">    //依次出栈,得到结果</span><br><span class="line">    var result = &apos;&apos;;</span><br><span class="line">    while (stack.length()) &#123;</span><br><span class="line">        result += stack.pop();</span><br><span class="line">    &#125;</span><br><span class="line">    return result;</span><br><span class="line">&#125;</span><br><span class="line">console.log(numericalTransform(231, 8));</span><br><span class="line">console.log(numericalTransform(65, 2));</span><br></pre></td></tr></table></figure>
       
 
       
@@ -266,6 +266,15 @@
   
 <nav id="article-nav">
   
+    <a href="/2018/05/29/Palindrome/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          前端算法排序之判断回文数
+        
+      </div>
+    </a>
+  
   
     <a href="/2018/05/28/js-sort/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">前端算法之排序</div>
@@ -319,10 +328,11 @@
     </div>
   </div>
   
-<div  style="text-align: center;">
-<script type="text/javascript" src="https://api.imjad.cn/hitokoto/?cat=&charset=utf-8&length=50&encode=js&fun=sync&source="></script><div id="hitokoto"><script>hitokoto()</script></div>
+<div id="hitokoto" style="text-align: center;">
+风起于青萍之末,浪成于微澜之间。
 </div>
 </footer>
+<script src="https://v1.hitokoto.cn/?encode=js&select=%23hitokoto" defer></script>
     </div>
     <script>
 	var yiliaConfig = {
@@ -382,14 +392,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">css</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">css兼容性问题</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">html</a>
               </li>
              
@@ -398,23 +400,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">css</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">css兼容性问题</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">web语义化的理解</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">html cookie和session完全总结</a>
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">link</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">@import</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">css-box-sizing属性</a>
+                <a href="javascript:void(0)" class="js-tag color1">判断回文数</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -430,11 +432,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">css-清除浮动</a>
+                <a href="javascript:void(0)" class="js-tag color2">css-box-sizing属性</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">css-浮动</a>
+                <a href="javascript:void(0)" class="js-tag color5">link</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">@import</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">html cookie和session完全总结</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">css-清除浮动</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -442,11 +456,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">css-盒模型</a>
+                <a href="javascript:void(0)" class="js-tag color2">css-浮动</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">css-预处理</a>
+                <a href="javascript:void(0)" class="js-tag color3">css-盒模型</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -470,11 +484,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">css-reset</a>
+                <a href="javascript:void(0)" class="js-tag color3">css-预处理</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">html data-xxx属性</a>
+                <a href="javascript:void(0)" class="js-tag color5">css-reset</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -482,19 +496,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">html data-xxx属性</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">html-doctype</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">html get和post的区别</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">html5新元素</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -506,6 +512,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">html get和post的区别</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">html5新元素</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">http状态码</a>
               </li>
              
@@ -514,11 +528,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">javascript-AOP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">javascript颗粒化</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">javascript-AOP</a>
+                <a href="javascript:void(0)" class="js-tag color5">数制转换</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript原型式继承</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">object.create</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -535,18 +561,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">javascript-property</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数制转换</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript原型式继承</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">object.create</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -659,6 +673,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javascript-csrf</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">多队列</a>
               </li>
             
             <div class="clearfix"></div>
