@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://21cm.js.org/"/>
-  <updated>2018-05-29T09:40:45.371Z</updated>
+  <updated>2018-05-29T10:24:10.020Z</updated>
   <id>https://21cm.js.org/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>函数式编程</title>
+    <link href="https://21cm.js.org/2018/05/29/Functional-programming/"/>
+    <id>https://21cm.js.org/2018/05/29/Functional-programming/</id>
+    <published>2018-05-29T10:00:00.000Z</published>
+    <updated>2018-05-29T10:24:10.020Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li><p>函数式编程:<br>1.确定抽象,将其构建为函数。<br>2.利用已有的函数来构建更复杂的抽象。<br>3.通过将现有函数传递给其它函数来构建更复杂的抽象。</p></li><li><p>面向对象编程是将问题分解为多组”名词”或叫对象,而函数式编程是将问题分解为多组”动词”或叫方法</p></li><li><p>与面向对象编程类似,函数式编程通过”组合”或”黏结”其他函数来构建更大的函数。</p><ul><li><p>例一: 函数作为参数</p><pre><code>[&quot;hello&quot;,&quot;hi&quot;].forEach(function (item, i) {console.log(item); // hello hi})</code></pre></li><li><p>例二: 返回函数的函数</p><pre><code>function splat(func) {return function (array) {    return func.apply(null, array);}}var result = (splat(function (x, y) {return x + y;}))([1, 2]);console.log(result); //3</code></pre></li></ul></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;ul&gt;
+&lt;li&gt;&lt;p&gt;函数式编程:&lt;br&gt;1.确定抽象,将其构建为函数。&lt;br&gt;2.利用已有的函数来构建更复杂的抽象。&lt;br&gt;3.通过将现有函数传递给其它函数来构建更复杂的抽象。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;面向对象编程是将问题分解为多组”名词”或叫对象,而函数式编程是将
+      
+    
+    </summary>
+    
+      <category term="函数式编程" scheme="https://21cm.js.org/categories/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/"/>
+    
+    
+      <category term="javascript" scheme="https://21cm.js.org/tags/javascript/"/>
+    
+      <category term="函数式编程" scheme="https://21cm.js.org/tags/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/"/>
+    
+  </entry>
   
   <entry>
     <title>前端算法排序之两个栈实现队列</title>
@@ -587,38 +617,6 @@
       <category term="javascript高级函数" scheme="https://21cm.js.org/tags/javascript%E9%AB%98%E7%BA%A7%E5%87%BD%E6%95%B0/"/>
     
       <category term="javascript颗粒化" scheme="https://21cm.js.org/tags/javascript%E9%A2%97%E7%B2%92%E5%8C%96/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>javascript-闭包</title>
-    <link href="https://21cm.js.org/2018/05/24/js-closure/"/>
-    <id>https://21cm.js.org/2018/05/24/js-closure/</id>
-    <published>2018-05-24T12:30:00.000Z</published>
-    <updated>2018-05-24T13:56:58.891Z</updated>
-    
-    <content type="html"><![CDATA[<ul><li>闭包的作用:</li><li>1.封装变量</li><li>2.延续局部变量的寿命</li><li>3.闭包和面向对象设计:实现私有数据和方法的封装(本质还是1,封装变量)</li><li>闭包能使局部变量的生命期延长,这点与全局作用域的变量是一致的,不能算是内存泄漏!</li><li>闭包与内存泄漏有关的部分是:</li><li>使用闭包容易造成循环引用,如果闭包的作用域中保存着一些DOM节点,这时候有可能造成内存泄漏(互相引用导致内存无法释放)</li><li><p>例1</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">var increment = function () &#123;</span><br><span class="line">    var count = 1;</span><br><span class="line">    return &#123;</span><br><span class="line">        inc: function () &#123;</span><br><span class="line">            return count++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">console.log(increment.count);   //undefined</span><br><span class="line">var counter = increment();</span><br><span class="line">console.log(counter.inc());</span><br><span class="line">console.log(counter.inc());</span><br><span class="line">console.log(counter.inc());</span><br><span class="line"></span><br><span class="line">var counter2 = increment();</span><br><span class="line">console.log(counter2.inc());</span><br><span class="line">console.log(counter == counter2);  //false,注:闭包每次返回的对象都不一样!</span><br></pre></td></tr></table></figure></li><li><p>例2</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">var getTypeChecker = function () &#123;</span><br><span class="line">    var types = &#123;&#125;;</span><br><span class="line"></span><br><span class="line">    for (var i = 0, type; type = [&apos;String&apos;, &apos;Number&apos;, &apos;Array&apos;][i++];) &#123;</span><br><span class="line">        //使用闭包来封闭每次循环的变量</span><br><span class="line">        (function (type) &#123;</span><br><span class="line">            types[&apos;is&apos; + type] = function (obj) &#123;</span><br><span class="line">                return Object.prototype.toString.call(obj) === &apos;[object &apos; + type + &apos;]&apos;;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)(type);</span><br><span class="line">    &#125;</span><br><span class="line">    return types;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var checker = getTypeChecker();</span><br><span class="line">console.log(checker.isArray([]));   // true</span><br><span class="line">console.log(checker.isString([]));   //false</span><br><span class="line">console.log(checker.isString(&apos;hello&apos;));  //true</span><br></pre></td></tr></table></figure></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;ul&gt;
-&lt;li&gt;闭包的作用:&lt;/li&gt;
-&lt;li&gt;1.封装变量&lt;/li&gt;
-&lt;li&gt;2.延续局部变量的寿命&lt;/li&gt;
-&lt;li&gt;3.闭包和面向对象设计:实现私有数据和方法的封装(本质还是1,封装变量)&lt;/li&gt;
-&lt;li&gt;闭包能使局部变量的生命期延长,这点与全局作用域的变量是一致的,不
-      
-    
-    </summary>
-    
-      <category term="前端" scheme="https://21cm.js.org/categories/%E5%89%8D%E7%AB%AF/"/>
-    
-    
-      <category term="javascript" scheme="https://21cm.js.org/tags/javascript/"/>
-    
-      <category term="javascript-闭包" scheme="https://21cm.js.org/tags/javascript-%E9%97%AD%E5%8C%85/"/>
     
   </entry>
   
