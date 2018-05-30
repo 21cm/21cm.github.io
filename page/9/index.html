@@ -145,6 +145,98 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-html5-new-label" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/24/html5-new-label/">前端知识点总结之html5新元素</a>
+    </h1>
+  
+
+        
+        <a href="/2018/05/24/html5-new-label/" class="archive-article-date">
+  	<time datetime="2018-05-24T07:50:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="html5有哪些新特性？"><a href="#html5有哪些新特性？" class="headerlink" title="html5有哪些新特性？"></a>html5有哪些新特性？</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">HTML5 现在已经不是 SGML 的子集，主要是关于图像，位置，存储，多任务等功能的增加。</span><br><span class="line"></span><br><span class="line">拖拽释放(Drag and drop) API</span><br><span class="line"></span><br><span class="line">语义化更好的内容标签（header,nav,footer,aside,article,section）</span><br><span class="line"></span><br><span class="line">音频、视频API(audio,video)</span><br><span class="line"></span><br><span class="line">画布(Canvas) API</span><br><span class="line"></span><br><span class="line">地理(Geolocation) API</span><br><span class="line"></span><br><span class="line">本地离线存储 localStorage 长期存储数据，浏览器关闭后数据不丢失；</span><br><span class="line"></span><br><span class="line">sessionStorage 的数据在浏览器关闭后自动删除</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">表单控件，calendar、date、time、email、url、search</span><br><span class="line"></span><br><span class="line">新的技术webworker, websocket, Geolocation</span><br></pre></td></tr></table></figure>
+<h4 id="如何处理html5的兼容性问题"><a href="#如何处理html5的兼容性问题" class="headerlink" title="如何处理html5的兼容性问题?"></a>如何处理html5的兼容性问题?</h4><p>方式一：Coding JavaScript<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--[if lt IE9]&gt; </span><br><span class="line">&lt;script&gt; </span><br><span class="line">   (function() &#123;</span><br><span class="line">     if (! </span><br><span class="line">     /*@cc_on!@*/</span><br><span class="line">     0) return;</span><br><span class="line">     var e = &quot;abbr, article, aside, audio, canvas, datalist, details, dialog, eventsource, figure, footer, header, hgroup, mark, menu, meter, nav, output, progress, section, time, video&quot;.split(&apos;, &apos;);</span><br><span class="line">     var i= e.length;</span><br><span class="line">     while (i--)&#123;</span><br><span class="line">         document.createElement(e[i])</span><br><span class="line">     &#125; </span><br><span class="line">&#125;)() </span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;![endif]--&gt;</span><br><span class="line">如果是IE9以下的IE浏览器将创建HTML5标签， 这样非IE浏览器就会忽视这段代码，也就不会有无谓的http请求了。</span><br></pre></td></tr></table></figure></p>
+<p>第二种方法：使用Google的html5shiv包（推荐）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--[if lt IE9]&gt; </span><br><span class="line">&lt;script src=&quot;http://html5shiv.googlecode.com/svn/trunk/html5.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;![endif]--&gt;</span><br></pre></td></tr></table></figure></p>
+<p>但是不管使用以上哪种方法,都要初始化新标签的CSS.因为HTML5在默认情况下表现为内联元素，<br>对这些元素进行布局我们需要利用CSS手工把它们转为块状元素方便布局<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/*html5*/</span><br><span class="line">article,aside,dialog,footer,header,section,footer,nav,figure,menu&#123;display:block&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">html</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">html5新元素</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/前端//" class="article-tag-list-link color3">前端</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/05/24/html5-new-label/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Semantics" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -521,99 +613,6 @@
 
 
   
-    <article id="post-Pattern" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/24/Pattern/">前端知识点总结之浏览器的标准模式与怪异模式区别</a>
-    </h1>
-  
-
-        
-        <a href="/2018/05/24/Pattern/" class="archive-article-date">
-  	<time datetime="2018-05-24T02:10:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="要想写出跨浏览器的CSS，必须知道浏览器解析CSS的两种模式：标准模式-strict-mode-和怪异模式-quirks-mode-。"><a href="#要想写出跨浏览器的CSS，必须知道浏览器解析CSS的两种模式：标准模式-strict-mode-和怪异模式-quirks-mode-。" class="headerlink" title="要想写出跨浏览器的CSS，必须知道浏览器解析CSS的两种模式：标准模式(strict mode)和怪异模式(quirks mode)。"></a>要想写出跨浏览器的CSS，必须知道浏览器解析CSS的两种模式：标准模式(strict mode)和怪异模式(quirks mode)。</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">所谓的标准模式是指，浏览器按W3C标准解析执行代码；</span><br><span class="line">怪异模式则是使用浏览器自己的方式解析执行代码，因为不同浏览器解析执行的方式不一样，所以我们称之为怪异模式。</span><br><span class="line">浏览器解析时到底使用标准模式还是怪异模式，与你网页中的DTD声明直接相关，DTD声明定义了标准文档的类型（标准模式解析）</span><br><span class="line">文档类型，会使浏览器使用相应的方式加载网页并显示，忽略DTD声明,将使网页进入怪异模式(quirks mode)。</span><br></pre></td></tr></table></figure>
-<p>如果你的网页代码不含有任何声明，那么浏览器就会采用怪异模式解析，便是如果你的网页代码含有DTD声明，浏览器就会按你所声明的标准解析。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot; &quot;http://www.w3.org/TR/html4/loose.dtd&quot;&gt;</span><br><span class="line">　　上面的代码，浏览器会按HTML 4.01的标准进行解析。</span><br></pre></td></tr></table></figure></p>
-<h4 id="到底标准模式和怪异模式有什么不同呢？"><a href="#到底标准模式和怪异模式有什么不同呢？" class="headerlink" title="到底标准模式和怪异模式有什么不同呢？"></a>到底标准模式和怪异模式有什么不同呢？</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">标准模式中IE6不认识!important声明，IE7、IE8、Firefox、Chrome等浏览器认识；</span><br><span class="line">而在怪异模式中，IE6/7/8都不认识!important声明，这只是区别的一种，还有很多其它区别。</span><br><span class="line">所以，要想写出跨浏览器CSS，你最好采用标准模式。</span><br></pre></td></tr></table></figure>
-<p>到底都有哪些声明呢？哪种声明更好呢？我们建议你使用XHTML 1.0最严格模式，从一开始我们就应该严格的要求自己,具体声明如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Strict//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd&quot;&gt;</span><br></pre></td></tr></table></figure></p>
-<p>如果你接手的是一个遗留网页，最初并没有DTD声明，并且使用了很多在XHTML中已经废除的标签，那么建议你使用XHTML兼容模式，声明如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;</span><br></pre></td></tr></table></figure></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">html</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">html 标准模式与怪异模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/前端//" class="article-tag-list-link color3">前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/24/Pattern/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/8/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/10/">Next &raquo;</a>
@@ -704,11 +703,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">函数式编程</a>
+                <a href="javascript:void(0)" class="js-tag color1">判断回文数</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">判断回文数</a>
+                <a href="javascript:void(0)" class="js-tag color1">函数式编程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -732,15 +731,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">html cookie和session完全总结</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">css</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">css兼容性问题</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">html cookie和session完全总结</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -840,6 +839,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">call</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">apply</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">bind</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">html get和post的区别</a>
               </li>
              
@@ -896,10 +907,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">javascript-闭包</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javascript-call</a>
               </li>
              
@@ -909,6 +916,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javascript-bind</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">javascript-闭包</a>
               </li>
              
               <li class="article-tag-list-item">
