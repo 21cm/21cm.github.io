@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="21cm">
 <meta property="og:description" content="什么是闭包? 闭包是一个函数,用于捕获作用域内的外部绑定。 12345678910111213141516//  * @param FACTOR//  * @returns &amp;#123;Function&amp;#125;//factor是createScaleFunction函数内的变量,却能在该函数返回后仍然使用//它从高阶函数中return实现&amp;quot;越狱&amp;quot;function crea">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-05-29T12:52:14.967Z">
+<meta property="og:updated_time" content="2018-05-30T01:24:36.938Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="变量的作用域和闭包">
 <meta name="twitter:description" content="什么是闭包? 闭包是一个函数,用于捕获作用域内的外部绑定。 12345678910111213141516//  * @param FACTOR//  * @returns &amp;#123;Function&amp;#125;//factor是createScaleFunction函数内的变量,却能在该函数返回后仍然使用//它从高阶函数中return实现&amp;quot;越狱&amp;quot;function crea">
@@ -168,9 +168,9 @@
 <li>什么是闭包?</li>
 <li><p>闭包是一个函数,用于捕获作用域内的外部绑定。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">//  * @param FACTOR</span><br><span class="line">//  * @returns &#123;Function&#125;</span><br><span class="line">//factor是createScaleFunction函数内的变量,却能在该函数返回后仍然使用</span><br><span class="line">//它从高阶函数中return实现&quot;越狱&quot;</span><br><span class="line">function createScaleFunction(FACTOR) &#123;</span><br><span class="line">    var factor = FACTOR;</span><br><span class="line">    return function (array) &#123;</span><br><span class="line">        return array.map(function (item) &#123;</span><br><span class="line">            return item * factor;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var scale10 = createScaleFunction(10);</span><br><span class="line">console.log(scale10([1, 2, 3, 4, 5]));  //10, 20, 30, 40, 50</span><br><span class="line">var scale2 = createScaleFunction(2);</span><br><span class="line">console.log(scale2([1, 2, 3, 4, 5]));   //2,4,6,8,10</span><br></pre></td></tr></table></figure>
-<p>// <em> 例二<br>// </em> @returns {Function}</p>
+<p>// * @returns {Function}</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//利用闭包封装私有数据</span><br><span class="line">//实现一个自增计数器</span><br><span class="line">function increment() &#123;</span><br><span class="line">    var counter = 0;</span><br><span class="line">    return function () &#123;</span><br><span class="line">        return ++counter;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">// console.log(counter);  //error,访问不到</span><br><span class="line">var counter = increment();</span><br><span class="line">console.log(counter());</span><br><span class="line">console.log(counter());</span><br><span class="line">console.log(counter());</span><br></pre></td></tr></table></figure>
-<p>// <em> 例三<br>// </em> 实现bind函数</p>
+<p>// * 实现bind函数</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Function.prototype.bind = function () &#123;</span><br><span class="line">    var args = [].slice.apply(arguments);</span><br><span class="line">    var context = args.shift();</span><br><span class="line">    var self = this;   //保存原函数</span><br><span class="line">    return function () &#123;</span><br><span class="line">        var args2 = args.concat([].slice.apply(arguments));</span><br><span class="line">        return self.apply(context, args2);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var func = function (a, b, c, d) &#123;</span><br><span class="line">    console.log(this.name);</span><br><span class="line">    console.log([a, b, c, d]);</span><br><span class="line">&#125;.bind(&#123;name: &apos;hhhhhhhh&apos;&#125;, 3, 4);</span><br><span class="line">func(1, 2);</span><br></pre></td></tr></table></figure></li>
 </ul>
 
@@ -392,18 +392,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">函数式编程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">判断回文数</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">html</a>
               </li>
              
@@ -412,11 +400,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">判断回文数</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">web语义化的理解</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">多队列</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">函数式编程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -432,7 +432,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">link</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">@import</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">html cookie和session完全总结</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">css-清除浮动</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -448,23 +460,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">link</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">@import</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">css-box-sizing属性</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">css-清除浮动</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">css-浮动</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -473,6 +469,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">css-盒模型</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">css-浮动</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">css-预处理</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -496,31 +500,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">css-预处理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">css-reset</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">css-选择器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">html data-xxx属性</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">fibonacci</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">斐波那契数列</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">html-doctype</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -532,7 +516,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">html data-xxx属性</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">html get和post的区别</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">html-doctype</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">fibonacci</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">斐波那契数列</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -544,11 +544,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">javascript高级函数</a>
+                <a href="javascript:void(0)" class="js-tag color5">数制转换</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">javascript颗粒化</a>
+                <a href="javascript:void(0)" class="js-tag color5">javascript高级函数</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -556,7 +556,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数制转换</a>
+                <a href="javascript:void(0)" class="js-tag color4">javascript颗粒化</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -584,6 +584,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">javascript-闭包</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">javascript-缓存</a>
               </li>
              
@@ -600,15 +604,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">javascript-闭包</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">javascript-跨域</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript-跨域方式</a>
+                <a href="javascript:void(0)" class="js-tag color5">javascript-new</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -620,11 +616,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">javascript内存泄露</a>
+                <a href="javascript:void(0)" class="js-tag color4">javascript-跨域</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">javascript-new</a>
+                <a href="javascript:void(0)" class="js-tag color1">javascript-跨域方式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">javascript内存泄露</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -645,6 +645,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">javascript-onload</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript-严格模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -680,19 +684,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript-严格模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">javascript-循环</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">javascript-xss</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javascript-csrf</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">javascript-循环</a>
               </li>
             
             <div class="clearfix"></div>
