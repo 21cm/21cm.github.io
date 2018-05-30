@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="21cm">
 <meta property="og:description" content="javascript中this的指向有4种情况: 1.作为普通函数调用: this指向全局对象 2.作为对象方法调用: this`指向该对象 3.构造器调用: this指向构造器返回的对象 4.Function.prototype.call 和 Function.prototype.apply调用: this指向动态传入的对象   丢失的this 例子: document.getElementB">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-05-30T10:00:55.797Z">
+<meta property="og:updated_time" content="2018-05-30T10:05:55.094Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="this的四种用法">
 <meta name="twitter:description" content="javascript中this的指向有4种情况: 1.作为普通函数调用: this指向全局对象 2.作为对象方法调用: this`指向该对象 3.构造器调用: this指向构造器返回的对象 4.Function.prototype.call 和 Function.prototype.apply调用: this指向动态传入的对象   丢失的this 例子: document.getElementB">
@@ -176,7 +176,7 @@
 <li>例子:</li>
 <li><code>document.getElementById</code>这个函数名字太长,可以使用一个短点的函数来代替,例如prototype.js做法:</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">    var getId = function (id) &#123;</span><br><span class="line">    return document.getElementById(id);</span><br><span class="line">&#125;</span><br><span class="line">getId(&apos;div1&apos;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var getId = function (id) &#123;</span><br><span class="line">    return document.getElementById(id);</span><br><span class="line">&#125;</span><br><span class="line">getId(&apos;div1&apos;);</span><br></pre></td></tr></table></figure>
 <ul>
 <li>注意: 使用下面的方式是错误的!!!!!!!</li>
 <li><code>var getId=document.getElementById;</code>   错误做法!!!</li>
@@ -650,15 +650,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript-性能优化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">javascript-ready</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">javascript-onload</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript-性能优化</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -702,15 +702,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">javascript-循环</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">javascript-xss</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javascript-csrf</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">javascript-循环</a>
               </li>
             
             <div class="clearfix"></div>
