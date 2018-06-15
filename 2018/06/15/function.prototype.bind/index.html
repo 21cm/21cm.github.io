@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="https://21cm.js.org">
   <title>函数节流与防抖 | 21cm</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697&amp;lt;script&amp;gt;">
+  <meta name="description" content="假设浏览器窗口滚动条滚动时会调用一个方法fn,下面一步步实现一个节流函数. 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384">
 <meta name="keywords" content="前端">
 <meta property="og:type" content="article">
 <meta property="og:title" content="函数节流与防抖">
 <meta property="og:url" content="https://21cm.js.org/2018/06/15/function.prototype.bind/index.html">
 <meta property="og:site_name" content="21cm">
-<meta property="og:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697&amp;lt;script&amp;gt;">
+<meta property="og:description" content="假设浏览器窗口滚动条滚动时会调用一个方法fn,下面一步步实现一个节流函数. 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-06-15T10:57:45.592Z">
+<meta property="og:updated_time" content="2018-06-15T11:00:41.118Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="函数节流与防抖">
-<meta name="twitter:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697&amp;lt;script&amp;gt;">
+<meta name="twitter:description" content="假设浏览器窗口滚动条滚动时会调用一个方法fn,下面一步步实现一个节流函数. 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384">
   
     <link rel="alternative" href="/atom.xml" title="21cm" type="application/atom+xml">
   
@@ -164,7 +164,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    /**</span><br><span class="line">     * 第一个版本</span><br><span class="line">     * 缺点:产生了全局变量</span><br><span class="line">     */</span><br><span class="line">    var timer;</span><br><span class="line">    window.onscroll = function () &#123;</span><br><span class="line">        clearTimeout(timer);</span><br><span class="line">        timer = setTimeout(function () &#123;</span><br><span class="line">            console.log(&apos;window scroll...&apos;);</span><br><span class="line">        &#125;, 200);</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">    /***</span><br><span class="line">     * 第二个版本,使用闭包来封装全局变量</span><br><span class="line">     * 缺点:如果用户不停的滚动滚动条,那么延时函数一次都不会触发</span><br><span class="line">     */</span><br><span class="line">    var throttle = function (fn, delay) &#123;</span><br><span class="line">        var timer = null;</span><br><span class="line"></span><br><span class="line">        return function () &#123;</span><br><span class="line">            clearTimeout(timer);</span><br><span class="line">            timer = setTimeout(function () &#123;</span><br><span class="line">                fn();</span><br><span class="line">            &#125;, delay);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    var f = throttle(testFn, 200);</span><br><span class="line">    window.onscroll = function () &#123;</span><br><span class="line">        f();</span><br><span class="line">    &#125;;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">    /***</span><br><span class="line">     * 于是我们又要添加一个功能：当用户触发 scroll 的时候应该 在某段时间 内至少触发一次，既然是在某段时间内，</span><br><span class="line">     * 那么这个判断条件就可以取当前的时间毫秒数，每次函数调用把当前的时间和上一次调用时间相减，然后判断差值如果大于 某段时间 就直接触发，</span><br><span class="line">     * 否则还是走 timeout 的延迟逻辑。</span><br><span class="line"></span><br><span class="line">     下面的代码里面需要指出的是：</span><br><span class="line">     1. previous 变量的作用和 timer 类似，都是记录上一次的标识，必须是相对的全局变量</span><br><span class="line">     2. 如果逻辑流程走的是“至少触发一次”的逻辑，那么函数调用完成需要把 previous 重置成当前时间，简单来说就是：相对于下一次的上一次其实就是当前</span><br><span class="line">     */</span><br><span class="line"></span><br><span class="line">    var COUNT = 0, demo = document.getElementById(&apos;demo&apos;);</span><br><span class="line">    function testFn() &#123;</span><br><span class="line">        demo.innerHTML += &apos;testFN 被调用了 &apos; + ++COUNT + &apos;次&lt;br&gt;&apos;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    var throttle = function (fn, delay, atleast) &#123;</span><br><span class="line">        var timer = null;</span><br><span class="line">        var previous = null;</span><br><span class="line"></span><br><span class="line">        return function () &#123;</span><br><span class="line">            var now = +new Date();</span><br><span class="line"></span><br><span class="line">            if (!previous) previous = now;</span><br><span class="line">            if (atleast &amp;&amp; now - previous &gt; atleast) &#123;</span><br><span class="line">                fn();</span><br><span class="line">                // 重置上一次开始时间为本次结束时间</span><br><span class="line">                previous = now;</span><br><span class="line">                clearTimeout(timer);</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                clearTimeout(timer);</span><br><span class="line">                timer = setTimeout(function () &#123;</span><br><span class="line">                    fn();</span><br><span class="line">                    previous = null;</span><br><span class="line">                &#125;, delay);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    window.onscroll = throttle(testFn, 200);</span><br><span class="line">    // window.onscroll = throttle(testFn, 500, 1000);</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">    document.getElementById(&quot;btn&quot;).onclick = throttle(function () &#123;</span><br><span class="line">        console.log(&quot;button click...&quot;);</span><br><span class="line">    &#125;, 2000);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    //debounce用于将相同的操作积累到一起再触发，节省性能</span><br><span class="line">    function debounce(fn, delay) &#123;</span><br><span class="line">        var timer = null;</span><br><span class="line">        return function () &#123;</span><br><span class="line">            clearTimeout(timer);</span><br><span class="line">            timer = setTimeout(function () &#123;</span><br><span class="line">                return fn.apply(this, arguments);</span><br><span class="line">            &#125;, delay);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+        <p>假设浏览器窗口滚动条滚动时会调用一个方法fn,下面一步步实现一个节流函数.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line">     * 第一个版本</span><br><span class="line">     * 缺点:产生了全局变量</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    var timer;</span><br><span class="line">    window.onscroll = function () &#123;</span><br><span class="line">        clearTimeout(timer);</span><br><span class="line">        timer = setTimeout(function () &#123;</span><br><span class="line">            console.log(&apos;window scroll...&apos;);</span><br><span class="line">        &#125;, 200);</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">     * 第二个版本,使用闭包来封装全局变量</span><br><span class="line">     * 缺点:如果用户不停的滚动滚动条,那么延时函数一次都不会触发</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    var throttle = function (fn, delay) &#123;</span><br><span class="line">        var timer = null;</span><br><span class="line">        return function () &#123;</span><br><span class="line">            clearTimeout(timer);</span><br><span class="line">            timer = setTimeout(function () &#123;</span><br><span class="line">                fn();</span><br><span class="line">            &#125;, delay);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    var f = throttle(testFn, 200);</span><br><span class="line">    window.onscroll = function () &#123;</span><br><span class="line">        f();</span><br><span class="line">    &#125;;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">      * 于是我们又要添加一个功能：当用户触发 scroll 的时候应该 在某段时间 内至少触发一次，既然是在某段时间内，</span><br><span class="line">      * 那么这个判断条件就可以取当前的时间毫秒数，每次函数调用把当前的时间和上一次调用时间相减，然后判断差值如果大于 某段时间 就直接触发，</span><br><span class="line">      * 否则还是走 timeout 的延迟逻辑。</span><br><span class="line">      下面的代码里面需要指出的是：</span><br><span class="line">      1. previous 变量的作用和 timer 类似，都是记录上一次的标识，必须是相对的全局变量</span><br><span class="line">      2. 如果逻辑流程走的是“至少触发一次”的逻辑，那么函数调用完成需要把 previous 重置成当前时间，简单来说就是：相对于下一次的上一次其实就是当前</span><br><span class="line">     </span><br><span class="line">&lt;script&gt;</span><br><span class="line"></span><br><span class="line">   var COUNT = 0, demo = document.getElementById(&apos;demo&apos;);</span><br><span class="line">    function testFn() &#123;</span><br><span class="line">        demo.innerHTML += &apos;testFN 被调用了 &apos; + ++COUNT + &apos;次&lt;br&gt;&apos;;</span><br><span class="line">    &#125;</span><br><span class="line">    var throttle = function (fn, delay, atleast) &#123;</span><br><span class="line">        var timer = null;</span><br><span class="line">        var previous = null;</span><br><span class="line">        return function () &#123;</span><br><span class="line">            var now = +new Date();</span><br><span class="line">            if (!previous) previous = now;</span><br><span class="line">            if (atleast &amp;&amp; now - previous &gt; atleast) &#123;</span><br><span class="line">                fn();</span><br><span class="line">                // 重置上一次开始时间为本次结束时间</span><br><span class="line">                previous = now;</span><br><span class="line">                clearTimeout(timer);</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                clearTimeout(timer);</span><br><span class="line">                timer = setTimeout(function () &#123;</span><br><span class="line">                    fn();</span><br><span class="line">                    previous = null;</span><br><span class="line">                &#125;, delay);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    window.onscroll = throttle(testFn, 200);</span><br><span class="line">    // window.onscroll = throttle(testFn, 500, 1000);</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">    document.getElementById(&quot;btn&quot;).onclick = throttle(function () &#123;</span><br><span class="line">        console.log(&quot;button click...&quot;);</span><br><span class="line">    &#125;, 2000);</span><br><span class="line"></span><br><span class="line">    //debounce用于将相同的操作积累到一起再触发，节省性能</span><br><span class="line">    function debounce(fn, delay) &#123;</span><br><span class="line">        var timer = null;</span><br><span class="line">        return function () &#123;</span><br><span class="line">            clearTimeout(timer);</span><br><span class="line">            timer = setTimeout(function () &#123;</span><br><span class="line">                return fn.apply(this, arguments);</span><br><span class="line">            &#125;, delay);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
       
 
       
@@ -383,6 +384,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">判断回文数</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">html</a>
               </li>
              
@@ -391,19 +396,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">判断回文数</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">web语义化的理解</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Applicative编程</a>
+                <a href="javascript:void(0)" class="js-tag color4">多队列</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">多队列</a>
+                <a href="javascript:void(0)" class="js-tag color4">Applicative编程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -419,18 +420,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">css-box-sizing属性</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">link</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">@import</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">css-inline</a>
               </li>
              
@@ -443,11 +432,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">css-清除浮动</a>
+                <a href="javascript:void(0)" class="js-tag color5">link</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">css-居中</a>
+                <a href="javascript:void(0)" class="js-tag color3">@import</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">css-box-sizing属性</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">css-清除浮动</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -455,11 +452,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">css-盒模型</a>
+                <a href="javascript:void(0)" class="js-tag color2">css-居中</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">css-预处理</a>
+                <a href="javascript:void(0)" class="js-tag color3">css-盒模型</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -483,6 +480,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">css-预处理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">css-选择器</a>
               </li>
              
@@ -491,19 +492,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">html-doctype</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">变量作用域</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">闭包</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">html data-xxx属性</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">html-doctype</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -515,6 +508,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">变量作用域</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">闭包</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">前端</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">html get和post的区别</a>
               </li>
              
@@ -523,19 +528,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">call</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">apply</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">bind</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数制转换</a>
+                <a href="javascript:void(0)" class="js-tag color3">http状态码</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -547,11 +540,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">http状态码</a>
+                <a href="javascript:void(0)" class="js-tag color4">javascript颗粒化</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">javascript颗粒化</a>
+                <a href="javascript:void(0)" class="js-tag color5">数制转换</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -571,15 +564,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">javascript-缓存</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javascript原型式继承</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">object.create</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">javascript-缓存</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -599,10 +592,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">javascript-new</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">javascript-跨域</a>
               </li>
              
@@ -619,6 +608,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">javascript-new</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">javascript内存泄露</a>
               </li>
              
@@ -631,15 +624,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript-性能优化</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">javascript-ready</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">javascript-onload</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript-性能优化</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -675,10 +668,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">javascript-循环</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javascript-严格模式</a>
               </li>
              
@@ -687,15 +676,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">javascript-循环</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">javascript-xss</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javascript-csrf</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">前端</a>
               </li>
             
             <div class="clearfix"></div>
